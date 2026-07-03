@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genchi Japanese</title>
+    <title>Genchi Japanese: Complete 60-Day Interactive Bootcamp</title>
     <style>
         :root {
-            --bg-color: #121214;
-            --card-bg: #1a1a1e;
+            --bg-color: #0f0f11;
+            --card-bg: #16161a;
             --accent-color: #4ade80;
-            --text-color: #e4e4e7;
+            --text-color: #f4f4f5;
             --text-muted: #a1a1aa;
             --border-color: #27272a;
             --danger-color: #f87171;
+            --blue-accent: #60a5fa;
+            --panel-bg: #1e1e24;
         }
 
         body {
@@ -20,86 +22,131 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-controls {
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 12px;
+        }
+
+        .phase-navigation {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .phase-btn {
+            background-color: #1e1e24;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .phase-btn.active {
+            background-color: var(--blue-accent);
+            color: #000;
+            border-color: var(--blue-accent);
+        }
+
+        .day-scroller {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 4px 2px 8px 2px;
+            width: 100%;
+            scrollbar-width: thin;
+        }
+
+        .day-scroller::-webkit-scrollbar {
+            height: 4px;
+        }
+        .day-scroller::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .day-grid-btn {
+            min-width: 55px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .day-grid-btn.active {
+            background-color: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
         }
 
         .app-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
         }
 
         .app-header {
-            padding: 20px;
+            padding: 18px;
             border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(to bottom, #1f1f23, #1a1a1e);
+            background: linear-gradient(to bottom, #1c1c21, #16161a);
         }
 
         .app-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            letter-spacing: 1px;
-            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+            margin: 0 0 6px 0;
             display: flex;
             justify-content: space-between;
-        }
-
-        .progress-bar-container {
-            background-color: #27272a;
-            border-radius: 6px;
-            height: 8px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            background-color: var(--accent-color);
-            height: 100%;
-            width: 64%;
-            transition: width 0.3s ease;
+            align-items: center;
         }
 
         .progress-text {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 6px;
-            display: block;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         .content-body {
-            padding: 20px;
+            padding: 18px;
         }
 
         .section-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-color);
-            margin-top: 25px;
-            margin-bottom: 12px;
+            margin-top: 22px;
+            margin-bottom: 10px;
             border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        .card {
-            background-color: #202024;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding-bottom: 4px;
         }
 
         .audio-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #18181c;
+            background-color: #0f0f12;
             padding: 12px;
             border-radius: 6px;
             margin-bottom: 8px;
@@ -107,7 +154,7 @@
         }
 
         .japanese-text {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 500;
             font-family: "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
         }
@@ -116,11 +163,10 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--accent-color);
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 4px;
-            transition: background 0.2s;
         }
 
         .audio-btn:hover {
@@ -128,212 +174,374 @@
         }
 
         .hint-text {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            margin-top: 4px;
-            font-style: italic;
+            margin-top: 3px;
+            line-height: 1.3;
         }
 
         .choice-btn {
             display: block;
             width: 100%;
-            background-color: #202024;
+            background-color: #1d1d22;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: left;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            transition: background 0.15s;
         }
 
         .choice-btn:hover {
-            border-color: var(--text-muted);
-            background-color: #27272a;
+            background-color: #24242b;
         }
 
         .feedback-box {
             display: none;
-            padding: 12px;
+            padding: 10px;
             border-radius: 6px;
-            margin-top: 8px;
-            font-size: 0.9rem;
+            margin-top: 6px;
+            font-size: 0.85rem;
             line-height: 1.4;
         }
 
-        .feedback-success {
-            background-color: rgba(74, 222, 128, 0.1);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-        }
+        .feedback-success { background-color: rgba(74, 222, 128, 0.08); border: 1px solid var(--accent-color); color: var(--accent-color); }
+        .feedback-fail { background-color: rgba(248, 113, 113, 0.08); border: 1px solid var(--danger-color); color: var(--danger-color); }
 
-        .feedback-fail {
-            background-color: rgba(248, 113, 113, 0.1);
-            border: 1px solid var(--danger-color);
-            color: var(--danger-color);
+        .card {
+            background-color: #1d1d22;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
         }
 
         .culture-byte {
-            background-color: #131316;
+            background-color: #0e0e11;
             border: 1px solid #3f3f46;
             border-radius: 8px;
-            padding: 15px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            padding: 14px;
+            font-size: 0.85rem;
+            line-height: 1.45;
         }
 
         .culture-header {
             font-weight: bold;
             color: #fbbf24;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            margin-bottom: 5px;
         }
 
         .footer-nav {
-            padding: 20px;
+            padding: 15px 18px;
             border-top: 1px solid var(--border-color);
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            background-color: #121216;
         }
 
-        .next-btn {
-            background-color: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
+        .nav-action-btn {
+            background-color: #27272a;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 9px 16px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            transition: opacity 0.2s;
+            font-size: 0.85rem;
         }
 
-        .next-btn:hover {
-            opacity: 0.9;
+        .nav-action-btn.next {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
         }
     </style>
 </head>
 <body>
 
+<div class="header-controls">
+    <div class="phase-navigation">
+        <button id="p1-btn" class="phase-btn active" onclick="jumpToPhase(1)">P1: Dining Survival</button>
+        <button id="p2-btn" class="phase-btn" onclick="jumpToPhase(2)">P2: Transit Logistics</button>
+        <button id="p3-btn" class="phase-btn" onclick="jumpToPhase(3)">P3: Pub & Hobbies</button>
+        <button id="p4-btn" class="phase-btn" onclick="jumpToPhase(4)">P4: Custom Troubleshooting</button>
+    </div>
+    <div class="day-scroller" id="day-scroller-container">
+        <!-- Days 1-60 injected dynamically -->
+    </div>
+</div>
+
 <div class="app-container">
     <div class="app-header">
         <div class="app-title">
-            <span>🇯🇵 GENCHI JAPANESE</span>
-            <span style="color: var(--accent-color);">Day 32/60</span>
+            <span id="header-phase">Phase 1: Fast-Casual Survival Guide</span>
+            <span id="header-day" style="color: var(--accent-color);">Day 1/60</span>
         </div>
-        <div class="progress-bar-container">
-            <div class="progress-bar"></div>
-        </div>
-        <span class="progress-text">Phase 3: Izakaya Dining & Social (64% Complete)</span>
+        <div class="progress-text" id="header-theme">Theme: Entering a Local Diner</div>
     </div>
 
-    <div class="content-body">
-        
-        <!-- STEP 1: POP QUIZ -->
-        <div class="section-title">🎲 Step 1: History Pop-Quiz</div>
-        <p style="font-size: 0.95rem; margin-bottom: 12px;">You are looking at a lunch menu wall. You want a full set meal that comes with side dishes, not just a standalone rice bowl. Which script combination must your eyes scan for?</p>
-        
-        <button class="choice-btn" onclick="checkQuiz(1, 'fail')">
-            <strong>A:</strong> 丼 (Don)
-            <div id="quiz1-fail" class="feedback-box feedback-fail">❌ Incorrect. This symbol represents a single rice bowl dish. You'll miss out on your side dishes and miso soup!</div>
-        </button>
-        
-        <button class="choice-btn" onclick="checkQuiz(1, 'pass')">
-            <strong>B:</strong> 定食 (Teishoku)
-            <div id="quiz1-pass" class="feedback-box feedback-success">🎉 Correct! Spotting 定食 guarantees you are ordering a complete, traditional combo set meal.</div>
-        </button>
-
-        <!-- STEP 2: SIGHT-READING LAB -->
-        <div class="section-title">🔎 Step 2: Triple-Script Reading Lab</div>
-        <p style="font-size: 0.95rem; margin-bottom: 12px;">Track the symbols from left to right. Tap the speaker icons to hear native pronunciations matching the script shapes.</p>
-        
-        <div class="audio-row">
-            <div>
-                <div class="japanese-text">串焼き</div>
-                <div class="hint-text">Kushi-yaki (Skewered Grill) • Look for the wood-skewer shape 串</div>
-            </div>
-            <button class="audio-btn" onclick="playAudio('串焼き')">🔊</button>
-        </div>
-
-        <div class="audio-row">
-            <div>
-                <div class="japanese-text">盛り合わせ</div>
-                <div class="hint-text">Moriawase (Combo Platter) • Spot this to get a chef's assortment</div>
-            </div>
-            <button class="audio-btn" onclick="playAudio('盛り合わせ')">🔊</button>
-        </div>
-
-        <div class="audio-row">
-            <div>
-                <div class="japanese-text">レバー、塩で。</div>
-                <div class="hint-text">Rebā, shio de. (Liver, with salt.) • Sharp Katakana features loanwords</div>
-            </div>
-            <button class="audio-btn" onclick="playAudio('レバー、塩で。')">🔊</button>
-        </div>
-
-        <!-- STEP 3: SIMULATOR -->
-        <div class="section-title">🎮 Step 3: Real-Talk Simulator</div>
-        <p style="font-size: 0.95rem; margin-bottom: 12px;">The Izakaya chef slams down a fresh towel and asks for your drink order rapidly:</p>
-        
-        <div class="card" style="border-left: 3px solid #60a5fa;">
-            <div style="font-size: 0.8rem; color: #60a5fa; margin-bottom: 4px; font-weight: bold;">🧑‍🍳 MASTER GRILLER:</div>
-            <div class="japanese-text">いらっしゃい！飲み物は？</div>
-            <div class="hint-text">Irasshai! Nomimono wa? ("Welcome! Drinks?")</div>
-        </div>
-
-        <p style="font-size: 0.95rem; margin-bottom: 12px;">Lock in a draft beer instantly like a seasoned regular to keep the flow moving:</p>
-
-        <button class="choice-btn" onclick="checkQuiz(2, 'fail')">
-            <strong>Choice A:</strong> ビールを一杯持ってきただけますか？
-            <div id="quiz2-fail" class="feedback-box feedback-fail">❌ Stiff Textbook Trap. This long, winded formal phrase dampens the casual, high-speed energy of a local alleyway bar.</div>
-        </button>
-        
-        <button class="choice-btn" onclick="checkQuiz(2, 'pass')">
-            <strong>Choice B:</strong> あ、とりあえず生ビールで。
-            <div id="quiz2-pass" class="feedback-box feedback-success">🔥 Flawless Local Flow. You used "Toriaezu" (Let's start with...) and the conversational short-cut "de". You sound like a local regular.</div>
-        </button>
-
-        <!-- STEP 4: CULTURAL BYTE -->
-        <div class="section-title">🏮 Step 4: Cultural Byte</div>
-        <div class="culture-byte">
-            <div class="culture-header">💡 YOKOCHO HISTORY: The "Tare" Legacy</div>
-            These cramped post-WWII alleyways (Yokocho) originally operated as survival black markets. Vendors used a thick, sugary soy glaze called "Tare" to heavily mask and enrich cheaper, resource-scarce cuts of meat for working-class citizens. Today, ordering items with "Tare" preserves that rich history.
-        </div>
-
+    <div class="content-body" id="dynamic-content">
+        <!-- Dynamic operational contents are injected here -->
     </div>
 
     <div class="footer-nav">
-        <button class="next-btn" onclick="alert('Progress saved! Day 33 module generating...')">Next Class ⏭️</button>
+        <button class="nav-action-btn" onclick="prevDay()">Previous Day</button>
+        <button class="nav-action-btn next" onclick="nextDay()">Next Day ⏭️</button>
     </div>
 </div>
 
 <script>
-    function playAudio(text) {
-        if ('speechSynthesis' in window) {
-            // Cancel any current speech instantly before playing new audio
-            window.speechSynthesis.cancel();
-            
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ja-JP';
-            utterance.rate = 0.85; // Slightly adapted for clear learning speed
-            window.speechSynthesis.speak(utterance);
-        } else {
-            alert("Your browser does not support audio synthesis.");
+    let currentDay = 1;
+
+    // Full 60-day compressed linear data catalog without omissions or empty structural gaps
+    const dataset = {
+        1: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Entering a Local Diner", q: "The entire staff screams 'Irasshaimase!' at you simultaneously. What do you say back?", c1: "A: Shout 'Konnichiwa!' back at the same volume.", c1s: "fail", c1f: "❌ Awkward. Locals never respond with 'Hello' to retail staff.", c2: "B: Do not say anything; simply give a micro-nod.", c2s: "pass", c2f: "🎉 Perfect. Real customers don't vocalize a response to store staff greetings.", l_intro: "Trace the baseline fundamental vowel anchors of Hiragana.", r1: "あ", h1: "Ah (as in father). Soft, rounded structure.", r2: "い", h2: "Ee (as in meet). Two parallel vertical lines.", r3: "う", h3: "Oo (as in boot). Curved frame.", s_intro: "The counter clerk points you to an open stool near the kitchen area.", cl: "こちらへどうぞ！", ch: "Kochira e dōzo! (Please come this way!)", yi: "Acknowledge the clerk casually as you sit down:", yc1: "Choice A: どうぞよろしくおねがいします。", yc1s: "fail", yc1f: "❌ Over-formal. This is for professional intros, not simple fast-food stalls.", yc2: "Choice B: あ、どうも。", yc2s: "pass", yc2f: "🔥 Flawless Flow. 'A, dōmo' acts as a fast, natural 'Ah, thanks' cushion.", cult_h: "The Counter Silence", cult_b: "In daily transactions, Japanese consumers value speed over conversation. A head nod signals respect for their fast pace." },
+        2: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Securing an Order Vector (Menus)", q: "Review Quiz: You need to flag down a waiter to check the options. What is the native baseline?", c1: "A: メニュー、ありますか？", c1s: "pass", c1f: "🎉 Correct! Direct, natural, and highly efficient.", c2: "B: 私はメニューが欲しいです。", c2s: "fail", c2f: "❌ Textbook trap. Using 'Watashi' is redundant and artificial.", l_intro: "Spotting the 'K-Row' reveals crucial phrasing components.", r1: "か", h1: "Ka sound. Looks like a hand pulling a small lever.", r2: "き", h2: "Ki sound. Looks like a structural key.", r3: "く", h3: "Ku sound. Resembles an open beak shape.", s_intro: "The waiter speeds past you with a notebook.", cl: "ご注文は？", ch: "Gochūmon wa? (Ready to order?)", yi: "Stall him out to scan your choices natively:", yc1: "Choice A: すみません、ちょっと待ってください。", yc1s: "fail", yc1f: "❌ Slightly heavy. Works, but sounds like a roadblock.", yc2: "Choice B: あ、メニューありますか？", yc2s: "pass", yc2f: "🔥 Perfect. Solves your immediate problem directly while halting their movement.", cult_h: "Context King", cult_b: "Because you are the person speaking, dropping pronouns like 'you' or 'I' is expected. Keep sentences down to absolute nouns." },
+        3: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Executing a Core Command Order", q: "Review Quiz: The waiter approaches. How do you order your choice natively while pointing?", c1: "A: これで。", c1s: "pass", c1f: "🎉 Correct! The universal shorthand approach.", c2: "B: これを注文したいです。", c2s: "fail", c2f: "❌ Stiff. Sounds like an automated translation prompt.", l_intro: "S-Row letters build critical standard conversational particles.", r1: "さ", h1: "Sa sound. One cross bar over a sweep.", r2: "し", h2: "Shi sound. Simple fishing hook.", r3: "す", h3: "Su sound. Circle loop in the center line.", s_intro: "You point at a picture of a traditional pork bowl.", cl: "お決まりですか？", ch: "O-kimari desu ka? (Decided?)", yi: "Commit to your selection using standard counter language:", yc1: "Choice A: これをください。", yc1s: "fail", yc1f: "❌ Okay, but slightly textbook formal for casual bars.", yc2: "Choice B: あ、これで。", yc2s: "pass", yc2f: "🔥 Excellent. 'With this' tells the cook to drop everything else.", cult_h: "The Power of 'De'", cult_b: "Ending casual requests with 'De' cuts the conversational fat. It means 'I'll proceed via this avenue.'" },
+        4: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Navigating Convenience Entry", q: "Review Quiz: The clerk wants to know your selection. What is your short native phrase?", c1: "A: あ、これで。", c1s: "pass", c1f: "🎉 Correct! Retain this rapid regular baseline.", c2: "B: これをおねがいします。", c2s: "fail", c2f: "❌ Acceptable, but longer than required for an alley joint.", l_intro: "Katakana is mandatory for global brands and foreign loanwords.", r1: "ア", h1: "Sharp Katakana 'Ah' sound. Angled corner structure.", r2: "イ", h2: "Sharp Katakana 'Ee' sound. Left angle with a drop wall.", r3: "ウ", h3: "Sharp Katakana 'Oo' sound. Top cap frame.", s_intro: "You enter a 7-Eleven with a packaged meal tray.", cl: "温めますか？", ch: "Atatame masu ka? (Do you want this heated up?)", yi: "You prefer eating it later at your accommodation. Decline:", yc1: "Choice A: いいえ、結構です。", yc1s: "fail", yc1f: "❌ Aggressive. Sounds like a defensive legal refusal.", yc2: "Choice B: あ、大丈夫です。", yc2s: "pass", yc2f: "🔥 Perfect. 'Daijōbu desu' with a soft hand wave means 'No thanks.'", cult_h: "The Counter Microwave", cult_b: "Convenience registers feature deep industrial microwaves. Clerks always ask to heat up bento boxes on the spot." },
+        5: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Register Clearance (Cash/Card)", q: "Review Quiz: The clerk offers an unwanted service. How do you issue a polite native bypass?", c1: "A: あ、大丈夫です。", c1s: "pass", c1f: "🎉 Correct! Your universal operational defense.", c2: "B: いりません！", c2s: "fail", c2f: "❌ Too blunt. Sounds angry to retail workers.", l_intro: "Katakana K-Row matches words like 'Kādo' (Card).", r1: "カ", h1: "Ka sound. Angular equivalent of Hiragana.", r2: "キ", h2: "Ki sound. Sharp parallel crossed slants.", r3: "ク", h3: "Ku sound. Two descending angle components.", s_intro: "The register calculates your grand total.", cl: "お支払いは？", ch: "O-shiharai wa? (Payment method?)", yi: "Instruct the cashier you are deploying credit verification:", yc1: "Choice A: クレジットカードを持っています。", yc1s: "fail", yc1f: "❌ Fails intent. This translates to 'I possess a card,' not an action.", yc2: "Choice B: カードで。", yc2s: "pass", yc2f: "🔥 Perfect. Noun + De tells them to switch the terminal to card mode.", cult_h: "Register Screen Tapping", cult_b: "Japanese point-of-sale kiosks require users to manually select payment types on a physical terminal screen." },
+        6: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "The Osaka Takoyaki Stand", q: "Review Quiz: How do you declare you want to settle a total via card payment?", c1: "A: カードで。", c1s: "pass", c1f: "🎉 Correct! Clean, immediate transaction control.", c2: "B: カードでお願いします。", c2s: "fail", c2f: "❌ Fine, but extra words are unneeded at busy counters.", l_intro: "Mastering the universal counter symbol for round objects.", r1: "個", h1: "Ko sound (Kanji). Counter for items like takoyaki or sushi.", r2: "こ", h2: "Ko sound in Hiragana script format.", r3: "コ", h3: "Ko sound in Katakana script format.", s_intro: "You stand before a blistering street grill flipping octopus balls.", cl: "何個にしますか？", ch: "Nan-ko ni shimasu ka? (How many pieces?)", yi: "Order exactly six pieces using natural shorthand phrasing:", yc1: "Choice A: 六個、おねがいします。", yc1s: "fail", yc1f: "❌ Standard textbook style. Functional but rigid.", yc2: "Choice B: 六個で。", yc2s: "pass", yc2f: "🔥 Excellent. 'Rokko de' sounds completely native and rapid.", cult_h: "Speed is Politeness", cult_b: "At active food stalls, the chef's objective is throughput. Keep your syntax tiny to keep lines moving." },
+        7: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Cafe Temperature Controls", q: "Review Quiz: How do you choose your count order natively using the counter suffix?", c1: "A: 六個で。", c1s: "pass", c1f: "🎉 Correct! Fast street interaction style.", c2: "B: 六つください。", c2s: "fail", c2f: "❌ Okay, but generic counters sound less targeted for street stalls.", l_intro: "Spotting temperature indicators on modern dynamic screens.", r1: "ホット", h1: "Hotto. Katakana representing hot drinks.", r2: "アイス", h2: "Aisu. Katakana representing iced drinks.", r3: "コーヒー", h3: "Kōhī. Note the long vowels ('ー') stretching the sounds.", s_intro: "You step to a modern boutique coffee kiosk counter.", cl: "お飲み物は？", ch: "O-nomimono wa? (Your beverage choice?)", yi: "You require a cold, iced caffeinated brew. Order natively:", yc1: "Choice A: 冷たいコーヒーをください。", yc1s: "fail", yc1f: "❌ Awkward. 'Tsumetai' is descriptive; cafes use the loanword.", yc2: "Choice B: アイスコーヒーで。", yc2s: "pass", yc2f: "🔥 Spot on. Matches the physical katakana menu parameters.", cult_h: "Vowel Stretching", cult_b: "In Katakana, the horizontal dash 'ー' is an asset. Neglecting to hold it shifts meanings instantly." },
+        8: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Fast Food Custom Logistics", q: "Review Quiz: How do you request an iced coffee without reading textbook phrases?", c1: "A: アイスコーヒーで。", c1s: "pass", c1f: "🎉 Correct! Easy, native, fully understood.", c2: "B: コールドコーヒーで。", c2s: "fail", c2f: "❌ Fail. 'Cold coffee' is not the standard local term.", l_intro: "Recognizing destination-bound choices at cash registers.", r1: "店内", h1: "Tennai (Kanji). Meaning: Dine-in / Inside the store.", r2: "持ち帰り", h2: "Mochikaeri (Hiragana/Kanji mixture). Meaning: Takeout.", r3: "テイクアウト", h3: "Teikuauto (Katakana alternative). Common loanword variation.", s_intro: "You order a quick burger snack near Shibuya station.", cl: "こちらでお召し上がりですか？", ch: "Kochira de o-meshiagari desu ka? (Eating inside here?)", yi: "You are returning to your room with the package. Inform them:", yc1: "Choice A: テイクアウトで。", yc1s: "pass", yc1f: "🔥 Excellent. Safe, clean, universally acknowledged loanword.", yc2: "Choice B: いいえ、外で食べます。", yc2s: "fail", yc2f: "❌ Clunky. Translates to 'No, I eat outside'—sounds odd.", cult_h: "The Dining Tax Split", cult_b: "Japan employs a minor sales tax divergence between eating inside (10%) versus taking food away (8%)." },
+        9: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Ramen Vending Matrix", q: "Review Quiz: You want your food packaged for off-site consumption. How do you specify?", c1: "A: テイクアウトで。", c1s: "pass", c1f: "🎉 Correct! Simple register loanword implementation.", c2: "B: 家で食べます。", c2s: "fail", c2f: "❌ Strange context for a rapid cashier terminal loop.", l_intro: "Deciphering ramen ticket headers to secure appropriate styles.", r1: "豚骨", h1: "Tonkotsu (Kanji). Heavy, rich pork-bone broth marker.", r2: "醤油", h2: "Shōyu (Kanji). Light, savory soy sauce broth marker.", r3: "味噌", h3: "Miso (Kanji). Fermented soybean paste broth profile.", s_intro: "You purchase a physical paper voucher from a ticket machine.", cl: "食券をお預かりします。麺のかたさは？", ch: "Shokken o oazkari shimasu. Men no katasa wa? (Taking ticket. Noodle firmness?)", yi: "You prefer a firm, al dente texture. State it concisely:", yc1: "Choice A: かためで。", yc1s: "pass", yc1f: "🔥 Elite local selection. 'Katame de' signals noodle awareness.", yc2: "Choice B: 強い麺をください。", yc2s: "fail", yc2f: "❌ Absolute fail. 'Strong noodles' makes no sense.", cult_h: "Firmness Tiers", cult_b: "Ramen spots allow noodle texture optimization ranging from Soft (Yawarakame), Normal (Futsuu), to Hard (Katame)." },
+        10: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Bakery Suffix Commands", q: "Review Quiz: You want firm al dente ramen noodles. How do you express your texture preference?", c1: "A: かためで。", c1s: "pass", c1f: "🎉 Correct! Rhythmic, short, and perfectly understood.", c2: "B: ハードで。", c2s: "fail", c2f: "❌ Wrong. Do not apply English loanwords to traditional noodle specs.", l_intro: "Evaluating the native counting mechanism for irregular individual pasties.", r1: "つ", h1: "Tsu. Suffix indicating native standalone counts.", r2: "一つ", h2: "Hitotsu. One singular item count designation.", r3: "二つ", h3: "Futatsu. Two standalone item counts structural unit.", s_intro: "You place individual baked melon buns onto a plastic tray.", cl: "以上でよろしいですか？", ch: "Ijō de yoroshii desu ka? (Is that all for you?)", yi: "You observe another item behind the glass and want one more:", yc1: "Choice A: これも、一つで。", yc1s: "pass", yc1f: "🔥 Flawless expansion syntax. 'This too, one item please.'", yc2: "Choice B: ワンモア、おねがいします。", yc2s: "fail", yc2f: "❌ Broken English loanword logic. Avoid 'One more' variants.", cult_h: "The Native Suffix System", cult_b: "While 'Ko' applies to explicit round shapes, 'Tsu' covers abstract, hand-held items like buns, rocks, or ideas." },
+        11: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Conveyor Belt Sushi Stack", q: "Review Quiz: How do you ask to add one more abstract item at a counter display?", c1: "A: これも、一つで。", c1s: "pass", c1f: "🎉 Correct! Simple, effective, non-textbook.", c2: "B: 1個追加します。", c2s: "fail", c2f: "❌ Grammatically correct, but sounds like database code.", l_intro: "Deciphering standard counting parameters on electronic terminal charts.", r1: "皿", h1: "Sara (Kanji). Meaning: Individual plate unit marker.", r2: "サビ抜き", h2: "Sabi-nuki. Absolute critical phrase meaning: Without wasabi.", r3: "注文", h3: "Chūmon (Kanji). Targeted digital system request indicator.", s_intro: "You sit before a revolving loop of high-speed sushi lanes.", cl: "ご注文の品がまもなく到着します。", ch: "Gochūmon no shina ga mamonaku tōchaku shimasu. (Your custom plate is arriving.)", yi: "You are flagging the server down to clear your empty structural plates:", yc1: "Choice A: お皿、下げてください。", yc1s: "pass", yc1f: "🔥 Smooth. 'Please lower/remove the finished plates.'", yc2: "Choice B: ゴミを持って行ってください。", yc2s: "fail", yc2f: "❌ Offensive. Calling empty culinary plates 'gomi' (trash) is taboo.", cult_h: "Wasabi Protocol", cult_b: "Standard conveyor chains include hot green tea taps at your table and utilize 'Sabi-nuki' by default on kid-friendly screens." },
+        12: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Family Restaurant Hydration", q: "Review Quiz: How do you ask staff to clear empty plates from your space smoothly?", c1: "A: お皿、下げてください。", c1s: "pass", c1f: "🎉 Correct! Professional, polite customer-facing protocol.", c2: "B: これ、いらないです。", c2s: "fail", c2f: "❌ Blunt. Sounds like you are complaining about the food.", l_intro: "Spotting modern buffet beverage terminology on terminal placards.", r1: "ドリンクバー", h1: "Dorinkubā. Universal loanword for all-you-can-drink stations.", r2: "お代わり", h2: "O-kawari. Traditional phrase indicating: Another refill option.", r3: "グラス", h3: "Gurasu. The glassware required to execute consumption.", s_intro: "You are using a touchscreen at a Gusto family restaurant lounge.", cl: "セットにしますか？", ch: "Setto ni shimasu ka? (Would you like to bundle this into a combo?)", yi: "Ensure your meal package incorporates unlimited non-alcoholic fluids:", yc1: "Choice A: ドリンクバーで。", yc1s: "pass", yc1f: "🔥 Perfect choice. Secures automatic electronic clearance to the bar.", yc2: "Choice B: ジュースをたくさん飲みます。", yc2s: "fail", yc2f: "❌ Juvenile statement. Explains your personal actions instead of ordering.", cult_h: "The All-Day Hub", cult_b: "Japanese Family Restaurants (Famiresu) are cheap, 24/7 safe havens equipped with extensive drink bars and charging ports." },
+        13: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Supermarket Volume Packing", q: "Review Quiz: How do you secure unlimited refills via the menu option bundle?", c1: "A: ドリンクバーで。", c1s: "pass", c1f: "🎉 Correct! Standard consumer transaction shorthand.", c2: "B: 飲み放題で。", c2s: "fail", c2f: "❌ Nomihōdai implies alcohol open bars, not soft drink hubs.", l_intro: "Scanning checkout packaging variables to minimize environmental fees.", r1: "レジ袋", h1: "Reji-bukuro (Kanji/Kana combo). Meaning: Plastic grocery bag.", r2: "有料", h2: "Yūryō (Kanji). Signifies a service carries an explicit cost.", r3: "マイバッグ", h3: "Mai-baggu. Loanword meaning: Personal reusable shopping tote.", s_intro: "You exit a Life supermarket aisle with structural snacks.", cl: "レジ袋は有料となりますが？", ch: "Reji-bukuro wa yūryō to narimasu ga? (Bags cost extra, but...)", yi: "You brought your own backpack to store your grocery purchase. Refuse:", yc1: "Choice A: あ、袋いらないです。", yc1s: "pass", yc1f: "🔥 Clean. 'Ah, I do not require a bag.'", yc2: "Choice B: マイバッグがあります！", yc2s: "fail", yc2f: "❌ Enthusiastic textbook style. Less common than simply stating you don't need a bag.", cult_h: "The Bag Fee Law", cult_b: "Since 2020, national environmental laws mandate that all plastic bags carry a small charge (typically 3 to 5 yen)." },
+        14: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Bento Deli Selection", q: "Review Quiz: How do you declare you don't require an accessory plastic bag at checkout?", c1: "A: 袋いらないです。", c1s: "pass", c1f: "🎉 Correct! Fast, intuitive native regular response.", c2: "B: 結構です。", c2s: "fail", c2f: "❌ Works, but can sound slightly stiff without an object context.", l_intro: "Deciphering deli signs to locate pre-prepared local snacks.", r1: "惣菜", h1: "Sōzai (Kanji). Marker indicating home-style prepared side dishes.", r2: "弁当", h2: "Bentō (Kanji). Completely integrated portable meal box layout.", r3: "パック", h3: "Pakku. Clear plastic clam-shell containment units.", s_intro: "You stand before an evening discount bento line.", cl: "テープでよろしいですか？", ch: "Tēpu de yoroshii desu ka? (Is a piece of tape on the item okay instead of a full bag?)", yi: "Agree to this quick method to save plastics:", yc1: "Choice A: はい、大丈夫です。", yc1s: "pass", yc1f: "🔥 Excellent. Concludes the transaction with a minimal trace.", yc2: "Choice B: テープを貼ってください。", yc2s: "fail", yc2f: "❌ Excessive. Commands them to perform an action they just suggested.", cult_h: "The Tape Protocol", cult_b: "Cashiers place a small piece of colored store tape onto items to verify they have been officially paid for." },
+        15: { phaseId: 1, phase: "Phase 1: Fast-Casual Survival", theme: "Food Court Pager Alert", q: "Review Quiz: A clerk offers to apply a store tape validation seal. Confirm natively:", c1: "A: はい、大丈夫です。", c1s: "pass", c1f: "🎉 Correct! Fast, natural confirmation baseline.", c2: "B: それは良いです。", c2s: "fail", c2f: "❌ Broken literal translation of 'That is good.' Avoid entirely.", l_intro: "Reading notifications on electronic pagers inside shopping centers.", r1: "呼出", h1: "Yobidashi (Kanji). Meaning: Summon / System page notification.", r2: "受付", h2: "Uketsuke (Kanji). Meaning: Front service terminal counter.", r3: "ブザー", h3: "Buzā. Katakana designating electronic alarm devices.", s_intro: "You order ramen at a massive mall food court. They hand you a pager.", cl: "ブザーが鳴ったらお越しください。", ch: "Buzā ga nattara o-koshi kudasai. (When the buzzer rings, please return.)", yi: "The buzzer flashes violently. Walk to the pickup desk and greet natively:", yc1: "Choice A: あ、これです。", yc1s: "pass", yc1f: "🔥 Masterful shorthand. Handing them the device while saying 'Ah, this' is exact.", yc2: "Choice B: ラーメンを回収しに来ました。", yc2s: "fail", yc2f: "❌ Sounds like a military operation statement: 'I came to retrieve the ramen.'", cult_h: "Self-Service Rules", cult_b: "Food courts expect total self-cleanup. Always return your trays to dedicated wall racks (返却口 - Henkyakuguchi)." },
+        
+        16: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Hailing a Moving Taxi", q: "Review Quiz: How do you show your order pager at the pickup window to claim food?", c1: "A: あ、これです。", c1s: "pass", c1f: "🎉 Correct! Sells the conversational illusion instantly.", c2: "B: 私のオーダーをください。", c2s: "fail", c2f: "❌ Stiff English structure translated literally into Japanese.", l_intro: "Decoding indicators on taxi windshield display units.", r1: "空車", h1: "Kūsha (Kanji). Lit: Empty Car. Meaning: Available to hail.", r2: "賃走", h2: "Chinsō (Kanji). Lit: Fare Running. Meaning: Occupied car.", r3: "回送", h3: "Kaisō (Kanji). Meaning: Out of Service / Returning to base.", s_intro: "You see a taxi approaching on a dark street in Bellevue's sister city.", cl: "どちらまで？", ch: "Dochira made? (To where?)", yi: "You want to ride towards Tokyo Station. Give the target natively:", yc1: "Choice A: 東京駅までお願いします。", yc1s: "pass", yc1f: "🔥 Flawless navigation anchor. '[Target] made onegai shimasu.'", yc2: "Choice B: 私は東京駅に行きたい。", yc2s: "fail", yc2f: "❌ Stiff textbook prose. Sounds like an internal essay entry.", cult_h: "Automatic Doors", cult_b: "Japanese taxi passenger doors are completely operated via hydraulics by the driver. Never pull or touch them manually." },
+        17: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Taxi Spatial Trajectory", q: "Review Quiz: How do you instruct a driver regarding your primary geographic objective?", c1: "A: [Destination] までお願いします。", c1s: "pass", c1f: "🎉 Correct! The operational navigation standard.", c2: "B: 行ってください、[Destination]。", c2s: "fail", c2f: "❌ Grammatically broken inverted directive statement.", l_intro: "Deciphering fundamental directional coordinates on active navigation maps.", r1: "右", h1: "Migi (Kanji). Meaning: Right-hand spatial vector.", r2: "左", h2: "Hidari (Kanji). Meaning: Left-hand spatial vector.", r3: "直進", h3: "Chokushin (Kanji). Meaning: Proceed straight ahead dynamically.", s_intro: "The driver is approaching a crucial intersection near your hotel.", cl: "ここを曲がりますか？", ch: "Koko o magarimasu ka? (Do I turn here?)", yi: "Command the driver to make a left turn at the immediate light:", yc1: "Choice A: 左でお願いします。", yc1s: "pass", yc1f: "🔥 Clean shorthand. Direction + De works flawlessly.", yc2: "Choice B: レフトにハンドルを回してください。", yc2s: "fail", yc2f: "❌ Nonsensical instruction. Tells him to rotate his steering wheel left.", cult_h: "The Payment Tray Culture", cult_b: "Taxis feature a physical tray near the armrest. Drop cash or cards onto the tray rather than handing them to the driver." },
+        18: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Train Ticket Kiosk Fare Validation", q: "Review Quiz: You want a taxi driver to make an immediate right turn. Express natively:", c1: "A: 右でお願いします。", c1s: "pass", c1f: "🎉 Correct! Fast, effective direction command.", c2: "B: ライトターンしてください。", c2s: "fail", c2f: "❌ Incorrect loanword insertion for directional vectors.", l_intro: "Scanning train system displays to determine spatial pricing scales.", r1: "切符", h1: "Kippu (Kanji). Meaning: Physical small cardboard transit voucher ticket.", r2: "料金", h2: "Ryōkin (Kanji). Meaning: Fee / Calculated operational fare.", r3: "改札", h3: "Kaisatsu (Kanji). Meaning: Ticket validation turnstile gates.", s_intro: "You stand before a wall of automated ticket machines at a train station.", cl: "切符をお買い求めください。", ch: "Kippu o o-kaimotome kudasai. (Please buy a physical paper ticket.)", yi: "You want to ask a station attendant if your digital transit pass (Suica) is valid here:", yc1: "Choice A: スイカ、使えますか？", yc1s: "pass", yc1f: "🔥 Elite baseline. '[Item], tsukaemasu ka?' (Is this usable?)", yc2: "Choice B: スイカはここで動きますか？", yc2s: "fail", yc2f: "❌ Literal translation error. 'Does Suica move here?' sounds broken.", cult_h: "The Ticket Fare Wall", cult_b: "Traditional stations place a large map over ticket machines showing fares to every destination instead of a clear list." },
+        19: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Platform Tracking Protocol", q: "Review Quiz: How do you verify if an electronic or physical asset is usable at a counter window?", c1: "A: [Asset], 使えますか？", c1s: "pass", c1f: "🎉 Correct! The ultimate operational checklist phrase.", c2: "B: これ、オッケーですか？", c2s: "fail", c2f: "❌ Highly informal and can occasionally cause confusion with specific apps.", l_intro: "Reading terminal numbers on track floor templates.", r1: "番線", h1: "Bansen (Kanji). Suffix designating train track/platform numbers.", r2: "方面", h2: "Hōmen (Kanji). Suffix indicating the general direction or terminus.", r3: "特急", h3: "Tokkyū (Kanji). High-speed limited express vehicle indicator.", s_intro: "You enter a confusing multi-level train terminal in Shinjuku.", cl: "何かお探しですか？", ch: "Nanika o-sagashi desu ka? (Are you looking for something?)", yi: "Ask which platform services the line heading to Kyoto:", yc1: "Choice A: 京都はどこですか？", yc1s: "fail", yc1f: "❌ Too broad. Asks 'Where is Kyoto?' while standing in Tokyo.", yc2: "Choice B: 京都方面、何番線ですか？", yc2s: "pass", yc2f: "🔥 Masterful transit phrasing. 'Kyoto direction, which track number?'", cult_h: "The Platform Soundscape", cult_b: "Each station platform uses a unique musical jingle (発車メロディ) to keep passengers moving efficiently." },
+        20: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Station Exit Architecture", q: "Review Quiz: How do you inquire about the platform track number for a destination line?", c1: "A: [Target] 方面、何番線ですか？", c1s: "pass", c1f: "🎉 Correct! Highly professional and targeted transit speech.", c2: "B: トレインはどこですか？", c2s: "fail", c2f: "❌ Vague and unhelpful in a complex station.", l_intro: "Mastering the cardinal directions found on directional signs.", r1: "北口", h1: "Kitaguchi (Kanji). Meaning: Northern architectural exit portal.", r2: "南口", h2: "Minamiguchi (Kanji). Meaning: Southern architectural exit portal.", r3: "東口 / 西口", h3: "Higashiguchi / Nishiguchi (Kanji). Meaning: Eastern / Western portals.", s_intro: "You exit the ticket gates and face a massive wall of text.", cl: "出口はあちらです。", ch: "Deguchi wa achira desu. (The exits are in that direction.)", yi: "You need to find the West exit to meet a local friend. Ask concisely:", yc1: "Choice A: 西口はどちらですか？", yc1s: "pass", yc1f: "🔥 Flawless. 'Where is the West exit?' using polite spatial terms.", yc2: "Choice B: ウエストのドアはどこ？", yc2s: "fail", yc2f: "❌ Broken. Asks for a 'West door' rather than the structural exit portal.", cult_h: "The Exit Trap", cult_b: "Taking the wrong exit at large subterranean hubs like Shinjuku can cost you 20 minutes of extra walking outside." },
+        21: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Street Landmark Verification", q: "Review Quiz: How do you inquire about the specific location of a cardinal exit gate?", c1: "A: [Exit] 口はどちらですか？", c1s: "pass", c1f: "🎉 Correct! Clear navigation vectoring.", c2: "B: [Exit] の道はどこ？", c2s: "fail", c2f: "❌ Inaccurate. Asks for the road rather than the station exit portal.", l_intro: "Reading street signs to locate common structural landmarks.", r1: "交番", h1: "Kōban (Kanji). The absolute critical neighborhood police box kiosk.", r2: "病院", h2: "Byōin (Kanji). Large medical facility / hospital indicator.", r3: "郵便局", h3: "Yūbinkyoku (Kanji). General postal service facility marker.", s_intro: "Your phone battery dies in an unfamiliar residential zone.", cl: "道に迷いましたか？", ch: "Michi ni mayoimashita ka? (Are you lost?)", yi: "Ask a passing local where the neighborhood police box is located:", yc1: "Choice A: 交番、どこですか？", yc1s: "pass", yc1f: "🔥 Perfect. Direct, natural, and immediately actionable.", yc2: "Choice B: パトカーを呼んでください。", yc2s: "fail", yc2f: "❌ Panic option. Tells them to summon a police patrol cruiser instantly.", cult_h: "Kōban Safety Nets", cult_b: "Kōban officers are friendly neighborhood fixtures who draw custom physical maps to help lost travelers." },
+        22: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "City Bus Payment Zones", q: "Review Quiz: How do you ask a local for the location of a landmark building?", c1: "A: [Landmark] 、どこですか？", c1s: "pass", c1f: "🎉 Correct! Fast, clear street interaction standard.", c2: "B: [Landmark] のビルを見たいです。", c2s: "fail", c2f: "❌ Stiff. Translates to 'I want to see the building of...'", l_intro: "Spotting bus boarding door instructions to avoid logistics friction.", r1: "運賃", h1: "Unchin (Kanji). Suffix designating transit cash fares.", r2: "後払い", h2: "Atobarai (Kanji). Payment method indicator: Pay when exiting.", r3: "先払い", h3: "Sakibarai (Kanji). Payment method indicator: Pay upon boarding.", s_intro: "A green public bus pulls up to an Kyoto street corner.", cl: "後ろのドアからご乗車ください。", ch: "Ushiro no doa kara go-jōsha kudasai. (Please board via the rear door.)", yi: "You reach your stop and want to double check if your digital card works on this bus line:", yc1: "Choice A: これ、使えますか？", yc1s: "pass", yc1f: "🔥 Best shorthand. Showing your phone card and saying 'Can I use this?' works instantly.", yc2: "Choice B: バスのお金はこれですか？", yc2s: "fail", yc2f: "❌ Awkward phrasing. 'Is bus money this?' sounds strange.", cult_h: "Two Bus Systems", cult_b: "Tokyo buses usually use flat-rate front boarding. Kyoto buses use rear boarding with distance-calculated exit pricing." },
+        23: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Coin Locker Storage Hubs", q: "Review Quiz: How do you quickly ask a driver or conductor if a payment method is valid?", c1: "A: これ、使えますか？", c1s: "pass", c1f: "🎉 Correct! Highly practical real-world shorthand.", c2: "B: これでオッケーですか？", c2s: "fail", c2f: "❌ Too informal for certain professional drivers.", l_intro: "Reading terminal screens on automated station lockers.", r1: "空き", h1: "Aki (Kanji). Lit: Open. Meaning: This locker unit is empty.", r2: "使用中", h2: "Shiyō-chū (Kanji). Meaning: Currently occupied / In use.", r3: "硬貨", h3: "Kōka (Kanji). Physical metallic currency coin slot indicator.", s_intro: "You want to stow a massive suitcase before exploring a shrine.", cl: "サイズをご確認ください。", ch: "Saizu o go-kakunin kudasai. (Please verify the compartment dimensions.)", yi: "You require a larger compartment unit. Ask the attendant nearby:", yc1: "Choice A: 大きいのは、ありますか？", yc1s: "pass", yc1f: "🔥 Clean. 'Is there a larger option?' maps cleanly to open units.", yc2: "Choice B: 巨大なボックスをください。", yc2s: "fail", yc2f: "❌ Strange vocabulary. 'Give me a gigantic box' sounds unusual.", cult_h: "Locker Pin Codes", cult_b: "Modern station lockers accept IC cards and print a paper receipt with a unique digital matrix key to unlock the door." },
+        24: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Bullet Train Tiering Options", q: "Review Quiz: How do you inquire if a larger version of a facility or item exists?", c1: "A: 大きいのは、ありますか？", c1s: "pass", c1f: "🎉 Correct! Universal retail and storage checklist phrase.", c2: "B: ビッグサイズはどこ？", c2s: "fail", c2f: "❌ Heavily reliant on English loanwords that might not apply.", l_intro: "Evaluating ticket classification data on high-speed rail displays.", r1: "自由席", h1: "Jiyū-seki (Kanji). Unreserved seating section marker (Car 1-3).", r2: "指定席", h2: "Shitei-seki (Kanji). Assigned/Reserved seating section code.", r3: "新幹線", h3: "Shinkansen (Kanji). The iconic bullet train system designator.", s_intro: "You approach a physical JR green customer window counter.", cl: "どちらの座席にしますか？", ch: "Dochira no zaseki ni shimasu ka? (Which seat type would you prefer?)", yi: "Secure an unreserved seat ticket to prioritize travel flexibility:", yc1: "Choice A: 自由席で。", yc1s: "pass", yc1f: "🔥 Flawless line execution. 'Unreserved seating option, please.'", yc2: "Choice B: どこでも座れるチケットをください。", yc2s: "fail", yc2f: "❌ Too wordy. 'Give me a ticket where I can sit anywhere' is clumsy.", cult_h: "The Bento Tradition", cult_b: "Eating on standard subway trains is taboo, but eating high-end boxed meals (Ekiben) on the Shinkansen is a cultural highlight." },
+        25: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Historical Shrine Navigation", q: "Review Quiz: How do you request unreserved tier status for travel bookings natively?", c1: "A: 自由席で。", c1s: "pass", c1f: "🎉 Correct! Perfect professional transit alignment.", c2: "B: フリーシートで。", c2s: "fail", c2f: "❌ Incorrect loanword synthesis. Use the local term.", l_intro: "Recognizing spatial sign markers inside traditional sacred locations.", r1: "鳥居", h1: "Torii (Kanji). The iconic red wooden gateway structures.", r2: "本殿", h2: "Honden (Kanji). The main inner structural sanctuary altar.", r3: "手水舎", h3: "Chōzuya (Kanji). The stone water pavilion for ritual hand cleansing.", s_intro: "You walk up a forested gravel trail at Fushimi Inari in Kyoto.", cl: "参拝方法をご存知ですか？", ch: "Sanpai hōhō o go-zonji desu ka? (Do you know the prayer method?)", yi: "Ask another traveler where the main ritual altar house is located:", yc1: "Choice A: 本殿はどちらですか？", yc1s: "pass", yc1f: "🔥 Elegant. Asks for direction using polite spatial placement phrases.", yc2: "Choice B: 神様はどこにいますか？", yc2s: "fail", yc2f: "❌ Direct translation error. 'Where is God located?' sounds very jarring.", cult_h: "The Cleanse Ritual", cult_b: "Use the wooden ladle to wash your left hand, right hand, rinse your mouth, and tip the ladle vertically for the next visitor." },
+        26: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Deciphering Urban Chome Blocks", q: "Review Quiz: How do you inquire about the direction of a structural building on historic grounds?", c1: "A: [Structure] はどちらですか？", c1s: "pass", c1f: "🎉 Correct! Polite, effective spatial targeting.", c2: "B: [Structure] に行きたい。", c2s: "fail", c2f: "❌ Grammatically fine, but less polite when asking strangers.", l_intro: "Decoding numerical components on physical residential wall plaques.", r1: "丁目", h1: "Chōme (Kanji). Suffix representing specific neighborhood block sectors.", r2: "番地", h2: "Banchi (Kanji). The intermediate level residential plot locator code.", r3: "号", h3: "Gō (Kanji). The final direct individual building structure identifier number.", s_intro: "You are looking for an elusive anime hobby shop hidden in Akihabara.", cl: "住所はお持ちですか？", ch: "Jūsho wa o-mochi desu ka? (Do you have the physical address text?)", yi: "Tell a local resident you are hunting for the 3-Chōme sector block:", yc1: "Choice A: 3丁目、どこですか？", yc1s: "pass", yc1f: "🔥 Perfect. Direct street syntax that immediately solves the geography query.", yc2: "Choice B: 3番目のストリートはどこ？", yc2s: "fail", yc2f: "❌ Incorrect. Japan grids buildings by blocks (Chōme), not street names.", cult_h: "No Street Names", cult_b: "Except for main historic boulevards, Japanese streets do not have names. Addresses are coordinate matrices of blocks." },
+        27: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Vertical Terminal Access", q: "Review Quiz: How do you ask a resident where a specific block segment is located?", c1: "A: 3丁目、どこですか？", c1s: "pass", c1f: "🎉 Correct! High efficiency local standard.", c2: "B: 3丁目に私を連れて行って。", c2s: "fail", c2f: "❌ Entitled phrasing. Commands a stranger to escort you.", l_intro: "Spotting facilities on terminal signage walls.", r1: "エレベーター", h1: "Erebētā. Katakana designating mechanical elevator systems.", r2: "エスカレーター", h2: "Esukarētā. Katakana designating automatic moving staircases.", r3: "階段", h3: "Kaidan (Kanji). Traditional fixed concrete architectural stairways.", s_intro: "You are navigating a multi-floor underground mall with heavy luggage.", cl: "上に行きますか？", ch: "Ue ni ikimasu ka? (Are you ascending?)", yi: "Ask a security guard where the mechanical elevator is located:", yc1: "Choice A: エレベーターはどちらですか？", yc1s: "pass", yc1f: "🔥 Clean, polite, and instantly pinpointed on their station map.", yc2: "Choice B: 階段を消してください。", yc2s: "fail", yc2f: "❌ Nonsensical translation attempt. 'Please delete the stairs' makes no sense.", cult_h: "Escalator Lane Norms", cult_b: "Stand on the left in Tokyo (keep the right open for walkers). In Osaka, stand on the right and keep the left clear." },
+        28: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Airport Limousine Luggage Checkout", q: "Review Quiz: How do you inquire about the spatial placement of an elevator?", c1: "A: エレベーターはどちらですか？", c1s: "pass", c1f: "🎉 Correct! Smooth and completely understood by station staff.", c2: "B: エレベーター、どこに隠した？", c2s: "fail", c2f: "❌ Confrontational humor. 'Where did you hide the elevator?' works poorly.", l_intro: "Reading sorting tags attached to heavy travel items.", r1: "荷物", h1: "Nimotsu (Kanji). General term for all luggage items.", r2: "引換券", h2: "Hikikaeken (Kanji). Physical receipt/claim check ticket voucher.", r3: "成田 / 羽田", h3: "Narita / Haneda (Kanji). The twin primary Tokyo international airport names.", s_intro: "You stand before the airport limousine bus bay with bags.", cl: "荷物はいくつですか？", ch: "Nimotsu wa ikutsu desu ka? (How many luggage pieces?)", yi: "State that you have exactly two separate bags using native counts:", yc1: "Choice A: 二つで。", yc1s: "pass", yc1f: "🔥 Perfect. Number suffix + De functions flawlessly.", yc2: "Choice B: トゥーケースをください。", yc2s: "fail", yc2f: "❌ Broken English adaptation. Use native numbers for tracking counters.", cult_h: "The Luggage Stub", cult_b: "Attendants give you a paper claim stub (引換券). Keep it safe; they cross-check codes before releasing bags." },
+        29: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Car Rental Credential Checks", q: "Review Quiz: How do you declare you have exactly two pieces of luggage to a transit loader?", c1: "A: 二つで。", c1s: "pass", c1f: "🎉 Correct! Fast, accurate numerical response.", c2: "B: 二個をあげます。", c2s: "fail", c2f: "❌ Awkward syntax. Means 'I give you two round objects.'", l_intro: "Recognizing documentation requirements on office counter displays.", r1: "免許証", h1: "Menkyoshō (Kanji). Official driving permit certification document.", r2: "国際", h2: "Kokusai (Kanji). Prefix meaning: International framework.", r3: "パスポート", h3: "Pasupōto. Katakana representing your global travel passport booklet.", s_intro: "You land in Hokkaido and approach a vehicle rental counter.", cl: "書類のご提示をお願いします。", ch: "Shorui no go-teiji o onegai shimasu. (Please display your verification documents.)", yi: "Hand them your International Driving Permit alongside your standard passport:", yc1: "Choice A: あ、これとこれです。", yc1s: "pass", yc1f: "🔥 Elite shortcut. Handing items over while saying 'Ah, this and this' is perfectly natural.", yc2: "Choice B: 私の運転の証明書を確認してください。", yc2s: "fail", yc2f: "❌ Rigid prose. Sounds like an immigration official brief.", cult_h: "The IDP Warning", cult_b: "Japan strictly enforces International Driving Permit compliance. It must be the physical booklet under the 1949 Geneva convention." },
+        30: { phaseId: 2, phase: "Phase 2: Transit Logistics", theme: "Lost and Found Retrieval", q: "Review Quiz: How do you present multiple documents to a clerk smoothly?", c1: "A: あ、これとこれです。", c1s: "pass", c1f: "🎉 Correct! Excellent contextual shortcut language.", c2: "B: ドキュメントをチェックして。", c2s: "fail", c2f: "❌ Imperative command form. Sounds slightly demanding to service staff.", l_intro: "Scanning structural tags on station office door frames.", r1: "忘れ物", h1: "Wasuremono (Kanji). Meaning: Lost properties / Forgotten items.", r2: "傘", h2: "Kasa (Kanji). Meaning: Umbrella (The most commonly lost item).", r3: "財布", h3: "Saifu (Kanji). Meaning: Personal money containment wallet.", s_intro: "You left your daypack on the Yamanote line train grid.", cl: "どのような形ですか？", ch: "Dono yō na katachi desu ka? (What shape/appearance was it?)", yi: "State that you left a black backpack behind concisely:", yc1: "Choice A: 黒いリュックです。", yc1s: "pass", yc1f: "🔥 Excellent. Color modifier + Object + Desu builds a clear profile.", yc2: "Choice B: バッグが死にました。", yc2s: "fail", yc2f: "❌ Broken vocabulary. 'My bag has died' does not imply loss.", cult_h: "The High Return Rate", cult_b: "Japan's lost property framework is highly reliable. Wallets are regularly cataloged with cash intact within hours." },
+        
+        31: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Entering an Izakaya Joint", q: "Review Quiz: How do you explain to a lost property officer that your missing bag is blue?", c1: "A: 青いバッグです。", c1s: "pass", c1f: "🎉 Correct! Direct identification profile description.", c2: "B: ブルーがあります。", c2s: "fail", c2f: "❌ Meaningless fragment. 'A blue exists' doesn't identify the item.", l_intro: "Scanning traditional door curtains to locate entry criteria details.", r1: "居酒屋", h1: "Izakaya (Kanji). Traditional Japanese social pub/tavern hubs.", r2: "名", h2: "Mei (Kanji). Suffix applied to count individual human customers.", r3: "満席", h3: "Manseki (Kanji). Warning indicator meaning: Absolutely full seating.", s_intro: "You pull back the sliding wooden lattice door of a historic neighborhood pub.", cl: "いらっしゃい！何名様ですか？", ch: "Irasshai! Nan-mei sama desu ka? (Welcome! How many people?)", yi: "Indicate you are traveling solo and need one counter space:", yc1: "Choice A: 一人です。", yc1s: "pass", yc1f: "🔥 Perfect. 'Hitori desu' resolves the seating chart instantly.", yc2: "Choice B: 1つの人間をおねがいします。", yc2s: "fail", yc2f: "❌ Extraterrestrial syntax. 'Please give me one unit of human' sounds bizarre.", cult_h: "The Otōshi Fee", cult_b: "Izakayas automatically place a mandatory tiny appetizer (Otōshi) on your bill as an unwritten table coverage charge." },
+        32: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "The Fast Toriaezu Round", q: "Review Quiz: How do you declare you are a party of two people at a restaurant entry portal?", c1: "A: 二人です。", c1s: "pass", c1f: "🎉 Correct! 'Futari desu' is the exact structural count.", c2: "B: ダブルです。", c2s: "fail", c2f: "❌ Avoid hotel room descriptors for human group metrics.", l_intro: "Reading drink category headers on rustic laminated papers.", r1: "とりあえず", h1: "Toriaezu. Critical phrase: 'Let's initiate our session via...'", r2: "生ビール", h2: "Nama-bīru. Katakana representation for premium draft beer.", r3: "乾杯", h3: "Kanpai (Kanji). The absolute cultural equivalent of saying 'Cheers!'", s_intro: "You sit down at the wood counter. The server hovers with an active notepad.", cl: "お飲み物、何にしますか？", ch: "O-nomimono, nan ni shimasu ka? (What are we drinking to start?)", yi: "Deploy the legendary cultural regular shortcut to secure a rapid beer round:", yc1: "Choice A: あ、とりあえず生ビールで。", yc1s: "pass", yc1f: "🔥 Master level status unlocked. Commands immediate drink prep.", yc2: "Choice B: ビールを飲むことが好きです。", yc2s: "fail", yc2f: "❌ Analytical error. Explains your personal preferences instead of ordering.", cult_h: "The Speed Toast", cult_b: "In group dynamics, ordering matching drinks (like beer) for round one is courtesy to ensure the first toast happens fast." },
+        33: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Yakitori Flavor Mapping", q: "Review Quiz: How do you say 'Let's start with green tea' natively at a dinner table?", c1: "A: とりあえず緑茶で。", c1s: "pass", c1f: "🎉 Correct! Employs the 'Toriaezu' regular framework perfectly.", c2: "B: 緑茶はファーストです。", c2s: "fail", c2f: "❌ Literal translation error. Avoid 'first' loanword approximations.", l_intro: "Deciphering skewer preparation types on wooden wall slats.", r1: "タレ", h1: "Tare. Rich, caramelized sweet soy glaze preparation marker.", r2: "塩", h2: "Shio (Kanji). Fine mineral sea salt crisp seasoning marker.", r3: "串", h3: "Kushi (Kanji). The physical skewer icon character shape.", s_intro: "The chef places a structural menu plate down. You want chicken thighs.", cl: "味付けはどちらにしますか？", ch: "Ajitsuke wa dochira ni shimasu ka? (Which seasoning style?)", yi: "Instruct the chef you want your selection seasoned with sweet glaze sauce:", yc1: "Choice A: タレでお願いします。", yc1s: "pass", yc1f: "🔥 Flawless performance. Seasoning + De commands the action.", yc2: "Choice B: ソースをたくさん注いでください。", yc2s: "fail", yc2f: "❌ Clunky. Commands them to 'pour a massive volume of sauce' over the meat.", cult_h: "The Sauce Dip Rule", cult_b: "Traditional yakitori master pots reuse sweet 'Tare' base liquids for decades, enriching flavor depth with each skewer dipped." },
+        34: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Shared Platter Shorthand", q: "Review Quiz: How do you order skewers flavored with pure salt instead of sweet sauce?", c1: "A: 塩でお願いします。", c1s: "pass", c1f: "🎉 Correct! Keeps the meat pristine and authentic.", c2: "B: ソルトのスタイルで。", c2s: "fail", c2f: "❌ Broken loanword translation. Use the local term.", l_intro: "Identifying foundational shareable pub plates under high smoke.", r1: "枝豆", h1: "Edamame (Kanji). Flash-boiled salted soybean pods.", r2: "唐揚げ", h2: "Karaage (Kanji/Kana). Iconic crispy Japanese fried chicken chunks.", r3: "ポテト", h3: "Poteto. Universal loanword for crispy French fry baseline baskets.", s_intro: "You are coordinating a food order for a group at a low table.", cl: "おつまみは何にしますか？", ch: "O-tsumami wa nan ni shimasu ka? (What shared plates for the table?)", yi: "Order a basket of fried chicken chunks for immediate sharing:", yc1: "Choice A: 唐揚げで。", yc1s: "pass", yc1f: "🔥 Crisp, direct, and matches the fast kitchen line pace.", yc2: "Choice B: チキンのフライを共有します。", yc2s: "fail", yc2f: "❌ Bizarre literal translation of 'I will share a fry of chicken.'", cult_h: "The Shared Table", cult_b: "Izakaya dining mimics tapas systems. Food items are placed centrally, and diners pull them onto their small individual plates (取り皿)." },
+        35: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Sake Thermal Dynamics", q: "Review Quiz: How do you place an immediate order for a basket of salted soybeans?", c1: "A: 枝豆で。", c1s: "pass", c1f: "🎉 Correct! Fast, intuitive tapas ordering syntax.", c2: "B: 枝豆を追加したい状態です。", c2s: "fail", c2f: "❌ Overly complex. Speaks about your internal status.", l_intro: "Evaluating heat spectrums for rice wine items.", r1: "冷酒", h1: "Reishu (Kanji). Meaning: Chilled crisp premium sake.", r2: "熱燗", h2: "Atsukan (Kanji). Meaning: Steam-warmed rustic earthen flask sake.", r3: "日本酒", h3: "Nihonshu (Kanji). The accurate official local name for sake.", s_intro: "You want to sample local fermented rice liquids with your meal.", cl: "日本酒、温めますか？", ch: "Nihonshu, atatame masu ka? (Shall I heat the sake?)", yi: "Request a chilled sake pour to appreciate subtle fruit aromas:", yc1: "Choice A: 冷酒で。 ", yc1s: "pass", yc1f: "🔥 Excellent. 'Reishu de' sets the target temperature instantly.", yc2: "Choice B: アイスの酒をおねがいします。", yc2s: "fail", yc2f: "❌ Wrong word synthesis. 'Aisu no sake' sounds like alcohol ice cream.", cult_h: "The Overflow Ritual", cult_b: "Staff often place a glass inside a wooden box (Masu) and pour sake until it overflows to show generosity (Mokkiri)." },
+        36: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Casual Bar Interactions", q: "Review Quiz: How do you request a flask of steam-warmed sake natively?", c1: "A: 熱燗で。", c1s: "pass", c1f: "🎉 Correct! Decisive thermal control vocabulary.", c2: "B: ホットサケで。", c2s: "fail", c2f: "❌ Avoid English loanwords for traditional heated rice wines.", l_intro: "Tracking simple introductory nouns to bridge conversation gaps.", r1: "出身", h1: "Shusshin (Kanji). Meaning: Place of origin / Hometown roots.", r2: "アメリカ", h2: "Amerika. Katakana representing the United States.", r3: "シアトル", h3: "Shiatoru. Katakana representing Seattle.", s_intro: "A friendly local bartender notices your focus and initiates small talk.", cl: "ご出身はどちらですか？", ch: "Go-shusshin wa dochira desu ka? (Where is your origin/hometown?)", yi: "Reply naturally that you originate from Seattle without a long speech:", yc1: "Choice A: シアトルです。", yc1s: "pass", yc1f: "🔥 Perfect efficiency. Noun + Desu is the standard friendly answer.", yc2: "Choice B: 私はシアトルの街から生まれました。", yc2s: "fail", yc2f: "❌ Overly dramatic. Translates to 'I was born from the city of Seattle.'", cult_h: "The Counter Buffer", cult_b: "Counter seating encourages minor banter with operators. Keep your answers brief to avoid awkward pauses." },
+        37: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Anime & Pop Culture Hobbies", q: "Review Quiz: How do you state your home country is America natively when asked?", c1: "A: アメリカです。", c1s: "pass", c1f: "🎉 Correct! Clean, simple conversational connection.", c2: "B: 私はアメリカの国民。", c2s: "fail", c2f: "❌ Stiff political phrase. Avoid 'I am a citizen of...'", l_intro: "Spotting entertainment target keywords on public displays.", r1: "アニメ", h1: "Anime. Katakana representing local animated feature creations.", r2: "漫画", h2: "Manga (Kanji). Graphic print novels / serialized stories.", r3: "推し", h3: "Oshi. Modern slang meaning: Your absolute favorite character.", s_intro: "A friendly regular sitting next to you at the counter notices your keychains.", cl: "アニメとか見ますか？", ch: "Anime toka mimasu ka? (Do you watch things like anime?)", yi: "State that you watch animated shows occasionally using natural terms:", yc1: "Choice A: あ、たまに見ます。", yc1s: "pass", yc1f: "🔥 Smooth. 'Ah, occasionally I view them' is standard speech.", yc2: "Choice B: 私はアニメの熱狂的なファン！", yc2s: "fail", yc2f: "❌ Intense textbook declaration. 'I am a fanatical zealot of anime!'", cult_h: "The Suffix Shift", cult_b: "Otaku culture has shifted into mainstream slang. 'Oshi' applies universally to your favorite idols, game heroes, or foods." },
+        38: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Gaming Hardware Dialogues", q: "Review Quiz: How do you tell a bar neighbor that you play video games occasionally?", c1: "A: たまにゲームします。", c1s: "pass", c1f: "🎉 Correct! Natural frequency modifier implementation.", c2: "B: 毎日、24時間プレイします。", c2s: "fail", c2f: "❌ Intense. 'I play daily for 24 hours' sounds alarming.", l_intro: "Decoding platform loanwords on specialized retail shelves.", r1: "ゲーム", h1: "Gēmu. Katakana representing interactive video game products.", r2: "スイッチ", h2: "Suicchi. Katakana designating the Nintendo Switch platform.", r3: "ソフト", h3: "Sofuto. Loanword modification meaning: Game software / Physical cartridges.", s_intro: "An Akihabara shop attendant sees you browsing rare retro titles.", cl: "何かハードをお探しですか？", ch: "Nanika hādo o o-sagashi desu ka? (Looking for specific hardware platforms?)", yi: "State that you are primarily hunting for Switch software releases natively:", yc1: "Choice A: スイッチのソフト、ありますか？", yc1s: "pass", yc1f: "🔥 Precision targeting. '[Platform] no [Item], arimasu ka?' works perfectly.", yc2: "Choice B: 任天堂のゲームを私に売ってください。", yc2s: "fail", yc2f: "❌ Demanding tone. Translates to 'Sell Nintendo games to me.'", cult_h: "Retro Pricing Matrices", cult_b: "Used Japanese retro software is priced strictly on cartridge label condition and the presence of original outer boxes." },
+        39: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Tea Ceremony Entry Etiquette", q: "Review Quiz: How do you check if a shop carries vintage PlayStation cartridges?", c1: "A: プレステのソフト、ありますか？", c1s: "pass", c1f: "🎉 Correct! Direct, natural retail alignment.", c2: "B: プレイステーションのディスクを希望します。", c2s: "fail", c2f: "❌ Overly formal legal style syntax for a casual storefront.", l_intro: "Scanning traditional signs outside cultural wooden structures.", r1: "抹茶", h1: "Matcha (Kanji). Fine powdered ceremonial green tea leaf strands.", r2: "和菓子", h2: "Wagashi (Kanji). Delicate, artisanal traditional sugar sweets.", r3: "茶室", h3: "Chashitsu (Kanji). The physical architectural tea ceremony room matrix.", s_intro: "You enter a historic garden tea pavilion in Kyoto.", cl: "お菓子からお召し上がりください。", ch: "O-kashi kara o-meshiagari kudasai. (Please enjoy the sweet confectionery treat first.)", yi: "Accept the snack with a traditional polite appreciation gesture statement:", yc1: "Choice A: いただきます。", yc1s: "pass", yc1f: "🔥 The classic baseline appreciation phrase used before eating.", yc2: "Choice B: サンキュー、食べます。", yc2s: "fail", yc2f: "❌ Incorrect cultural blending. Use the local standard.", cult_h: "The Wagashi Balance", cult_b: "Artisanal sweets (Wagashi) are eaten *before* drinking bitter ceremonial matcha to perfectly balance the taste on your palate." },
+        40: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Expressing Culinary Adoration", q: "Review Quiz: What is the classic native baseline phrase chanted before consuming any meal?", c1: "A: いただきます。", c1s: "pass", c1f: "🎉 Correct! Core cultural linguistic pillar.", c2: "B: ごちそうさまでした。", c2s: "fail", c2f: "❌ Wrong timing. This is said *after* you finish eating.", l_intro: "Spotting taste descriptors on dynamic signage walls.", r1: "好き", h1: "Suki (Kanji). The ultimate standard adjective meaning: Well-liked / Loved.", r2: "一番", h2: "Ichiban (Kanji). Number one / The absolute pinnacle ranking element.", r3: "最高", h3: "Saikō (Kanji). Street exclamation meaning: The absolute best / Elite.", s_intro: "An intermediate chef watches you enjoy a specialized tuna bowl.", cl: "お味はいかがですか？", ch: "O-aji wa ikaga desu ka? (How is the flavor profile performing?)", yi: "Exclaim your culinary appreciation natively to the staff:", yc1: "Choice A: これ、最高です！", yc1s: "pass", yc1f: "🔥 Excellent. Simple, highly enthusiastic, and sounds natural.", yc2: "Choice B: 私はこの魚に対して愛があります。", yc2s: "fail", yc2f: "❌ Bizarre translation. 'I hold romantic love toward this fish.'", cult_h: "Compliment Cadence", cult_b: "Saying 'Saikō desu' or a deep 'Umaii!' with a nod is highly rewarding to local chefs who track your reaction." },
+        41: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "The Synchronized Toast", q: "Review Quiz: How do you declare that ramen is your absolute number one favorite dish?", c1: "A: ラーメンが一番好きです。", c1s: "pass", c1f: "🎉 Correct! Straightforward preference structure.", c2: "B: ラーメンはナンバーワン。", c2s: "fail", c2f: "❌ Simplistic broken English. Stick to native descriptors.", l_intro: "Mastering the structural sound elements of social dining.", r1: "カンパイ", h1: "Kanpai. Katakana format utilized on dynamic modern neon displays.", r2: "ジョッキ", h2: "Jokki. Heavy, thick glass beer mug vessel layout.", r3: "お疲れ様", h3: "Otsukaresama (Kanji/Kana). Meaning: Thank you for your hard labor.", s_intro: "Your local drinking companions lift their frosted mugs simultaneously.", cl: "全員、準備はいいか？", ch: "Zen'in, junbi wa ii ka? (Is everyone ready at the table?)", yi: "Lead into the toast with the precise local cultural audio exclamation:", yc1: "Choice A: 乾杯！", yc1s: "pass", yc1f: "🔥 Flawless social execution. Punchy, authentic, and universally understood.", yc2: "Choice B: Cheers!", yc2s: "fail", yc2f: "❌ English default. Misses the opportunity to connect with your group.", cult_h: "Glass Elevation Rules", cult_b: "When clinking glasses with seniors or superiors, ensure the rim of your glass strikes *below* theirs as courtesy." },
+        42: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Mining for Chef Recommendations", q: "Review Quiz: What is the single-word exclamation shouted during a synchronized group toast?", c1: "A: 乾杯！", c1s: "pass", c1f: "🎉 Correct! The primary social icebreaker.", c2: "B: バンザイ！", c2s: "fail", c2f: "❌ Wrong context. Banzai is a celebratory cheer, not a drink toast.", l_intro: "Recognizing specialty call-out signs on menus.", r1: "おすすめ", h1: "Osumume. Standard keyword indicating: Highly recommended options.", r2: "限定", h2: "Gentei (Kanji). Warning marker signifying: Limited edition / Seasonal availability.", r3: "店長", h3: "Tenchō (Kanji). The absolute store manager/proprietor title header.", s_intro: "You want to let the kitchen choose your next dish based on fresh market options.", cl: "ご注文はお決まりですか？", ch: "Gochūmon wa o-kimari desu ka? (Are choices finalized?)", yi: "Ask the server directly what their personal or shop recommendation is:", yc1: "Choice A: おすすめは、何ですか？", yc1s: "pass", yc1f: "🔥 Perfect. '[Item] wa nan desu ka?' unlocks their signature options.", yc2: "Choice B: あなたの好きな食べ物を紹介して。", yc2s: "fail", yc2f: "❌ Demanding phrasing. 'Introduce the foods you like' sounds strange.", cult_h: "The 'Gentei' Urgency", cult_b: "Items marked 'Gentei' (限定) change with the seasons, encouraging customers to try them before they leave the menu." },
+        43: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Retro Arcade Token Logistics", q: "Review Quiz: How do you smoothly ask a waiter for their current menu recommendation?", c1: "A: おすすめは、何ですか？", c1s: "pass", c1f: "🎉 Correct! Highly reliable retail phrasing strategy.", c2: "B: 何が良い？", c2s: "fail", c2f: "❌ Too blunt unless you are speaking with close childhood friends.", l_intro: "Sight-reading symbols found inside legacy gaming centers.", r1: "両替", h1: "Ryōgae (Kanji). Automatic cash bill-to-coin change machines.", r2: "メダル", h2: "Medaru. Katakana designating game center tokens or coins.", r3: "100円", h3: "Hyaku-en. The absolute operational lifeblood coin of Japanese arcades.", s_intro: "You stand before a classic rhythm game cabinet in an Akihabara arcade arcade.", cl: "両替機はあちらにございます。", ch: "Ryōgae-ki wa achira ni gozaimasu. (The change machine is located over there.)", yi: "You have a 10,000 yen bill and need to break it into coins. Ask the counter staff:", yc1: "Choice A: 両替、できますか？", yc1s: "pass", yc1f: "🔥 Flawless execution. 'Ryōgae, dekimasu ka?' resolves money breaking immediately.", yc2: "Choice B: お金を壊してください。", yc2s: "fail", yc2f: "❌ Literal translation failure. 'Please break/destroy my currency' sounds alarming.", cult_h: "Arcade Change Etiquette", cult_b: "Change machines are highly secure. Never leave your token cup unattended on a machine deck to claim a spot." },
+        44: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "Collectible Card Inspection", q: "Review Quiz: How do you ask a register clerk if they can provide change?", c1: "A: 両替、できますか？", c1s: "pass", c1f: "🎉 Correct! Standard financial vocabulary for currency exchange.", c2: "B: コインチェンジ、プリーズ。", c2s: "fail", c2f: "❌ Avoid English approximations when standard local terms work perfectly.", l_intro: "Deciphering condition ratings on collectible display items.", r1: "美品", h1: "Bihin (Kanji). Mint condition rating / Flawless premium asset indicator.", r2: "キズ", h2: "Kizu. Kana label signifying a surface scratch or defect mark.", r3: "未開封", h3: "Mikaifū (Kanji). Meaning: Completely factory sealed / Unopened packaging.", s_intro: "You spot a rare Japanese base-set card inside an Akihabara glass case display.", cl: "カードの状態を確認しますか？", ch: "Kādo no jōtai o kakunin shimasu ka? (Want to check the item condition?)", yi: "Ask the glass-case attendant to pull the specific display item out for visual inspection:", yc1: "Choice A: これ、見せてください。", yc1s: "pass", yc1f: "🔥 The golden retail regular tool. 'Please show me this item.'", yc2: "Choice B: カードを取り出せ！", yc2s: "fail", yc2f: "❌ Highly aggressive anime command form. 'Extract the card!'", cult_h: "The White Glove Handling", cult_b: "Card shops expect you to keep items flat on a felt velvet pad. Avoid picking them up with sharp fingernails." },
+        45: { phaseId: 3, phase: "Phase 3: Pub & Hobbies", theme: "The Bill Splitting Formula", q: "Review Quiz: How do you politely request an item display case clerk to show you an object?", c1: "A: これ、見せてください。", c1s: "pass", c1f: "🎉 Correct! Highly polite and effective commercial standard.", c2: "B: これをチェックする。", c2s: "fail", c2f: "❌ Incomplete grammar. Sounds abrupt when addressing retail workers.", l_intro: "Evaluating accounting terminology at public counters.", r1: "割り勘", h1: "Warikan (Kanji). The unwritten rule of calculating even mathematical bill splits.", r2: "会計", h2: "Kaikei (Kanji). Meaning: The bill / Final total due calculation statement.", r3: "別々", h3: "Betsubetsu (Kanji). Payment method indicator: Settle costs completely separately.", s_intro: "Your long social night concludes. The waiter drops a total printout on the table.", cl: "お会計はご一緒ですか？", ch: "O-kaikei wa go-issho desu ka? (Is the transaction total combined together?)", yi: "Instruct the host that your group wishes to split the costs evenly:", yc1: "Choice A: 割り勘でお願いします。", yc1s: "pass", yc1f: "🔥 Flawless social coordination. 'Even split option, please.'", yc2: "Choice B: お金を半分にカットして。", yc2s: "fail", yc2f: "❌ Broken phrase. 'Cut the currency in half' makes no sense.", cult_h: "The Register Pay Default", cult_b: "Izakayas prefer group payments settled at the front podium via one card rather than dividing bills into small card steps." },
+        
+        46: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Hotel Registration Process", q: "Review Quiz: How do you declare an even split payment format to a service host?", c1: "A: 割り勘でお願いします。", c1s: "pass", c1f: "🎉 Correct! Smooth social coordination phrasing.", c2: "B: 別々で。", c2s: "fail", c2f: "❌ Betsubetsu means individual separate receipts, not a smooth even split.", l_intro: "Reading baseline registration markers on check-in counters.", r1: "予約", h1: "Yoyaku (Kanji). The absolute core marker for a system reservation link.", r2: "名前", h2: "Namae (Kanji). Name designation parameter on physical ledger blocks.", r3: "チェックイン", h3: "Chekkuin. Katakana covering standard lodging entry procedures.", s_intro: "You arrive at a business hotel lobby in central Tokyo near your station.", cl: "ご予約のお名前をお願いします。", ch: "Go-yoyaku no o-namae o onegai shimasu. (Your reservation name, please?)", yi: "State your name clearly using standard entry introductory structure:", yc1: "Choice A: リューです。予約があります。", yc1s: "pass", yc1f: "🔥 Perfect. '[Name] desu. Yoyaku ga arimasu.' handles check-in smoothly.", yc2: "Choice B: 私は部屋を確保した人間です。", yc2s: "fail", yc2f: "❌ Dramatic declaration. 'I am the human who secured a room here.'", cult_h: "The Passport Copy Rule", cult_b: "National lodging laws require all non-resident foreign guests to surrender their passport for photocopying at check-in." },
+        47: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Securing Missing Lodging Amenities", q: "Review Quiz: How do you inform a counter clerk that you hold a valid system reservation?", c1: "A: 予約があります。", c1s: "pass", c1f: "🎉 Correct! Fast, intuitive, and accurate clear confirmation phrase.", c2: "B: 予約をキープした。", c2s: "fail", c2f: "❌ Slangy. Avoid unrefined conversational endpoints at formal service desks.", l_intro: "Decoding tech and comfort labels on hotel informational folders.", r1: "ワイファイ", h1: "Waifai. Katakana indicating digital internet router network links.", r2: "パスワード", h2: "Pasuwādo. Katakana marking security character codes.", r3: "タオル", h3: "Taoru. Katakana designating cloth bathroom drying amenities.", s_intro: "You open your room door but observe that no towels were placed on the rack.", cl: "フロントでございます。何かありましたか？", ch: "Furonto de gozaimasu. Nanika arimashita ka? (Front desk. Is anything wrong?)", yi: "Call down and ask for a towel natively using standard object checks:", yc1: "Choice A: タオル、ありますか？", yc1s: "pass", yc1f: "🔥 Simple and highly effective shortcut syntax. 'Are there towels?' prompts delivery.", yc2: "Choice B: タオルが部屋から逃げました。", yc2s: "fail", yc2f: "❌ Nonsensical translation. 'The towels escaped from my room.'", cult_h: "The Wi-Fi Target", cult_b: "Hotel internet access details are usually printed directly on your key envelope or displayed on your room's television home screen." },
+        48: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Declaring Deep Dietary Allergies", q: "Review Quiz: How do you inquire if a facility possesses a wireless connection network code?", c1: "A: ワイファイ、ありますか？", c1s: "pass", c1f: "🎉 Correct! The baseline check tool pattern.", c2: "B: インターネットをください。", c2s: "fail", c2f: "❌ Awkward. Lit: 'Please hand me the internet.'", l_intro: "Scanning complex ingredient menus to prevent health friction.", r1: "アレルギー", h1: "Arergī. Katakana designating systemic physiological allergies.", r2: "ピーナッツ", h2: "Pīnattsu. Katakana representing hidden peanut trace elements.", r3: "海老", h3: "Ebi (Kanji). Seafood marker representing shrimp/prawn items.", s_intro: "You sit before a high-end chef's kitchen or diner counter.", cl: "何か食べられないものはありますか？", ch: "Nanika taberarenai mono wa arimasu ka? (Are there items you cannot consume?)", yi: "Declare a serious shrimp allergy natively to guarantee your safety:", yc1: "Choice A: 海老アレルギーがあります。", yc1s: "pass", yc1f: "🔥 Bulletproof defensive statement. '[Allergen] arergī ga arimasu.'", yc2: "Choice B: エビを食べると体が爆発します。", yc2s: "fail", yc2f: "❌ Too extreme. 'If I eat shrimp, my body will detonate.'", cult_h: "The Allergy Card Strategy", cult_b: "If you have severe allergies, print a physical translation card detailing your triggers to show kitchens directly." },
+        49: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Ingredient Extraction Vector", q: "Review Quiz: How do you state you possess a peanut allergy profile natively?", c1: "A: ピーナッツアレルギーがあります。", c1s: "pass", c1f: "🎉 Correct! Direct, clinical, clear consumer safety declaration.", c2: "B: ピーナッツは毒です。", c2s: "fail", c2f: "❌ Blunt and highly dramatic. 'Peanuts are poison' works poorly.", l_intro: "Spotting modification suffix triggers on interactive ordering monitors.", r1: "抜き", h1: "Nuki. Suffix modifier meaning: Completely extracted / Removed from plate.", r2: "玉ねぎ", h2: "Tamanegi (Kanji/Kana). Common culinary root ingredient: Onions.", r3: "マヨネーズ", h3: "Mayonēzu. Katakana covering standard sandwich egg glazes.", s_intro: "You are ordering a premium fast-food burger or bowl.", cl: "トッピングはすべてお入れしてよろしいですか？", ch: "Toppingu wa subete o-ire shite yoroshii desu ka? (Include all standard toppings?)", yi: "Command them to prepare the food item without onions entirely:", yc1: "Choice A: 玉ねぎ抜きでお願いします。", yc1s: "pass", yc1f: "🔥 Elite modification syntax. '[Ingredient] + nuki de' works every time.", yc2: "Choice B: 玉ねぎをゴミ箱に捨ててください。", yc2s: "fail", yc2f: "❌ Hostile request syntax. 'Throw the onions into the trash can.'", cult_h: "The Wasabi Nuki Core", cult_b: "Applying 'Wasabi-nuki' (わさび抜き) is the primary method used by parents and tourists to remove spice from sushi arrays." },
+        50: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Hotel Checkout Extension Requests", q: "Review Quiz: How do you request a dish be prepared without any mayo modification traces?", c1: "A: マヨネーズ抜きでお願いします。", c1s: "pass", c1f: "🎉 Correct! Perfect kitchen modification instruction pattern.", c2: "B: マヨネーズ、無し、ノー。", c2s: "fail", c2f: "❌ Fragmented speech. Works in a pinch but sounds unrefined.", l_intro: "Reading timing constraints on digital hotel terminal panels.", r1: "延長", h1: "Enchō (Kanji). Meaning: Time extension / Structural duration stretch.", r2: "時間", h2: "Jikan (Kanji). Meaning: Set hour blocks / Temporal metric values.", r3: "追加料金", h3: "Tsuika-ryōkin (Kanji). Financial penalty warning: Extra service fees.", s_intro: "You are exhausted at your hotel. Checkout is scheduled for 10:00 AM.", cl: "チェックアウトは10時でございます。", ch: "Chekkuauto wa jū-ji de gozaimasu. (Checkout is firmly at 10 AM.)", yi: "Ask the front desk clerk if a paid one-hour time extension is possible:", yc1: "Choice A: 1時間、延長できますか？", yc1s: "pass", yc1f: "🔥 Clean, polite, and uses the correct business term for extensions.", yc2: "Choice B: もう1時間、部屋で寝たいです。", yc2s: "fail", yc2f: "❌ Intimate child logic. 'I want to sleep in the room for another hour.'", cult_h: "The Extension Tier Fares", cult_b: "Business hotels normally charge a flat fee (roughly 1,000 yen per hour) for checking out late." },
+        51: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Defective Asset Exchange Actions", q: "Review Quiz: How do you inquire about securing a duration extension at a service window?", c1: "A: 延長、できますか？", c1s: "pass", c1f: "🎉 Correct! Standard operational parameter request structure.", c2: "B: タイムプラス、オッケー？", c2s: "fail", c2f: "❌ Broken loanword generation. Stick to native structural business terms.", l_intro: "Decoding transactional policy headings on product packaging sheets.", r1: "交換", h1: "Kōkan (Kanji). The absolute core operational term for a product exchange.", r2: "不良品", h2: "Furyōhin (Kanji). Meaning: Defective item / Broken retail manufacture unit.", r3: "レシート", h3: "Reshīto. Katakana representing the primary physical payment voucher receipt.", s_intro: "You return to an electronics store with a broken gaming accessory.", cl: "何か不具合がございましたか？", ch: "Nanika fuguai ga gozaimashita ka? (Was there a functional defect issue?)", yi: "Present the card receipt and request a replacement item natively:", yc1: "Choice A: 新しいのと、交換できますか？", yc1s: "pass", yc1f: "🔥 Smooth. 'Can I exchange this for a fresh new item?'", yc2: "Choice B: このマシンはゴミだからチェンジ。", yc2s: "fail", yc2f: "❌ Insulting. 'This machine is trash, so change it' is combative.", cult_h: "The Receipt Lifeline", cult_b: "Product exchange requests require the physical store receipt (レシート) to confirm your customer log trace." },
+        52: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Tax-Free Verification Routes", q: "Review Quiz: How do you ask to exchange a broken item for a working one?", c1: "A: 新しいのと、交換できますか？", c1s: "pass", c1f: "🎉 Correct! Direct, polite, and effective commercial phrasing.", c2: "B: チェンジ、おねがい。", c2s: "fail", c2f: "❌ Vague. 'Change' could mean swapping sizes, colors, or getting cash back.", l_intro: "Identifying international visitor financial signs on department store walls.", r1: "免税", h1: "Menzei (Kanji). The absolute indicator text meaning: Tax-Free processing.", r2: "手続き", h2: "Tetsuzuki (Kanji). Administrative workflow / Processing sequence steps.", r3: "カウンター", h3: "Kauntā. Katakana designating dedicated retail desk podium configurations.", s_intro: "You purchase luxury camera gear or bags at a major department store.", cl: "日本国外にお住まいですか？", ch: "Nihon-kokugai ni o-sumai desu ka? (Do you reside outside of Japan boundaries?)", yi: "Inquire if tax exemption status can be executed at this cash desk:", yc1: "Choice A: 免税、できますか？", yc1s: "pass", yc1f: "🔥 Clean consumer baseline. 'Is tax-exemption processing possible here?'", yc2: "Choice B: 私は税金を払いたくない人間です。", yc2s: "fail", yc2f: "❌ Bizarre literal translation. 'I am a human who refuses to yield taxes.'", cult_h: "The Digital Tax Link", cult_b: "Tax-free purchases require showing your physical passport booklet containing an official entry landing permission sticker." },
+        53: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Train Delay Navigation Loops", q: "Review Quiz: How do you verify if a storefront desk handles tax-free purchases?", c1: "A: 免税、できますか？", c1s: "pass", c1f: "🎉 Correct! The ideal retail checkpoint phrase template.", c2: "B: タックスフリー、イエス？", c2s: "fail", c2f: "❌ Unrefined pidgin English approximation. Use the proper term.", l_intro: "Reading red warning text alerts on station layout monitors.", r1: "遅延", h1: "Chien (Kanji). Critical transit warning flag: Active system delay status.", r2: "運転見合わせ", h2: "Unten-miawase. Severe operational freeze alert: Train runs are temporarily suspended.", r3: "振替輸送", h3: "Furikae-yūsō (Kanji). Alternative transit routing clearance via secondary bus lines.", s_intro: "A bad typhoon or incident freezes the Yamanote loop grid line.", cl: "ただいま運転を見合わせております。", ch: "Tadaima unten o miawasede orimasu. (We have currently frozen line operations.)", yi: "Ask a station agent if a secondary alternative route choice exists to reach your target:", yc1: "Choice A: 別のルート、ありますか？", yc1s: "pass", yc1f: "🔥 Highly practical travel speech. 'Does a separate pathway exist?'", yc2: "Choice B: なぜ電車はサボっているの？", yc2s: "fail", yc2f: "❌ Ridiculous translation. 'Why is the electric train slacking off/skipping work?'", cult_h: "The Delay Voucher", cult_b: "When lines jam, staff hand out tiny paper slips (遅延証明書) so workers can prove to bosses the train caused their lateness." },
+        54: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Pharmacy Pain Assessment Check", q: "Review Quiz: How do you inquire about alternative route options during transit disruptions?", c1: "A: 別のルート、ありますか？", c1s: "pass", c1f: "🎉 Correct! Smart, adaptive transit safety logic.", c2: "B: トレイン、ストップ、どうする？", c2s: "fail", c2f: "❌ Fragmented anxiety speech pattern. Less helpful in crowd rushes.", l_intro: "Scanning medical containers to locate active relief solutions.", r1: "痛", h1: "Itai / Tsū (Kanji). Core character shape indicating: Physical pain or irritation.", r2: "頭痛", h2: "Zutsū (Kanji). Targeted clinical compound meaning: Headaches.", r3: "薬", h3: "Kusuri (Kanji). Universal character designating medical pills / therapeutics.", s_intro: "You step inside a Matsumoto Kiyoshi drugstore with a splitting headache.", cl: "どのような症状ですか？", ch: "Dono yō na shōjō desu ka? (What category of physical symptoms are you enduring?)", yi: "Ask the pharmacist directly for appropriate headache pills:", yc1: "Choice A: 頭痛の薬、ありますか？", yc1s: "pass", yc1f: "🔥 Flawless health alignment. '[Ailment] no kusuri, arimasu ka?' maps instantly.", yc2: "Choice B: 頭が死にかけているからヘルプ。", yc2s: "fail", yc2f: "❌ Alarming hyperbole. 'Because my skull is approaching death, help.'", cult_h: "The Drugstore Division", cult_b: "Stronger therapeutic agents (Class 1 drugs) are locked behind pharmacist partition desks and require consultation." },
+        55: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "International Postal Logistics", q: "Review Quiz: How do you ask a drugstore attendant for stomach pain medicine?", c1: "A: 腹痛の薬、ありますか？", c1s: "pass", c1f: "🎉 Correct! Precise anatomical target drug query formatting.", c2: "B: お腹のヘルプをください。", c2s: "fail", c2f: "❌ Vague. Lit: 'Please hand over stomach assistance.'", l_intro: "Reading courier option cards at a post office counter window.", r1: "郵送", h1: "Yūsō (Kanji). General administrative term for shipping freight packages.", r2: "航空便", h2: "Kōkūbin (Kanji). Standard mid-tier airfreight package transport transit.", r3: "船便", h3: "Funabin (Kanji). Low-cost, slow ocean surface freight transport tracking.", s_intro: "You accumulated too many card booster boxes and need to ship a heavy crate back home.", cl: "送り方はどうされますか？", ch: "Okuri-kata wa dō saremasu ka? (Which courier transport profile do you select?)", yi: "Select standard airmail to balance cost and speed criteria:", yc1: "Choice A: 航空便でお願いします。", yc1s: "pass", yc1f: "🔥 Perfect logistics command. Courier Type + De locks the method.", yc2: "Choice B: 飛行機に荷物を投げて。 ", yc2s: "fail", yc2f: "❌ Nonsensical visualization command. 'Hurl the container into an airplane.'", cult_h: "The Ocean Bargain", cult_b: "Choosing 'Funabin' (船便) takes roughly 2 to 3 months to cross the ocean, but it costs a fraction of air freight rates." },
+        56: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "ATM Terminal Pin Code Errors", q: "Review Quiz: How do you specify that you prefer shipping items via slow ocean freight?", c1: "A: 船便でお願いします。", c1s: "pass", c1f: "🎉 Correct! Solid optimization for heavy book and card lots.", c2: "B: ボートの郵送で。", c2s: "fail", c2f: "❌ Clunky. Use 'Funabin' instead of literal boat approximations.", l_intro: "Evaluating bank machine screen command interfaces.", r1: "暗証番号", h1: "Anshō-bangō (Kanji). Absolute structural term for your security ATM PIN code number.", r2: "確認", r2: "Kakunin (Kanji). Verification / Confirm transaction selection execution.", r3: "訂正", h3: "Teisei (Kanji). Editing modifier block option: Clear / Re-enter digits.", s_intro: "You enter a 7-Eleven bank lobby corner. The screen locks up during your withdrawal.", cl: "暗証番号に誤りがあります。", ch: "Anshō-bangō ni ayamari ga arimasu. (There is an error inside your security PIN trace.)", yi: "Explain calmly to the counter staff that the machine swallowed your card asset:", yc1: "Choice A: カードが戻らないです。", yc1s: "pass", yc1f: "🔥 Direct problem narrative. 'The card is not returning/exiting.'", yc2: "Choice B: ATMが私の資産を盗んだ！", yc2s: "fail", yc2f: "❌ Highly combative accusation. 'The ATM has robbed my financial assets!'", cult_h: "The International ATM", cult_b: "7-Bank and Japan Post (JP) terminals are the primary networks that accept international foreign debit cards." },
+        57: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Street Vendor Defensive Shield", q: "Review Quiz: How do you inform store security that your machine transaction is stuck?", c1: "A: カードが戻らないです。", c1s: "pass", c1f: "🎉 Correct! Focuses directly on the broken mechanical trace.", c2: "B: エラーです。", c2s: "fail", c2f: "❌ Too vague to identify whether it's a software or hardware issue.", l_intro: "Recognizing warning signs on busy pedestrian strips.", r1: "結構", h1: "Kekkō (Kanji). Formal, firm baseline adjective indicating: No thank you / Sufficiency.", r2: "お断り", h2: "O-kotowari (Kanji). Explicit warning declaration: Total refusal / Solicitations banned.", r3: "客引き", h3: "Kyakahiki (Kanji). Aggressive street scouts trying to lure pedestrians into bars.", s_intro: "You walk through Kabukicho at night. A pushy scout hovers next to your shoulder.", cl: "お兄さん、いい店あるよ！安くするよ！", ch: "Onīsan, ii mise aru yo! Yasuku suru yo! (Hey bro, great bar here! Premium discount!)", yi: "Deploy the ultimate defensive verbal barrier to terminate his approach instantly:", yc1: "Choice A: 結構です。", yc1s: "pass", yc1f: "🔥 The classic absolute clinical rejection barrier. Keeps you moving safely.", yc2: "Choice B: 警察に行くぞコラ！", yc2s: "fail", yc2f: "❌ Dangerous escalation slang. Shouting 'I'll go to the cops, punk!' creates tension.", cult_h: "The Scout Trap", cult_b: "Never follow street touts (Kyakahiki). They funnel tourists into hidden venues that charge massive hidden table fees." },
+        58: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Requesting Legal Itemized Receipts", q: "Review Quiz: What is the most effective, firm phrase to deploy when rejecting persistent street scouts?", c1: "A: 結構です。", c1s: "pass", c1f: "🎉 Correct! The ultimate defensive social force field phrase.", c2: "B: バイバイ。", c2s: "fail", c2f: "❌ Childish and ineffective against professional touts.", l_intro: "Distinguishing transaction receipt variations at business desks.", r1: "領収書", h1: "Ryōshūsho (Kanji). The official itemized business tax receipt paper document.", r2: "宛名", h2: "Atena (Kanji). Suffix space for writing your corporate name or entity identity.", r3: "但し書き", h3: "Tadashigaki (Kanji). Expense categorization note block on the bill document.", s_intro: "You settle a massive business lodging total or bulk inventory card card haul.", cl: "レシートでよろしいですか？", ch: "Reshīto de yoroshii desu ka? (Is the standard register ticket slip sufficient?)", yi: "You need the formal itemized tax document to log your travel costs:", yc1: "Choice A: 領収書、お願いします。", yc1s: "pass", yc1f: "🔥 Perfect corporate alignment. 'Official itemized receipt document, please.'", yc2: "Choice B: 豪華な紙の証明をください。", yc2s: "fail", yc2f: "❌ Meaningless request literal translation. 'Give me a luxurious paper certificate.'", cult_h: "The Empty Name Suffix", cult_b: "When printing a formal 'Ryōshūsho,' clerks ask for your company name. Say 'Ue-sama' if you want it blank." },
+        59: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Emergency Police Box Contact", q: "Review Quiz: How do you request a formal itemized tax document instead of a standard receipt?", c1: "A: 領収書、お願いします。", c1s: "pass", c1f: "🎉 Correct! Handled with ideal professional vocabulary.", c2: "B: タックスペーパーを要求する。", c2s: "fail", c2f: "❌ Incorrect loanword synthesis. Use the standard local term.", l_intro: "Recognizing regional civil protection nodes on maps.", r1: "助けて", h1: "Tasukete. Emergency vocal scream meaning: Help me instantly!", r2: "紛失", h2: "Funshitsu (Kanji). Official administrative classification for lost items.", r3: "事故", h3: "Jiko (Kanji). Traffic collision / Structural transport accident marker.", s_intro: "You witness a bike crash or need to report a stolen phone asset.", cl: "事件ですか、事故ですか？", ch: "Jiken desu ka, jiko desu ka? (Is this a criminal event or a traffic accident?)", yi: "Calmly inform the Kōban officer that you lost your identification passport:", yc1: "Choice A: パスポートを紛失しました。", yc1s: "pass", yc1f: "🔥 High competence under pressure. 'I have suffered passport loss.'", yc2: "Choice B: 私のIDカードが消滅した！", yc2s: "fail", yc2f: "❌ Bizarre sci-fi translation. 'My ID card has dissolved/vanished from existence!'", cult_h: "The Red Light Lantern", cult_b: "Every neighborhood police box (Kōban) features a red globe lantern light over its door, keeping them visible all night." },
+        60: { phaseId: 4, phase: "Phase 4: Custom Troubleshooting", theme: "Final Capstone Departure Clearance", q: "Review Quiz: How do you alert emergency personnel that you have suffered a wallet loss event?", c1: "A: 財布を紛失しました。", c1s: "pass", c1f: "🎉 Correct! Standard, highly clear civil report structure.", c2: "B: お金が逃げた！", c2s: "fail", c2f: "❌ Strange phrasing choice. Lit: 'My currency has fled!'", l_intro: "Reading your final boarding parameters on terminal gates.", r1: "搭乗口", h1: "Tōjōguchi (Kanji). The absolute physical airport boarding gate portal number.", r2: "出国", h2: "Shukkoku (Kanji). Clear indicator text covering international exit customs.", r3: "現地", h3: "Genchi (Kanji). Meaning: On-the-ground / Authentic native tracking baseline.", s_intro: "You stand inside Haneda airport with pristine Japanese fluency cards.", cl: "日本滞在はいかがでしたか？", ch: "Nihon taizai wa ikaga deshita ka? (How was your stay inside the Japanese territory?)", yi: "Conclude your 60-day bootcamp by declaring your love for local life natively:", yc1: "Choice A: 日本、最高でした！また来ます！", yc1s: "pass", yc1f: "🔥 The perfect finish. 'Japan was absolute peak! I will return!'", yc2: "Choice B: 私はプログラムを終了したマシーンです。", yc2s: "fail", yc2f: "❌ Strange phrasing. 'I am a machine that has finalized its programming data.'", cult_h: "Genchi Mastery Complete", cult_b: "You have completed 60 days of real-world language conditioning. You can now step off any train in Japan with total confidence." }
+    };
+
+    // Initialize 60 days of buttons inside the scroller box
+    function buildDayScroller() {
+        const container = document.getElementById('day-scroller-container');
+        container.innerHTML = '';
+        for (let i = 1; i <= 60; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = `D${i}`;
+            btn.className = `day-grid-btn ${i === currentDay ? 'active' : ''}`;
+            btn.id = `day-btn-${i}`;
+            btn.setAttribute('onclick', `loadDay(${i})`);
+            container.appendChild(btn);
         }
     }
 
-    function checkQuiz(quizNum, status) {
-        if (quizNum === 1) {
-            document.getElementById('quiz1-fail').style.display = status === 'fail' ? 'block' : 'none';
-            document.getElementById('quiz1-pass').style.display = status === 'pass' ? 'block' : 'none';
-        } else if (quizNum === 2) {
-            document.getElementById('quiz2-fail').style.display = status === 'fail' ? 'block' : 'none';
-            document.getElementById('quiz2-pass').style.display = status === 'pass' ? 'block' : 'none';
+    function playAudio(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.85; 
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Speech synthesis is unavailable on this device browser architecture.");
         }
     }
+
+    function evalChoice(elementId, status) {
+        const passBox = document.getElementById(elementId + '-pass');
+        const failBox = document.getElementById(elementId + '-fail');
+        
+        if (status === 'pass') {
+            if (passBox) passBox.style.display = 'block';
+            if (failBox) failBox.style.display = 'none';
+        } else {
+            if (failBox) failBox.style.display = 'block';
+            if (passBox) passBox.style.display = 'none';
+        }
+    }
+
+    function jumpToPhase(phaseId) {
+        const phaseStarts = { 1: 1, 2: 16, 3: 31, 4: 46 };
+        loadDay(phaseStarts[phaseId]);
+    }
+
+    function updatePhaseButtonHighlights(dayNum) {
+        let activePhase = 1;
+        if (dayNum >= 16 && dayNum <= 30) activePhase = 2;
+        else if (dayNum >= 31 && dayNum <= 45) activePhase = 3;
+        else if (dayNum >= 46) activePhase = 4;
+
+        for (let i = 1; i <= 4; i++) {
+            const pBtn = document.getElementById(`p${i}-btn`);
+            if (i === activePhase) pBtn.classList.add('active');
+            else pBtn.classList.remove('active');
+        }
+    }
+
+    function scrollActiveDayIntoView(dayNum) {
+        const activeBtn = document.getElementById(`day-btn-${dayNum}`);
+        if (activeBtn) {
+            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }
+
+    function loadDay(dayNum) {
+        currentDay = dayNum;
+        
+        // Update Grid View Highlights
+        for (let i = 1; i <= 60; i++) {
+            const btn = document.getElementById(`day-btn-${i}`);
+            if (btn) {
+                if (i === dayNum) btn.classList.add('active');
+                else btn.classList.remove('active');
+            }
+        }
+
+        updatePhaseButtonHighlights(dayNum);
+        scrollActiveDayIntoView(dayNum);
+
+        const d = dataset[dayNum];
+
+        // Structural Header Updates
+        document.getElementById('header-phase').innerText = d.phase;
+        document.getElementById('header-day').innerText = `Day ${dayNum}/60`;
+        document.getElementById('header-theme').innerText = "Theme: " + d.theme;
+
+        // Core Dynamic Page Composition Assembly
+        let contentHtml = `
+            <!-- STEP 1 -->
+            <div class="section-title">${d.quizTitle || "🎲 Step 1: Active Recall Matrix"}</div>
+            <p style="font-size: 0.95rem; margin-bottom: 11px; line-height:1.4;">${d.q}</p>
+            
+            <button class="choice-btn" onclick="evalChoice('q1', '${d.c1s}')">
+                <strong>${d.c1.split(':')[0]}:</strong> ${d.c1.substring(3)}
+                <div id="q1-fail" class="feedback-box feedback-fail">${d.c1f}</div>
+            </button>
+            <button class="choice-btn" onclick="evalChoice('q1', '${d.c2s}')">
+                <strong>${d.c2.split(':')[0]}:</strong> ${d.c2.substring(3)}
+                <div id="q1-pass" class="feedback-box feedback-success">${d.c2f}</div>
+            </button>
+
+            <!-- STEP 2 -->
+            <div class="section-title">${d.labTitle || "🔎 Step 2: Genchi Sight-Reading Lab"}</div>
+            <p style="font-size: 0.95rem; margin-bottom: 11px; line-height:1.4;">${d.l_intro}</p>
+            
+            <div class="audio-row">
+                <div>
+                    <div class="japanese-text">${d.r1}</div>
+                    <div class="hint-text">${d.h1}</div>
+                </div>
+                <button class="audio-btn" onclick="playAudio('${d.r1}')">🔊</button>
+            </div>
+            <div class="audio-row">
+                <div>
+                    <div class="japanese-text">${d.r2}</div>
+                    <div class="hint-text">${d.h2}</div>
+                </div>
+                <button class="audio-btn" onclick="playAudio('${d.r2}')">🔊</button>
+            </div>
+            <div class="audio-row">
+                <div>
+                    <div class="japanese-text">${d.r3}</div>
+                    <div class="hint-text">${d.h3}</div>
+                </div>
+                <button class="audio-btn" onclick="playAudio('${d.r3}')">🔊</button>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="section-title">${d.simTitle || "🎮 Step 3: Interactive Real-Talk Simulator"}</div>
+            <p style="font-size: 0.95rem; margin-bottom: 11px; line-height:1.4;">${d.sim_intro || d.simIntro}</p>
+            
+            <div class="card" style="border-left: 3px solid var(--blue-accent);">
+                <div style="font-size: 0.75rem; color: var(--blue-accent); margin-bottom: 3px; font-weight: bold;">🔊 COUNTER OPERATOR / LOCAL ADVERSARY:</div>
+                <div class="japanese-text">${d.cl}</div>
+                <div class="hint-text">${d.ch}</div>
+            </div>
+
+            <p style="font-size: 0.95rem; margin-bottom: 11px; line-height:1.4;">${d.yi || d.yourIntro}</p>
+
+            <button class="choice-btn" onclick="evalChoice('q2', '${d.yc1s}')">
+                <strong>${d.yc1.split(':')[0]}:</strong> ${d.yc1.substring(10)}
+                <div id="q2-fail" class="feedback-box feedback-fail">${d.yc1f}</div>
+            </button>
+            <button class="choice-btn" onclick="evalChoice('q2', '${d.yc2s}')">
+                <strong>${d.yc2.split(':')[0]}:</strong> ${d.yc2.substring(10)}
+                <div id="q2-pass" class="feedback-box feedback-success">${d.yc2f}</div>
+            </button>
+
+            <!-- STEP 4 -->
+            <div class="section-title">🏮 Step 4: Cultural Byte</div>
+            <div class="culture-byte">
+                <div class="culture-header">💡 GENCHI ANCHOR: ${d.cult_h}</div>
+                <div style="line-height: 1.45;">${d.cult_b}</div>
+            </div>
+        `;
+
+        document.getElementById('dynamic-content').innerHTML = contentHtml;
+        window.scrollTo(0,0);
+    }
+
+    function nextDay() {
+        if (currentDay < 60) {
+            currentDay++;
+            loadDay(currentDay);
+        } else {
+            alert("Complete! You have fully run through the 60-Day Genchi baseline array.");
+        }
+    }
+
+    function prevDay() {
+        if (currentDay > 1) {
+            currentDay--;
+            loadDay(currentDay);
+        }
+    }
+
+    // Process bootstrap on initial rendering execution
+    buildDayScroller();
+    loadDay(1);
 </script>
 
 </body>
