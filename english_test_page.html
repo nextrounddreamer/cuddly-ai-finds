@@ -23,145 +23,171 @@
     <!-- Top Navigation Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md">
+            <div onclick="showLandingPage()" class="flex items-center space-x-3 cursor-pointer group">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md group-hover:bg-indigo-700 transition-colors">
                     <i data-lucide="compass" class="w-5 h-5"></i>
                 </div>
                 <div>
-                    <h1 class="text-base font-bold tracking-tight text-slate-900">Context & Currency</h1>
+                    <h1 class="text-base font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">Context & Currency</h1>
                     <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase">Advanced Cultural & Corporate English</p>
                 </div>
             </div>
             
-            <!-- Track Switcher -->
-            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl">
-                <button onclick="switchTrack('day3')" id="btn-day3" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-200">
-                    Day 3: Arts Track
-                </button>
-                <button onclick="switchTrack('day8')" id="btn-day8" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-200">
-                    Day 8: Finance Track
+            <!-- Contextual Dashboard Action -->
+            <div id="header-nav" class="flex items-center space-x-2 hidden">
+                <button onclick="showLandingPage()" class="px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer">
+                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Dashboard
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 mt-6 space-y-6">
+    <main class="max-w-4xl mx-auto px-4 mt-6">
 
-        <!-- Module Banner -->
-        <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800">
-            <span id="module-tag" class="bg-indigo-50/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30">MODULE 1: ARTS & EMPIRE</span>
-            <h2 id="module-title" class="text-2xl font-black mt-3 tracking-tight">Bankrolling the High Renaissance</h2>
-            <p id="module-desc" class="text-slate-400 text-xs mt-2 max-w-2xl font-normal leading-relaxed">Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.</p>
-        </div>
-
-        <!-- Master MP4 Media Player Component -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
-            <!-- Native Audio Engine configured for GitHub absolute/relative streaming assets -->
-            <audio id="audio-engine" preload="metadata"></audio>
-            
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <!-- Track Status and Metadata -->
-                <div class="flex items-center space-x-3">
-                    <button id="player-play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 active:scale-95 transition-all shadow-md cursor-pointer">
-                        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                    </button>
-                    <div>
-                        <div class="text-xs font-bold text-slate-800" id="player-track-title">Day03_Briefing.mp4</div>
-                        <div class="text-[10px] text-slate-400 flex items-center gap-1 font-medium mt-0.5">
-                            <i data-lucide="music" class="w-3 h-3 text-indigo-500"></i> Active Stream: <span id="current-segment-lbl" class="text-indigo-600 font-semibold">Section 1: The Briefing</span>
-                        </div>
-                    </div>
+        <!-- ================= LANDING PAGE VIEW ================= -->
+        <div id="landing-view" class="space-y-6">
+            <!-- Dashboard Welcome Banner -->
+            <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-2xl p-8 shadow-xl border border-slate-800 relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 translate-x-12 -translate-y-12">
+                    <i data-lucide="graduation-cap" class="w-64 h-64"></i>
                 </div>
+                <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30">Executive Suite</span>
+                <h2 class="text-3xl font-black mt-3 tracking-tight">Advanced Language Masterclass</h2>
+                <p class="text-slate-400 text-sm mt-2 max-w-xl font-normal leading-relaxed">Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.</p>
+            </div>
 
-                <!-- Timeline Scrubbing Layout -->
-                <div class="flex-1 flex items-center space-x-3 w-full">
-                    <span id="time-current" class="text-[11px] font-mono text-slate-500 w-10 text-right">00:00</span>
-                    <input type="range" id="player-timeline" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
-                    <span id="time-duration" class="text-[11px] font-mono text-slate-500 w-10">00:00</span>
-                </div>
+            <div class="border-b border-slate-200 pb-2">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Available Training Modules
+                </h3>
+            </div>
 
-                <!-- Playback Speed (Tempo Engine) -->
-                <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 w-full md:w-auto justify-end">
-                    <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tempo:</label>
-                    <select id="player-speed" onchange="changeSpeed(this.value)" class="bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-600 py-1 px-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                        <option value="0.85">0.85x Study</option>
-                        <option value="1.0" selected>1.0x Native</option>
-                        <option value="1.15">1.15x Advanced</option>
-                    </select>
-                </div>
+            <!-- Dynamic Course Grid Catalog -->
+            <div id="course-catalog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Data elements injected automatically -->
             </div>
         </div>
 
-        <!-- App Material Content Stack -->
-        <div class="space-y-6">
+
+        <!-- ================= ACTIVE COURSE CONTENT VIEW ================= -->
+        <div id="course-view" class="hidden space-y-6">
             
-            <!-- Section 1: Contextual Briefing Essay -->
-            <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
-                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                        <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 1: Contextual Briefing Case Narrative
-                    </h3>
-                    <button onclick="playSection('briefing')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
-                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Narrative Audio
-                    </button>
-                </div>
+            <!-- Module Banner -->
+            <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800">
+                <span id="module-tag" class="bg-indigo-50/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30"></span>
+                <h2 id="module-title" class="text-2xl font-black mt-3 tracking-tight"></h2>
+                <p id="module-desc" class="text-slate-400 text-xs mt-2 max-w-2xl font-normal leading-relaxed"></p>
+            </div>
+
+            <!-- Master Media Player Component -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
+                <!-- Native Audio Engine with rigid zero-preload directives -->
+                <audio id="audio-engine" preload="none"></audio>
                 
-                <div id="content-briefing" class="text-sm text-slate-600 space-y-4 font-normal leading-relaxed">
-                    <!-- Dynamic Text Injected Here -->
-                </div>
-            </section>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <!-- Track Status and Metadata -->
+                    <div class="flex items-center space-x-3">
+                        <button id="player-play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 active:scale-95 transition-all shadow-md cursor-pointer">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        </button>
+                        <div>
+                            <div class="text-xs font-bold text-slate-800" id="player-track-title">--</div>
+                            <div class="text-[10px] text-slate-400 flex items-center gap-1 font-medium mt-0.5">
+                                <i data-lucide="music" class="w-3 h-3 text-indigo-500"></i> Active Stream: <span id="current-segment-lbl" class="text-indigo-600 font-semibold">--</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Section 2: Interactive Scenario Dialogue -->
-            <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
-                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                        <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 2: Interactive Scenario Dialogue
-                    </h3>
-                    <button onclick="playSection('dialogue')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
-                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Dialogue Audio
-                    </button>
+                    <!-- Timeline Scrubbing Layout -->
+                    <div class="flex-1 flex items-center space-x-3 w-full">
+                        <span id="time-current" class="text-[11px] font-mono text-slate-500 w-10 text-right">00:00</span>
+                        <input type="range" id="player-timeline" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                        <span id="time-duration" class="text-[11px] font-mono text-slate-500 w-10">00:00</span>
+                    </div>
+
+                    <!-- Playback Speed -->
+                    <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 w-full md:w-auto justify-end">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tempo:</label>
+                        <select id="player-speed" onchange="changeSpeed(this.value)" class="bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-600 py-1 px-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="0.85">0.85x Study</option>
+                            <option value="1.0" selected>1.0x Native</option>
+                            <option value="1.15">1.15x Advanced</option>
+                        </select>
+                    </div>
                 </div>
+            </div>
+
+            <!-- App Material Content Stack -->
+            <div class="space-y-6">
                 
-                <div id="content-dialogue" class="space-y-3">
-                    <!-- Dynamic Scripts Injected Here -->
-                </div>
-            </section>
+                <!-- Section 1: Contextual Briefing Essay -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 1: Contextual Briefing Case Narrative
+                        </h3>
+                        <button onclick="playSection('briefing')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Narrative Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-briefing" class="text-sm text-slate-600 space-y-4 font-normal leading-relaxed">
+                        <!-- Dynamic Text Injected Here -->
+                    </div>
+                </section>
 
-            <!-- Section 3: The Textbook Gap Translation Matrix -->
-            <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
-                <div class="p-6 pb-2">
-                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                        <span class="w-2 h-2 bg-emerald-600 rounded-sm inline-block"></span> Section 3: Decoding the "Textbook Gap"
+                <!-- Section 2: Interactive Scenario Dialogue -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 2: Interactive Scenario Dialogue
+                        </h3>
+                        <button onclick="playSection('dialogue')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Dialogue Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-dialogue" class="space-y-3">
+                        <!-- Dynamic Scripts Injected Here -->
+                    </div>
+                </section>
+
+                <!-- Section 3: The Textbook Gap Translation Matrix -->
+                <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
+                    <div class="p-6 pb-2">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-emerald-600 rounded-sm inline-block"></span> Section 3: Decoding the "Textbook Gap"
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1 font-medium">Contrasting mechanical academic translations with high-context execution variants.</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-y border-slate-200 text-slate-400 font-bold tracking-wider uppercase">
+                                    <th class="p-4 w-1/4">Academic / Exam Formula</th>
+                                    <th class="p-4 w-1/4 text-indigo-600">Cultural / Insider Expression</th>
+                                    <th class="p-4 w-2/4">Semantic Layer & Strategic Subtext</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-matrix" class="divide-y divide-slate-100 font-medium text-slate-700">
+                                <!-- Matrix data injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 4: Daily Tactical Takeaway Summary -->
+                <section class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xs border border-slate-800">
+                    <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
+                        <i data-lucide="bookmark-check" class="w-4 h-4 text-indigo-400"></i> Section 4: Daily Takeaway Summary
                     </h3>
-                    <p class="text-xs text-slate-400 mt-1 font-medium">Contrasting mechanical academic translations with high-context execution variants.</p>
-                </div>
-                
-                <div class="overflow-x-auto mt-4">
-                    <table class="w-full text-left text-xs border-collapse">
-                        <thead>
-                            <tr class="bg-slate-50 border-y border-slate-200 text-slate-400 font-bold tracking-wider uppercase">
-                                <th class="p-4 w-1/4">Academic / Exam Formula</th>
-                                <th class="p-4 w-1/4 text-indigo-600">Cultural / Insider Expression</th>
-                                <th class="p-4 w-2/4">Semantic Layer & Strategic Subtext</th>
-                            </tr>
-                        </thead>
-                        <tbody id="content-matrix" class="divide-y divide-slate-100 font-medium text-slate-700">
-                            <!-- Matrix data injected dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+                    <div id="content-summary" class="mt-4 text-xs font-normal text-slate-300 leading-relaxed space-y-2">
+                        <!-- Summary content items injected dynamically -->
+                    </div>
+                </section>
 
-            <!-- Section 4: Daily Tactical Takeaway Summary -->
-            <section class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xs border border-slate-800">
-                <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <i data-lucide="bookmark-check" class="w-4 h-4 text-indigo-400"></i> Section 4: Daily Takeaway Summary
-                </h3>
-                <div id="content-summary" class="mt-4 text-xs font-normal text-slate-300 leading-relaxed space-y-2">
-                    <!-- Summary content items injected dynamically -->
-                </div>
-            </section>
-
+            </div>
         </div>
     </main>
 
@@ -169,13 +195,15 @@
     <script>
         const appData = {
             day3: {
+                id: "day3",
+                displayName: "Day 3: Arts Track",
                 tag: "MODULE 1: ARTS & EMPIRE",
                 title: "Bankrolling the High Renaissance",
                 desc: "Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.",
                 briefingAudio: "app_for_faye/english_test/audio/day3_briefing.m4a",
                 dialogueAudio: "app_for_faye/english_test/audio/day3_dialogue.m4a",
-                briefingTitle: "Day03_Renaissance_Briefing.mp4",
-                dialogueTitle: "Day03_Palazzo_Vecchio_Dialogue.mp4",
+                briefingTitle: "Day03_Renaissance_Briefing.m4a",
+                dialogueTitle: "Day03_Palazzo_Vecchio_Dialogue.m4a",
                 briefingParagraphs: [
                     "The year is 1459. Inside the newly constructed, heavily fortified stone walls of the Palazzo Medici on the Via Larga, Cosimo de' Medici is pacing nervously. He is undisputedly one of the wealthiest financial titans in the Western world, controlling a sprawling multinational network of banking branches that stretch from Florence to London. Yet, he is a man deeply terrified for his eternal soul. The Roman Catholic Church has explicitly categorized the generation of wealth via banking and the compounding accumulation of interest as the mortal sin of usury—an offense punishable by absolute spiritual damnation. Cosimo does not want a theoretical theological debate; he requires an undeniable, immediate socio-political shield to protect his family's vast fortunes.",
                     "To build this shield, Cosimo summons the brilliant, radical sculptor Donatello to his private quarters. The executive commission is hyper-specific: forge an unmissable, dramatic bronze masterpiece that will stand dead center in the primary courtyard of the palace. This is not a gift for the common public squares of Florence; it is designed for a restricted, high-stakes arena where foreign ambassadors, cardinals, and rival merchant syndicates wait to secure credit lines. The Medici banking network has completely bankrolled this staggering artistic endeavor, funding the collection of precious raw materials and the ruinous expenses of experimental bronze casting to buy institutional validation and wash away the spiritual guilt of private capital accumulation.",
@@ -200,13 +228,15 @@
                 ]
             },
             day8: {
+                id: "day8",
+                displayName: "Day 8: Finance Track",
                 tag: "MODULE 2: CAPITAL & COMPLIANCE",
                 title: "Window Dressing the Q3 Earnings",
                 desc: "Moving from textbook accounting definitions to the highly diplomatic, tactical language used in boardroom standoffs and compliance audits.",
-                briefingAudio: "audio/day8_briefing.mp4",
-                dialogueAudio: "audio/day8_dialogue.mp4",
-                briefingTitle: "Day08_Accounting_Briefing.mp4",
-                dialogueTitle: "Day08_Boardroom_Audit_Confrontation.mp4",
+                briefingAudio: "app_for_faye/english_test/audio/day8_briefing.m4a",
+                dialogueAudio: "app_for_faye/english_test/audio/day8_dialogue.m4a",
+                briefingTitle: "Day08_Accounting_Briefing.m4a",
+                dialogueTitle: "Day08_Boardroom_Audit_Confrontation.m4a",
                 briefingParagraphs: [
                     "In the final frantic two weeks of September, the atmosphere on the executive floor of software giant Nexus Core turned suffocatingly tense. The global macroeconomy was visibly stalling, enterprise pipeline deals were freezing up across the industry, and Wall Street analysts were already sharpening their knives for the upcoming Q3 public earnings call. The corporation's multi-billion-dollar market valuation was teetering on a dangerous knife-edge. If Nexus Core missed its highly publicized quarterly revenue growth projection by even a fraction of a percent, institutional funds would instantly trigger an automated algorithmic sell-off, erasing years of capital growth.",
                     "For the senior leadership team trapped inside the boardroom, this was not just a matter of institutional pride. The CEO, the board members, and the CFO himself possessed millions of dollars in personal stock options and performance bonuses that were legally structured to vest based on the closing metrics of this exact period. They had immense skin in the game, and experiencing a missing quarter meant facing immediate career liquidation and an furious investor rebellion. They desperately required a single, massive transaction to bridge the gaping chasm between their actual operational cash flows and the inflated numbers they had promised to the public stock markets.",
@@ -244,44 +274,76 @@
         const currentTimeEl = document.getElementById('time-current');
         const durationTimeEl = document.getElementById('time-duration');
 
-        // Master list of strategic expressions for the parsing engine
         const strategicIdioms = [
-            "massive flex", 
-            "double-edged sword", 
-            "in a vacuum", 
-            "footing the bill", 
-            "pushing the envelope", 
-            "window dressing", 
-            "cooking the books", 
-            "walk this back", 
-            "haircut", 
-            "skin in the game", 
-            "bankrolled"
+            "massive flex", "double-edged sword", "in a vacuum", "footing the bill", 
+            "pushing the envelope", "window dressing", "cooking the books", 
+            "walk this back", "haircut", "skin in the game", "bankrolled"
         ];
 
         function applyDynamicHighlights(textString) {
             let processedText = textString;
             strategicIdioms.forEach(idiom => {
-                // Generates a boundary-accurate, case-insensitive match loop
                 const regex = new RegExp(`\\b${idiom}\\b`, 'gi');
                 processedText = processedText.replace(regex, `<span class='idiom-highlight'>$&</span>`);
             });
             return processedText;
         }
 
+        // ================= NAVIGATION MECHANICS =================
+        function buildLandingPageCatalog() {
+            const grid = document.getElementById('course-catalog-grid');
+            grid.innerHTML = '';
+            
+            Object.keys(appData).forEach(key => {
+                const item = appData[key];
+                const card = document.createElement('div');
+                card.className = "bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all duration-300";
+                
+                card.innerHTML = `
+                    <div>
+                        <span class="text-[10px] font-bold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-md inline-block mb-3 border border-indigo-100">${item.tag}</span>
+                        <h4 class="text-base font-black text-slate-900 tracking-tight">${item.title}</h4>
+                        <p class="text-xs text-slate-500 mt-2 font-normal leading-relaxed mb-6">${item.desc}</p>
+                    </div>
+                    <button onclick="switchTrack('${item.id}')" class="w-full py-2 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all active:scale-98 flex items-center justify-center gap-2 cursor-pointer group">
+                        Enter Track <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function showLandingPage() {
+            // CRITICAL: Complete buffer liquidation when hitting the home dashboard
+            audio.pause();
+            audio.removeAttribute('src');
+            audio.load(); 
+            
+            resetPlayerUI();
+            
+            document.getElementById('course-view').classList.add('hidden');
+            document.getElementById('landing-view').classList.remove('hidden');
+            document.getElementById('header-nav').classList.add('hidden');
+        }
+
         function switchTrack(trackId) {
             currentTrack = trackId;
             
-            // Re-render Tab Selection UI states
-            document.getElementById('btn-day3').className = trackId === 'day3' ? "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 bg-white shadow-xs text-indigo-600 border border-slate-200" : "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900";
-            document.getElementById('btn-day8').className = trackId === 'day8' ? "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 bg-white shadow-xs text-indigo-600 border border-slate-200" : "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900";
+            // CRITICAL: Force clear any lingering media payload pipelines instantly
+            audio.pause();
+            audio.removeAttribute('src');
+            audio.load();
+
+            document.getElementById('landing-view').classList.add('hidden');
+            document.getElementById('course-view').classList.remove('hidden');
+            document.getElementById('header-nav').classList.remove('hidden');
 
             const data = appData[trackId];
             document.getElementById('module-tag').innerText = data.tag;
             document.getElementById('module-title').innerText = data.title;
             document.getElementById('module-desc').innerText = data.desc;
 
-            // Inject Section 1: Contextual Case Study Narrative
             const briefingContainer = document.getElementById('content-briefing');
             briefingContainer.innerHTML = '';
             data.briefingParagraphs.forEach(pText => {
@@ -291,7 +353,6 @@
                 briefingContainer.appendChild(p);
             });
 
-            // Inject Section 2: Scenario Dialogue
             const dialogueContainer = document.getElementById('content-dialogue');
             dialogueContainer.innerHTML = '';
             data.dialogue.forEach(line => {
@@ -302,7 +363,6 @@
                 dialogueContainer.appendChild(wrap);
             });
 
-            // Inject Section 3: Matrix Row Generation
             const matrixContainer = document.getElementById('content-matrix');
             matrixContainer.innerHTML = '';
             data.matrix.forEach(item => {
@@ -316,7 +376,6 @@
                 matrixContainer.appendChild(tr);
             });
 
-            // Inject Section 4: Deep Summary Items
             const summaryContainer = document.getElementById('content-summary');
             summaryContainer.innerHTML = '';
             data.summary.forEach(item => {
@@ -332,61 +391,80 @@
         function setupSourceTrack(segmentId) {
             currentSegment = segmentId;
             const data = appData[currentTrack];
-            if (segmentId === 'briefing') {
-                document.getElementById('current-segment-lbl').innerText = "Section 1: The Briefing";
-                document.getElementById('player-track-title').innerText = data.briefingTitle;
-                audio.src = data.briefingAudio;
-            } else {
-                document.getElementById('current-segment-lbl').innerText = "Section 2: The Dialogue";
-                document.getElementById('player-track-title').innerText = data.dialogueTitle;
-                audio.src = data.dialogueAudio;
-            }
-            audio.load();
+            
+            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
+            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? data.briefingTitle : data.dialogueTitle;
+            
             resetPlayerUI();
         }
 
+        // ================= STRICT DEMAND-DRIVEN AUDIO ENGINE =================
         function playSection(segmentId) {
             currentSegment = segmentId;
             const data = appData[currentTrack];
+            const targetSrc = segmentId === 'briefing' ? data.briefingAudio : data.dialogueAudio;
             
-            if (segmentId === 'briefing') {
-                document.getElementById('current-segment-lbl').innerText = "Section 1: The Briefing";
-                document.getElementById('player-track-title').innerText = data.briefingTitle;
-                audio.src = data.briefingAudio;
-            } else {
-                document.getElementById('current-segment-lbl').innerText = "Section 2: The Dialogue";
-                document.getElementById('player-track-title').innerText = data.dialogueTitle;
-                audio.src = data.dialogueAudio;
+            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
+            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? data.briefingTitle : data.dialogueTitle;
+            
+            // Check if current source matches target file path cleanly
+            const currentSrcAttr = audio.getAttribute('src') || '';
+            
+            if (currentSrcAttr.endsWith(targetSrc) && !audio.paused) {
+                // Safe pause toggle if button clicked mid-stream
+                audio.pause();
+                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
+                return;
             }
-
-            audio.load();
             
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
+            // ABSOLUTE LAZY LOAD: Assign file details and force load only upon explicit user click invocation
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.pause();
+                audio.setAttribute('src', targetSrc);
+                audio.load(); 
+            }
+            
+            audio.play()
+                .then(() => {
                     playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
                     lucide.createIcons();
-                }).catch(error => {
-                    console.warn("Media engine auto-play blocked until structural window interaction:", error);
+                })
+                .catch(error => {
+                    console.error("Media play execution interrupted:", error);
                 });
-            }
         }
 
         function toggleAudio() {
+            const data = appData[currentTrack];
+            const targetSrc = currentSegment === 'briefing' ? data.briefingAudio : data.dialogueAudio;
+            const currentSrcAttr = audio.getAttribute('src') || '';
+
+            // ABSOLUTE LAZY LOAD: Fallback master control bar injection
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.setAttribute('src', targetSrc);
+                audio.load();
+            }
+
             if (audio.paused) {
-                audio.play();
-                playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                audio.play()
+                    .then(() => {
+                        playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                        lucide.createIcons();
+                    })
+                    .catch(error => console.warn("Engine execution waiting for window user focus gesture.", error));
             } else {
                 audio.pause();
                 playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
             }
-            lucide.createIcons();
         }
 
         function resetPlayerUI() {
             playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
             timeline.value = 0;
             currentTimeEl.innerText = "00:00";
+            durationTimeEl.innerText = "00:00";
             lucide.createIcons();
         }
 
@@ -417,9 +495,10 @@
             durationTimeEl.innerText = formatTime(audio.duration);
         });
 
+        // Initialize directly to dashboard grid view
         window.onload = () => {
-            switchTrack('day3');
-            lucide.createIcons();
+            buildLandingPageCatalog();
+            showLandingPage();
         };
     </script>
 </body>
