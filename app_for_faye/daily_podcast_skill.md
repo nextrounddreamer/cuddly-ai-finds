@@ -78,13 +78,19 @@ Whenever this skill is executed, you MUST generate EXACTLY TWO SEPARATE DELIVERA
 
 \### 3. Audio Cues \& Formatting Rules
 
-\- \*\*Audio Cue Placement:\*\* Place all sound effects (e.g., `(Sound Effect: News Sting)` or `<p class="audio-cue">(Sound Effect: News Sting)</p>`) \*\*BEFORE\*\* section titles/headings.
+\- \*\*STRICT MARKER RETENTION MANDATE:\*\* \*\*DO NOT alter, rename, or rephrase the audio markers in the text script.\*\* You MUST strictly follow and retain the exact marker formats established in the template:
 
-\- \*\*No Segment Numbers:\*\* Do NOT use labels like "Segment 1:", "Segment 2:", or "Segment #:". Use descriptive topic titles only.
+&#x20; - `(Intro Music Fade In)`
 
-\- \*\*Spoken Directness:\*\* The script must contain clean audio narration without explicit speaker tags (write directly as natural spoken text rather than `Host:`).
+&#x20; - `(Sound Effect: Transition)`
 
+&#x20; - `(Outro Music Fade Out)`
 
+\- \*\*Audio Cue Placement:\*\* Place all sound effect markers \*\*BEFORE\*\* topic transitions.
+
+\- \*\*No Headers or Segment Labels in Deliverable 2:\*\* Absolute BAN on headers, dates, episode titles, or labels like "Segment 1:". 
+
+\- \*\*Spoken Directness:\*\* Write clean audio narration directly without explicit speaker tags (e.g., no `Host:`).
 
 \---
 
@@ -608,7 +614,7 @@ Hello and welcome back to The Export Credit, Trade \& Green Energy Daily Brief. 
 
 
 
-(Sound Effect: Energy Transition Sting)
+(Sound Effect: Transition)
 
 
 
@@ -616,7 +622,7 @@ First, turning to Green Energy and Clean Tech Transition Finance... \[Spoken rep
 
 
 
-(Sound Effect: News Sting)
+(Sound Effect: Transition)
 
 
 
@@ -624,7 +630,7 @@ Moving over to Export Credit Agencies and the Berne Union... \[Spoken ECA covera
 
 
 
-(Sound Effect: Global Focus)
+(Sound Effect: Transition)
 
 
 
