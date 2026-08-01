@@ -56,7 +56,34 @@
                 <p class="text-slate-400 text-sm mt-2 max-w-xl font-normal leading-relaxed">Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.</p>
             </div>
 
-            <div class="border-b border-slate-200 pb-2">
+            <!-- ================= NEW: DAILY PODCAST SECTION ================= -->
+            <div class="border-b border-slate-200 pb-2 pt-2">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-sm inline-block"></span> Daily Audio Intelligence
+                </h3>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-emerald-200">Daily Podcast</span>
+                            <span class="text-[10px] font-semibold text-slate-400 flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 48-Hour Intel Brief</span>
+                        </div>
+                        <h3 class="text-lg font-black text-slate-900 tracking-tight">Global Trade, ECAs & Energy Transition Finance</h3>
+                        <p class="text-xs text-slate-600 font-normal leading-relaxed">
+                            A daily 48-hour intelligence update covering global news, institutional analysis, and structural deals across Export Credit Agencies (ECA), Trade & Export Finance (TXF), the Berne Union, and Green Energy Transition Finance.
+                        </p>
+                    </div>
+                    <a href="app_for_faye/podcast.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-2 shrink-0 shadow-xs group">
+                        <i data-lucide="radio" class="w-4 h-4"></i>
+                        Listen to Podcast
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-b border-slate-200 pb-2 pt-4">
                 <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
                     <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Available Training Modules
                 </h3>
@@ -315,7 +342,6 @@
         }
 
         function showLandingPage() {
-            // CRITICAL: Complete buffer liquidation when hitting the home dashboard
             audio.pause();
             audio.removeAttribute('src');
             audio.load(); 
@@ -330,7 +356,6 @@
         function switchTrack(trackId) {
             currentTrack = trackId;
             
-            // CRITICAL: Force clear any lingering media payload pipelines instantly
             audio.pause();
             audio.removeAttribute('src');
             audio.load();
@@ -398,7 +423,7 @@
             resetPlayerUI();
         }
 
-        // ================= STRICT DEMAND-DRIVEN AUDIO ENGINE =================
+        // ================= DEMAND-DRIVEN AUDIO ENGINE =================
         function playSection(segmentId) {
             currentSegment = segmentId;
             const data = appData[currentTrack];
@@ -407,18 +432,15 @@
             document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
             document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? data.briefingTitle : data.dialogueTitle;
             
-            // Check if current source matches target file path cleanly
             const currentSrcAttr = audio.getAttribute('src') || '';
             
             if (currentSrcAttr.endsWith(targetSrc) && !audio.paused) {
-                // Safe pause toggle if button clicked mid-stream
                 audio.pause();
                 playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
                 lucide.createIcons();
                 return;
             }
             
-            // ABSOLUTE LAZY LOAD: Assign file details and force load only upon explicit user click invocation
             if (!currentSrcAttr.endsWith(targetSrc)) {
                 audio.pause();
                 audio.setAttribute('src', targetSrc);
@@ -440,7 +462,6 @@
             const targetSrc = currentSegment === 'briefing' ? data.briefingAudio : data.dialogueAudio;
             const currentSrcAttr = audio.getAttribute('src') || '';
 
-            // ABSOLUTE LAZY LOAD: Fallback master control bar injection
             if (!currentSrcAttr.endsWith(targetSrc)) {
                 audio.setAttribute('src', targetSrc);
                 audio.load();
@@ -452,7 +473,7 @@
                         playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
                         lucide.createIcons();
                     })
-                    .catch(error => console.warn("Engine execution waiting for window user focus gesture.", error));
+                    .catch(error => console.warn("Engine execution waiting for user focus gesture.", error));
             } else {
                 audio.pause();
                 playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
@@ -495,7 +516,6 @@
             durationTimeEl.innerText = formatTime(audio.duration);
         });
 
-        // Initialize directly to dashboard grid view
         window.onload = () => {
             buildLandingPageCatalog();
             showLandingPage();
