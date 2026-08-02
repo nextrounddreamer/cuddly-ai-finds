@@ -205,7 +205,7 @@
 
     <header>
         <a href="index.html" class="brand-logo">
-            🎧 <span>Daily Podcast</span>
+            🎧 <span>Faye's Podcast</span>
         </a>
         <nav>
             <a href="index.html" class="nav-link">← Back to Home</a>
@@ -229,11 +229,7 @@
         </div>
 
         <div class="date-grid" id="dateGrid">
-            <a href="podcast/html/20260801.html" class="date-btn" data-date="2026-08-01">
-                <span class="date-text">2026-08-01</span>
-                <span class="arrow-icon">→</span>
-            </a>
-
+            <!-- Dynamic date buttons generated via JS -->
             <div id="noResults" class="no-results">
                 No podcast entry found matching that date.
             </div>
@@ -245,6 +241,55 @@
     </footer>
 
     <script>
+        // Generate daily episode buttons dynamically from 2026-08-01 to today
+        function renderDailyButtons() {
+            const dateGrid = document.getElementById('dateGrid');
+            const noResults = document.getElementById('noResults');
+
+            // Fixed start date: 2026-08-01
+            const startDate = new Date(2026, 7, 1); // Month index 7 = August
+            const endDate = new Date(); // Current date
+
+            // Normalize time to midnight for comparison
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+
+            const dates = [];
+            let curr = new Date(startDate);
+
+            while (curr <= endDate) {
+                dates.push(new Date(curr));
+                curr.setDate(curr.getDate() + 1);
+            }
+
+            // Reverse array so newest date is at top
+            dates.reverse();
+
+            dates.forEach((date, index) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+
+                const displayDate = `${year}-${month}-${day}`;
+                const fileDate = `${year}${month}${day}`;
+
+                const btn = document.createElement('a');
+                btn.href = `podcast/html/${fileDate}.html`;
+                btn.className = 'date-btn';
+                btn.setAttribute('data-date', displayDate);
+
+                const labelText = index === 0 ? "Today's Episode" : "Daily Episode";
+
+                btn.innerHTML = `
+                    <span class="date-text">${displayDate}</span>
+                    <span class="sub-label">${labelText}</span>
+                    <span class="arrow-icon">→</span>
+                `;
+
+                dateGrid.insertBefore(btn, noResults);
+            });
+        }
+
         function filterDates() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.date-btn');
@@ -263,6 +308,9 @@
             const noResults = document.getElementById('noResults');
             noResults.style.display = visibleCount === 0 ? "block" : "none";
         }
+
+        // Initialize grid on load
+        document.addEventListener('DOMContentLoaded', renderDailyButtons);
     </script>
 </body>
 </html>
