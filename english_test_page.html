@@ -3,67 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Context & Currency — Advanced English App</title>
-    <!-- Tailwind CSS for sleek, modern UI styling -->
+    <title>Faye's space</title>
+    <!-- Tailwind CSS for modern UI styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Lucide Icons via CDN for modern player controls -->
+    <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .idiom-highlight {
-            background-color: rgba(99, 102, 241, 0.12);
-            border-bottom: 2px dashed #6366f1;
-            color: #4f46e5;
-            font-weight: 600;
-            padding: 0 2px;
-        }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen pb-16">
+<body class="bg-gradient-to-b from-amber-50/50 via-rose-50/30 to-slate-50 text-slate-800 font-sans antialiased min-h-screen pb-16">
 
     <!-- Top Navigation Header -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+    <header class="bg-white/80 backdrop-blur-md border-b border-rose-100/80 sticky top-0 z-50 shadow-xs">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div onclick="showLandingPage()" class="flex items-center space-x-3 cursor-pointer group">
-                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md group-hover:bg-indigo-700 transition-colors">
-                    <i data-lucide="compass" class="w-5 h-5"></i>
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="bg-gradient-to-tr from-amber-500 to-rose-500 text-white p-2.5 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-200">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
                 </div>
                 <div>
-                    <h1 class="text-base font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">Context & Currency</h1>
-                    <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase">Advanced Cultural & Corporate English</p>
+                    <h1 class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-rose-600 transition-colors">Faye's space</h1>
+                    <p class="text-[10px] text-amber-700/70 font-semibold tracking-wider uppercase">Curated Learning & Mindful Living</p>
                 </div>
-            </div>
-            
-            <!-- Contextual Dashboard Action -->
-            <div id="header-nav" class="flex items-center space-x-2 hidden">
-                <button onclick="showLandingPage()" class="px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer">
-                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Dashboard
-                </button>
-            </div>
+            </a>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 mt-6">
+    <main class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
 
-        <!-- ================= LANDING PAGE VIEW ================= -->
-        <div id="landing-view" class="space-y-6">
-            <!-- Dashboard Welcome Banner -->
-            <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-2xl p-8 shadow-xl border border-slate-800 relative overflow-hidden">
-                <div class="absolute right-0 top-0 opacity-10 translate-x-12 -translate-y-12">
-                    <i data-lucide="graduation-cap" class="w-64 h-64"></i>
-                </div>
-                <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30">Executive Suite</span>
-                <h2 class="text-3xl font-black mt-3 tracking-tight">Advanced Language Masterclass</h2>
-                <p class="text-slate-400 text-sm mt-2 max-w-xl font-normal leading-relaxed">Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.</p>
+        <!-- Dashboard Welcome Banner -->
+        <div class="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white rounded-3xl p-8 shadow-xl border border-rose-200/40 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 opacity-15">
+                <i data-lucide="sun" class="w-64 h-64 text-amber-100"></i>
             </div>
+            <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/30 inline-block">Executive Suite</span>
+            <h2 class="text-3xl font-black mt-3 tracking-tight">Faye's space</h2>
+            <p class="text-rose-50/90 text-sm mt-2 max-w-xl font-normal leading-relaxed">
+                Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.
+            </p>
+        </div>
 
-            <!-- ================= NEW: DAILY PODCAST SECTION ================= -->
-            <div class="border-b border-slate-200 pb-2 pt-2">
-                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-sm inline-block"></span> Daily Audio Intelligence
+        <!-- ================= DAILY PODCAST SECTION ================= -->
+        <section class="space-y-3">
+            <div class="border-b border-rose-200/60 pb-2">
+                <h3 class="text-xs font-black text-rose-800/60 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full inline-block"></span> Daily Audio Intelligence
                 </h3>
             </div>
 
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all">
+            <div class="bg-white/90 backdrop-blur-xs border border-emerald-100 rounded-2xl p-6 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div class="space-y-2 max-w-2xl">
                         <div class="flex items-center gap-2">
@@ -82,444 +67,76 @@
                     </a>
                 </div>
             </div>
+        </section>
 
-            <div class="border-b border-slate-200 pb-2 pt-4">
-                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Available Training Modules
+        <!-- ================= MINDFUL YOUTUBE DISCOVERY SECTION ================= -->
+        <section class="space-y-3">
+            <div class="border-b border-rose-200/60 pb-2 pt-2">
+                <h3 class="text-xs font-black text-amber-800/60 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-amber-500 rounded-full inline-block"></span> Video Discovery
                 </h3>
             </div>
 
-            <!-- Dynamic Course Grid Catalog -->
-            <div id="course-catalog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Data elements injected automatically -->
-            </div>
-        </div>
-
-
-        <!-- ================= ACTIVE COURSE CONTENT VIEW ================= -->
-        <div id="course-view" class="hidden space-y-6">
-            
-            <!-- Module Banner -->
-            <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800">
-                <span id="module-tag" class="bg-indigo-50/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30"></span>
-                <h2 id="module-title" class="text-2xl font-black mt-3 tracking-tight"></h2>
-                <p id="module-desc" class="text-slate-400 text-xs mt-2 max-w-2xl font-normal leading-relaxed"></p>
-            </div>
-
-            <!-- Master Media Player Component -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
-                <!-- Native Audio Engine with rigid zero-preload directives -->
-                <audio id="audio-engine" preload="none"></audio>
-                
+            <div class="bg-white/90 backdrop-blur-xs border border-amber-100 rounded-2xl p-6 shadow-xs hover:border-amber-300 hover:shadow-md transition-all">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <!-- Track Status and Metadata -->
-                    <div class="flex items-center space-x-3">
-                        <button id="player-play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 active:scale-95 transition-all shadow-md cursor-pointer">
-                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                        </button>
-                        <div>
-                            <div class="text-xs font-bold text-slate-800" id="player-track-title">--</div>
-                            <div class="text-[10px] text-slate-400 flex items-center gap-1 font-medium mt-0.5">
-                                <i data-lucide="music" class="w-3 h-3 text-indigo-500"></i> Active Stream: <span id="current-segment-lbl" class="text-indigo-600 font-semibold">--</span>
-                            </div>
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-amber-200">YouTube Discovery</span>
+                            <span class="text-[10px] font-semibold text-slate-400 flex items-center gap-1"><i data-lucide="sparkles" class="w-3 h-3 text-amber-500"></i> Curated Content</span>
                         </div>
+                        <h3 class="text-lg font-black text-slate-900 tracking-tight">Slow Living & Mindful YouTube Channels</h3>
+                        <p class="text-xs text-slate-600 font-normal leading-relaxed">
+                            Curated channels focused on minimalism, routine design, aesthetic vlogs, and clear daily English listening.
+                        </p>
                     </div>
-
-                    <!-- Timeline Scrubbing Layout -->
-                    <div class="flex-1 flex items-center space-x-3 w-full">
-                        <span id="time-current" class="text-[11px] font-mono text-slate-500 w-10 text-right">00:00</span>
-                        <input type="range" id="player-timeline" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
-                        <span id="time-duration" class="text-[11px] font-mono text-slate-500 w-10">00:00</span>
-                    </div>
-
-                    <!-- Playback Speed -->
-                    <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 w-full md:w-auto justify-end">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tempo:</label>
-                        <select id="player-speed" onchange="changeSpeed(this.value)" class="bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-600 py-1 px-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                            <option value="0.85">0.85x Study</option>
-                            <option value="1.0" selected>1.0x Native</option>
-                            <option value="1.15">1.15x Advanced</option>
-                        </select>
-                    </div>
+                    <a href="app_for_faye/yt_video_discovery.html" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-2 shrink-0 shadow-xs group">
+                        <i data-lucide="youtube" class="w-4 h-4"></i>
+                        Explore Channels
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <!-- App Material Content Stack -->
-            <div class="space-y-6">
-                
-                <!-- Section 1: Contextual Briefing Essay -->
-                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
-                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 1: Contextual Briefing Case Narrative
-                        </h3>
-                        <button onclick="playSection('briefing')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
-                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Narrative Audio
-                        </button>
-                    </div>
-                    
-                    <div id="content-briefing" class="text-sm text-slate-600 space-y-4 font-normal leading-relaxed">
-                        <!-- Dynamic Text Injected Here -->
-                    </div>
-                </section>
-
-                <!-- Section 2: Interactive Scenario Dialogue -->
-                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
-                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 2: Interactive Scenario Dialogue
-                        </h3>
-                        <button onclick="playSection('dialogue')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
-                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Dialogue Audio
-                        </button>
-                    </div>
-                    
-                    <div id="content-dialogue" class="space-y-3">
-                        <!-- Dynamic Scripts Injected Here -->
-                    </div>
-                </section>
-
-                <!-- Section 3: The Textbook Gap Translation Matrix -->
-                <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
-                    <div class="p-6 pb-2">
-                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 bg-emerald-600 rounded-sm inline-block"></span> Section 3: Decoding the "Textbook Gap"
-                        </h3>
-                        <p class="text-xs text-slate-400 mt-1 font-medium">Contrasting mechanical academic translations with high-context execution variants.</p>
-                    </div>
-                    
-                    <div class="overflow-x-auto mt-4">
-                        <table class="w-full text-left text-xs border-collapse">
-                            <thead>
-                                <tr class="bg-slate-50 border-y border-slate-200 text-slate-400 font-bold tracking-wider uppercase">
-                                    <th class="p-4 w-1/4">Academic / Exam Formula</th>
-                                    <th class="p-4 w-1/4 text-indigo-600">Cultural / Insider Expression</th>
-                                    <th class="p-4 w-2/4">Semantic Layer & Strategic Subtext</th>
-                                </tr>
-                            </thead>
-                            <tbody id="content-matrix" class="divide-y divide-slate-100 font-medium text-slate-700">
-                                <!-- Matrix data injected dynamically -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- Section 4: Daily Tactical Takeaway Summary -->
-                <section class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xs border border-slate-800">
-                    <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
-                        <i data-lucide="bookmark-check" class="w-4 h-4 text-indigo-400"></i> Section 4: Daily Takeaway Summary
-                    </h3>
-                    <div id="content-summary" class="mt-4 text-xs font-normal text-slate-300 leading-relaxed space-y-2">
-                        <!-- Summary content items injected dynamically -->
-                    </div>
-                </section>
-
+        <!-- ================= TRAINING MODULES CATALOG ================= -->
+        <section class="space-y-3">
+            <div class="border-b border-rose-200/60 pb-2 pt-2">
+                <h3 class="text-xs font-black text-indigo-800/60 uppercase tracking-widest flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-indigo-600 rounded-full inline-block"></span> Available Training Modules
+                </h3>
             </div>
-        </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Module 1 Card -->
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:border-indigo-300 hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-md inline-block mb-3 border border-indigo-100">MODULE 1: ARTS & EMPIRE</span>
+                        <h4 class="text-base font-black text-slate-900 tracking-tight">Bankrolling the High Renaissance</h4>
+                        <p class="text-xs text-slate-600 mt-2 font-normal leading-relaxed mb-6">Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.</p>
+                    </div>
+                    <a href="app_for_faye\english_test\html\day3.html" class="w-full py-2.5 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all active:scale-98 flex items-center justify-center gap-2 group shadow-xs">
+                        Open Module <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Module 2 Card -->
+                <div class="bg-white/90 backdrop-blur-xs border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:border-indigo-300 hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-md inline-block mb-3 border border-indigo-100">MODULE 2: CAPITAL & COMPLIANCE</span>
+                        <h4 class="text-base font-black text-slate-900 tracking-tight">Window Dressing the Q3 Earnings</h4>
+                        <p class="text-xs text-slate-600 mt-2 font-normal leading-relaxed mb-6">Moving from textbook accounting definitions to the highly diplomatic, tactical language used in boardroom standoffs and compliance audits.</p>
+                    </div>
+                    <a href="app_for_faye\english_test\html\day8.html" class="w-full py-2.5 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all active:scale-98 flex items-center justify-center gap-2 group shadow-xs">
+                        Open Module <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Unified Client-Side Application Database Engine -->
     <script>
-        const appData = {
-            day3: {
-                id: "day3",
-                displayName: "Day 3: Arts Track",
-                tag: "MODULE 1: ARTS & EMPIRE",
-                title: "Bankrolling the High Renaissance",
-                desc: "Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.",
-                briefingAudio: "app_for_faye/english_test/audio/day3_briefing.m4a",
-                dialogueAudio: "app_for_faye/english_test/audio/day3_dialogue.m4a",
-                briefingTitle: "Day03_Renaissance_Briefing.m4a",
-                dialogueTitle: "Day03_Palazzo_Vecchio_Dialogue.m4a",
-                briefingParagraphs: [
-                    "The year is 1459. Inside the newly constructed, heavily fortified stone walls of the Palazzo Medici on the Via Larga, Cosimo de' Medici is pacing nervously. He is undisputedly one of the wealthiest financial titans in the Western world, controlling a sprawling multinational network of banking branches that stretch from Florence to London. Yet, he is a man deeply terrified for his eternal soul. The Roman Catholic Church has explicitly categorized the generation of wealth via banking and the compounding accumulation of interest as the mortal sin of usury—an offense punishable by absolute spiritual damnation. Cosimo does not want a theoretical theological debate; he requires an undeniable, immediate socio-political shield to protect his family's vast fortunes.",
-                    "To build this shield, Cosimo summons the brilliant, radical sculptor Donatello to his private quarters. The executive commission is hyper-specific: forge an unmissable, dramatic bronze masterpiece that will stand dead center in the primary courtyard of the palace. This is not a gift for the common public squares of Florence; it is designed for a restricted, high-stakes arena where foreign ambassadors, cardinals, and rival merchant syndicates wait to secure credit lines. The Medici banking network has completely bankrolled this staggering artistic endeavor, funding the collection of precious raw materials and the ruinous expenses of experimental bronze casting to buy institutional validation and wash away the spiritual guilt of private capital accumulation.",
-                    "When Donatello delivers 'Judith and Holofernes', he reveals a blood-soaked, violent scene. The biblical widow Judith stands victoriously with a raised blade, her boot pressed ruthlessly against the neck of a half-naked, intoxicated enemy general. Officially, the work is framed as a pious narrative of humility conquering corrupt pride. But the true genius lies in its placement. By positioning this monumental symbol of liberty entirely within the walls of a private corporate stronghold, the Medicis execute a massive flex of sovereign authority. When foreign dignitaries walk through the courtyard archways, they do not view a simple piece of religious devotion; they receive an aggressive psychological warning that the Medici family dictates who holds leverage and who falls beneath the blade.",
-                    "Donatello understands this delicate infrastructure perfectly. He does not create his works in a vacuum; his entire operational survival relies on balancing the highly volatile political whims of mercantile autocrats. The overhead costs of running an active Renaissance arts studio are crushing, and a single failed cast could mean complete bankruptcy. To guarantee that the Medici family continues footing the bill for his grand creative visions, Donatello deliberately constructs a double-edged sword. He crafts an object that serves as an impeccable spiritual insurance policy for his master's checkbook, while simultaneously giving the corporate rulers of Florence a terrifying, permanent visual monument of absolute transactional dominance."
-                ],
-                dialogue: [
-                    { speaker: "Marcus", text: "Look at where this thing is positioned now, Elena. It’s out in the open, public. But back when Cosimo de' Medici commissioned Donatello, he didn't put it in a public square for the masses to enjoy. He had it sitting right in his private courtyard. To me, that is the ultimate massive flex." },
-                    { speaker: "Elena", text: "Oh, completely. It’s a textbook double-edged sword, isn’t it? On paper, the iconography is pure virtue—you’ve got Judith, the underdog, slaying the tyrant Holofernes. It screams liberty. But let’s be real for a second—the Medicis were the autocrats here. By slapping this statue inside their private palace, they were essentially telling the citizens of Florence, 'We call the shots, but don't worry, we're the ones protecting you from tyranny.'" },
-                    { speaker: "Marcus", text: "Right, it's gaslighting in bronze. And Donatello wasn't creating this in a vacuum. He knew exactly who was footing the bill. If Cosimo wants to look like a hero while charging exorbitant interest rates on bank loans, Donatello is going to deliver that narrative. He had to play the political game to keep the studio funded." }
-                ],
-                matrix: [
-                    { textbook: "Financially supported / Financed", native: "Bankrolled", nuance: "Denotes robust, aggressive, absolute financial backing. Typically used when an individual or corporate entity funds a massive movement to acquire total leverage." },
-                    { textbook: "Demonstration of influence", native: "Massive flex", nuance: "High-context modern vernacular used across executive levels to label an ostentatious, undeniable display of wealth, power, or operational superiority." },
-                    { textbook: "Paying the costs", native: "Footing the bill", nuance: "A ubiquitous idiomatic standard used when assigning financial accountability for massive, complex invoices or luxurious expenses incurred by someone else." },
-                    { textbook: "Isolated from reality", native: "In a vacuum", nuance: "An essential analytical phrase. Used by native professionals to warn that a variable, product, or metric cannot be evaluated accurately without considering macro environment factors." }
-                ],
-                summary: [
-                    "<strong>Linguistic Strategy:</strong> Mastered the transition from purely descriptive verbs ('supported') to highly transactional, strategic idioms ('bankrolled', 'footing the bill') that establish you as an advanced, critical commentator.",
-                    "<strong>Cultural Intelligence:</strong> Learned to dissect the underlying power structures behind European art, viewing classical masterpieces not just as aesthetic objects, but as historical public-relations tools used to legitimize private wealth.",
-                    "<strong>Nuance Clues:</strong> Internalized the use of 'double-edged sword' to immediately signal that you comprehend both the structural risks and institutional benefits of a complex scenario."
-                ]
-            },
-            day8: {
-                id: "day8",
-                displayName: "Day 8: Finance Track",
-                tag: "MODULE 2: CAPITAL & COMPLIANCE",
-                title: "Window Dressing the Q3 Earnings",
-                desc: "Moving from textbook accounting definitions to the highly diplomatic, tactical language used in boardroom standoffs and compliance audits.",
-                briefingAudio: "app_for_faye/english_test/audio/day8_briefing.m4a",
-                dialogueAudio: "app_for_faye/english_test/audio/day8_dialogue.m4a",
-                briefingTitle: "Day08_Accounting_Briefing.m4a",
-                dialogueTitle: "Day08_Boardroom_Audit_Confrontation.m4a",
-                briefingParagraphs: [
-                    "In the final frantic two weeks of September, the atmosphere on the executive floor of software giant Nexus Core turned suffocatingly tense. The global macroeconomy was visibly stalling, enterprise pipeline deals were freezing up across the industry, and Wall Street analysts were already sharpening their knives for the upcoming Q3 public earnings call. The corporation's multi-billion-dollar market valuation was teetering on a dangerous knife-edge. If Nexus Core missed its highly publicized quarterly revenue growth projection by even a fraction of a percent, institutional funds would instantly trigger an automated algorithmic sell-off, erasing years of capital growth.",
-                    "For the senior leadership team trapped inside the boardroom, this was not just a matter of institutional pride. The CEO, the board members, and the CFO himself possessed millions of dollars in personal stock options and performance bonuses that were legally structured to vest based on the closing metrics of this exact period. They had immense skin in the game, and experiencing a missing quarter meant facing immediate career liquidation and an furious investor rebellion. They desperately required a single, massive transaction to bridge the gaping chasm between their actual operational cash flows and the inflated numbers they had promised to the public stock markets.",
-                    "Right on the deadline, their salvation appeared in the form of the Apex contract. Apex Systems had finalized a complex $5 million enterprise software licensing agreement. The operational catch was clear: while the contract was officially signed in September, the actual service deliverables, data migrations, and custom cloud integrations were legally mandated to be rolled out across a prolonged twenty-four-month schedule. Standard conservative revenue accounting guidelines dictate that this income must be recognized gradually over two years as the work is performed. However, with the clock ticking toward midnight, the CFO executed an aggressive decision: recognize all $5 million upfront to print an artificially flawless balance sheet.",
-                    "This high-wire maneuver was the definitive center of the executive team's compliance strategy. They were actively engaged in systemic window dressing, pulling future enterprise revenues across the quarterly line to conceal an underlying slowdown in operational health. The executive team knew they were pushing the envelope to its legal limits, relying on ambiguous contract phrasing to transform a long-term service liability into an instant illusion of explosive quarterly success. When the independent external audit team arrived to inspect the ledgers, this specific $5 million contract immediately triggered an internal crisis, forcing the auditor to demand that the CFO walk this back or prepare for a severe regulatory investigation that would force the firm to take a massive haircut on its global market value."
-                ],
-                dialogue: [
-                    { speaker: "Sarah", text: "David, I've been reviewing the Q3 enterprise software contracts, specifically the Apex account. You guys have recognized the full $5 million licensing fee upfront in September, even though the actual service deliverables are spread out over twenty-four months. Honestly? You’re pushing the envelope here." },
-                    { speaker: "David", text: "Come on, Sarah. We’re well within the gray area on this one. The client signed the dotted line before the quarter closed. We're just trying to put our best foot forward for the upcoming board meeting. It's standard quarter-end optimization." },
-                    { speaker: "Sarah", text: "There’s a massive line between optimization and window dressing, David. If the SEC flags this timing, they aren't going to call it optimization—they’re going to say we're cooking the books. I need you to walk this back, defer the unearned portion, and amortize it properly over the two-year period. Otherwise, I can’t sign off on the audit." },
-                    { speaker: "David", text: "If we walk that revenue back now, our quarterly growth projections drop by four percent. We take a massive haircut on our valuation, and the CEO has a lot of skin in the game this quarter." }
-                ],
-                matrix: [
-                    { textbook: "Superficial data adjustments", native: "Window dressing", nuance: "A severe business accusation wrapped in corporate phrasing. Means manipulating financial presentations to appear robust right before market reporting deadlines." },
-                    { textbook: "Falsifying accounting data", native: "Cooking the books", nuance: "The definitive idiomatic term for deliberate corporate accounting fraud. Used intentionally to break through corporate excuses and signal high legal risk." },
-                    { textbook: "Testing regulatory limits", native: "Pushing the envelope", nuance: "A tactical, diplomatic idiom used to inform a counterpart that their operational actions are hovering dangerously close to an unethical or illegal boundary." },
-                    { textbook: "Accepting a capital loss", native: "Taking a haircut", nuance: "Everyday financial market phrase used to describe accepting a painful, mandatory reduction in asset pricing, projections, or structural valuations." },
-                    { textbook: "Vested financial liability", native: "Skin in the game", nuance: "Popularized globally across institutional finance to identify when an internal decision-maker possesses immense personal capital tied to the corporate outcome." }
-                ],
-                summary: [
-                    "<strong>Linguistic Strategy:</strong> Mastered corporate conflict vocabulary. You learned how to challenge aggressive accounting metrics using strategic vocabulary ('pushing the envelope', 'window dressing') to command absolute compliance authority without escalating to raw confrontation.",
-                    "<strong>Corporate Governance:</strong> Acquired an understanding of the systemic tensions that occur between short-term executive pressures ('skin in the game') and independent external regulatory structures.",
-                    "<strong>Operational Fluency:</strong> Learned to correctly utilize Wall Street transactional phrases ('taking a haircut', 'walk this back') to seamlessly navigate professional financial adjustments."
-                ]
-            }
-        };
-
-        // UI Core State Engine
-        let currentTrack = 'day3';
-        let currentSegment = 'briefing'; 
-        
-        const audio = document.getElementById('audio-engine');
-        const playBtn = document.getElementById('player-play-btn');
-        const timeline = document.getElementById('player-timeline');
-        const currentTimeEl = document.getElementById('time-current');
-        const durationTimeEl = document.getElementById('time-duration');
-
-        const strategicIdioms = [
-            "massive flex", "double-edged sword", "in a vacuum", "footing the bill", 
-            "pushing the envelope", "window dressing", "cooking the books", 
-            "walk this back", "haircut", "skin in the game", "bankrolled"
-        ];
-
-        function applyDynamicHighlights(textString) {
-            let processedText = textString;
-            strategicIdioms.forEach(idiom => {
-                const regex = new RegExp(`\\b${idiom}\\b`, 'gi');
-                processedText = processedText.replace(regex, `<span class='idiom-highlight'>$&</span>`);
-            });
-            return processedText;
-        }
-
-        // ================= NAVIGATION MECHANICS =================
-        function buildLandingPageCatalog() {
-            const grid = document.getElementById('course-catalog-grid');
-            grid.innerHTML = '';
-            
-            Object.keys(appData).forEach(key => {
-                const item = appData[key];
-                const card = document.createElement('div');
-                card.className = "bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all duration-300";
-                
-                card.innerHTML = `
-                    <div>
-                        <span class="text-[10px] font-bold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-md inline-block mb-3 border border-indigo-100">${item.tag}</span>
-                        <h4 class="text-base font-black text-slate-900 tracking-tight">${item.title}</h4>
-                        <p class="text-xs text-slate-500 mt-2 font-normal leading-relaxed mb-6">${item.desc}</p>
-                    </div>
-                    <button onclick="switchTrack('${item.id}')" class="w-full py-2 bg-slate-900 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all active:scale-98 flex items-center justify-center gap-2 cursor-pointer group">
-                        Enter Track <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
-                    </button>
-                `;
-                grid.appendChild(card);
-            });
-            lucide.createIcons();
-        }
-
-        function showLandingPage() {
-            audio.pause();
-            audio.removeAttribute('src');
-            audio.load(); 
-            
-            resetPlayerUI();
-            
-            document.getElementById('course-view').classList.add('hidden');
-            document.getElementById('landing-view').classList.remove('hidden');
-            document.getElementById('header-nav').classList.add('hidden');
-        }
-
-        function switchTrack(trackId) {
-            currentTrack = trackId;
-            
-            audio.pause();
-            audio.removeAttribute('src');
-            audio.load();
-
-            document.getElementById('landing-view').classList.add('hidden');
-            document.getElementById('course-view').classList.remove('hidden');
-            document.getElementById('header-nav').classList.remove('hidden');
-
-            const data = appData[trackId];
-            document.getElementById('module-tag').innerText = data.tag;
-            document.getElementById('module-title').innerText = data.title;
-            document.getElementById('module-desc').innerText = data.desc;
-
-            const briefingContainer = document.getElementById('content-briefing');
-            briefingContainer.innerHTML = '';
-            data.briefingParagraphs.forEach(pText => {
-                const p = document.createElement('p');
-                p.className = "text-slate-600 leading-relaxed font-normal text-sm text-justify";
-                p.innerHTML = applyDynamicHighlights(pText);
-                briefingContainer.appendChild(p);
-            });
-
-            const dialogueContainer = document.getElementById('content-dialogue');
-            dialogueContainer.innerHTML = '';
-            data.dialogue.forEach(line => {
-                const wrap = document.createElement('div');
-                wrap.className = "p-3.5 rounded-xl bg-slate-50 border border-slate-100";
-                const highlitDialogue = applyDynamicHighlights(line.text);
-                wrap.innerHTML = `<span class="font-bold text-slate-900 block text-xs tracking-wide uppercase text-indigo-950 mb-1">${line.speaker}:</span> <span class="text-slate-700 text-sm">${highlitDialogue}</span>`;
-                dialogueContainer.appendChild(wrap);
-            });
-
-            const matrixContainer = document.getElementById('content-matrix');
-            matrixContainer.innerHTML = '';
-            data.matrix.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50/50 transition-colors";
-                tr.innerHTML = `
-                    <td class="p-4 text-slate-500 font-normal border-b border-slate-100">${item.textbook}</td>
-                    <td class="p-4 font-bold text-indigo-600 border-b border-slate-100">${item.native}</td>
-                    <td class="p-4 text-slate-600 font-normal leading-relaxed border-b border-slate-100">${item.nuance}</td>
-                `;
-                matrixContainer.appendChild(tr);
-            });
-
-            const summaryContainer = document.getElementById('content-summary');
-            summaryContainer.innerHTML = '';
-            data.summary.forEach(item => {
-                const div = document.createElement('div');
-                div.className = "flex items-start space-x-2 border-b border-slate-800 pb-2 last:border-none";
-                div.innerHTML = `<span class="text-indigo-400 font-bold text-sm mt-0.5">•</span> <span class="text-slate-300 text-xs">${item}</span>`;
-                summaryContainer.appendChild(div);
-            });
-
-            setupSourceTrack('briefing');
-        }
-
-        function setupSourceTrack(segmentId) {
-            currentSegment = segmentId;
-            const data = appData[currentTrack];
-            
-            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
-            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? data.briefingTitle : data.dialogueTitle;
-            
-            resetPlayerUI();
-        }
-
-        // ================= DEMAND-DRIVEN AUDIO ENGINE =================
-        function playSection(segmentId) {
-            currentSegment = segmentId;
-            const data = appData[currentTrack];
-            const targetSrc = segmentId === 'briefing' ? data.briefingAudio : data.dialogueAudio;
-            
-            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
-            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? data.briefingTitle : data.dialogueTitle;
-            
-            const currentSrcAttr = audio.getAttribute('src') || '';
-            
-            if (currentSrcAttr.endsWith(targetSrc) && !audio.paused) {
-                audio.pause();
-                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
-                lucide.createIcons();
-                return;
-            }
-            
-            if (!currentSrcAttr.endsWith(targetSrc)) {
-                audio.pause();
-                audio.setAttribute('src', targetSrc);
-                audio.load(); 
-            }
-            
-            audio.play()
-                .then(() => {
-                    playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
-                    lucide.createIcons();
-                })
-                .catch(error => {
-                    console.error("Media play execution interrupted:", error);
-                });
-        }
-
-        function toggleAudio() {
-            const data = appData[currentTrack];
-            const targetSrc = currentSegment === 'briefing' ? data.briefingAudio : data.dialogueAudio;
-            const currentSrcAttr = audio.getAttribute('src') || '';
-
-            if (!currentSrcAttr.endsWith(targetSrc)) {
-                audio.setAttribute('src', targetSrc);
-                audio.load();
-            }
-
-            if (audio.paused) {
-                audio.play()
-                    .then(() => {
-                        playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
-                        lucide.createIcons();
-                    })
-                    .catch(error => console.warn("Engine execution waiting for user focus gesture.", error));
-            } else {
-                audio.pause();
-                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
-                lucide.createIcons();
-            }
-        }
-
-        function resetPlayerUI() {
-            playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
-            timeline.value = 0;
-            currentTimeEl.innerText = "00:00";
-            durationTimeEl.innerText = "00:00";
-            lucide.createIcons();
-        }
-
-        function changeSpeed(speed) {
-            audio.playbackRate = parseFloat(speed);
-        }
-
-        function seekAudio(value) {
-            if (isNaN(audio.duration)) return;
-            audio.currentTime = audio.duration * (value / 100);
-        }
-
-        function formatTime(secs) {
-            let minutes = Math.floor(secs / 60);
-            let seconds = Math.floor(secs % 60);
-            if (seconds < 10) seconds = `0${seconds}`;
-            if (minutes < 10) minutes = `0${minutes}`;
-            return `${minutes}:${seconds}`;
-        }
-
-        audio.addEventListener('timeupdate', () => {
-            if (isNaN(audio.duration)) return;
-            timeline.value = (audio.currentTime / audio.duration) * 100;
-            currentTimeEl.innerText = formatTime(audio.currentTime);
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            durationTimeEl.innerText = formatTime(audio.duration);
-        });
-
-        window.onload = () => {
-            buildLandingPageCatalog();
-            showLandingPage();
-        };
+        lucide.createIcons();
     </script>
 </body>
 </html>

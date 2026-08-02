@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8: Window Dressing the Q3 Earnings — Context & Currency</title>
+    <!-- Tailwind CSS for sleek, modern UI styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons via CDN for modern player controls -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .idiom-highlight {
+            background-color: rgba(99, 102, 241, 0.12);
+            border-bottom: 2px dashed #6366f1;
+            color: #4f46e5;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen pb-16">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md group-hover:bg-indigo-700 transition-colors">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="text-base font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">Context & Currency</h1>
+                    <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase">Advanced Cultural & Corporate English</p>
+                </div>
+            </a>
+            
+            <!-- Contextual Dashboard Action -->
+            <div class="flex items-center space-x-2">
+                <a href="../../../english_test_page.html" class="px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 transition-all duration-200 flex items-center gap-1.5">
+                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-6">
+        <div class="space-y-6">
+            
+            <!-- Module Banner -->
+            <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800">
+                <span class="bg-indigo-50/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30">MODULE 2: CAPITAL & COMPLIANCE</span>
+                <h2 class="text-2xl font-black mt-3 tracking-tight">Window Dressing the Q3 Earnings</h2>
+                <p class="text-slate-400 text-xs mt-2 max-w-2xl font-normal leading-relaxed">Moving from textbook accounting definitions to the highly diplomatic, tactical language used in boardroom standoffs and compliance audits.</p>
+            </div>
+
+            <!-- Master Media Player Component -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
+                <!-- Native Audio Engine -->
+                <audio id="audio-engine" preload="none"></audio>
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <!-- Track Status and Metadata -->
+                    <div class="flex items-center space-x-3">
+                        <button id="player-play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 active:scale-95 transition-all shadow-md cursor-pointer">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        </button>
+                        <div>
+                            <div class="text-xs font-bold text-slate-800" id="player-track-title">Day08_Accounting_Briefing.m4a</div>
+                            <div class="text-[10px] text-slate-400 flex items-center gap-1 font-medium mt-0.5">
+                                <i data-lucide="music" class="w-3 h-3 text-indigo-500"></i> Active Stream: <span id="current-segment-lbl" class="text-indigo-600 font-semibold">Section 1: The Briefing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Scrubbing Layout -->
+                    <div class="flex-1 flex items-center space-x-3 w-full">
+                        <span id="time-current" class="text-[11px] font-mono text-slate-500 w-10 text-right">00:00</span>
+                        <input type="range" id="player-timeline" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                        <span id="time-duration" class="text-[11px] font-mono text-slate-500 w-10">00:00</span>
+                    </div>
+
+                    <!-- Playback Speed -->
+                    <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 w-full md:w-auto justify-end">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tempo:</label>
+                        <select id="player-speed" onchange="changeSpeed(this.value)" class="bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-600 py-1 px-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="0.85">0.85x Study</option>
+                            <option value="1.0" selected>1.0x Native</option>
+                            <option value="1.15">1.15x Advanced</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Material Content Stack -->
+            <div class="space-y-6">
+                
+                <!-- Section 1: Contextual Briefing Essay -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 1: Contextual Briefing Case Narrative
+                        </h3>
+                        <button onclick="playSection('briefing')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Narrative Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-briefing" class="text-sm text-slate-600 space-y-4 font-normal leading-relaxed">
+                        <!-- Briefing paragraphs injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Section 2: Interactive Scenario Dialogue -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 2: Interactive Scenario Dialogue
+                        </h3>
+                        <button onclick="playSection('dialogue')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Dialogue Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-dialogue" class="space-y-3">
+                        <!-- Dialogue injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Section 3: The Textbook Gap Translation Matrix -->
+                <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
+                    <div class="p-6 pb-2">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-emerald-600 rounded-sm inline-block"></span> Section 3: Decoding the "Textbook Gap"
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1 font-medium">Contrasting mechanical academic translations with high-context execution variants.</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-y border-slate-200 text-slate-400 font-bold tracking-wider uppercase">
+                                    <th class="p-4 w-1/4">Academic / Exam Formula</th>
+                                    <th class="p-4 w-1/4 text-indigo-600">Cultural / Insider Expression</th>
+                                    <th class="p-4 w-2/4">Semantic Layer & Strategic Subtext</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-matrix" class="divide-y divide-slate-100 font-medium text-slate-700">
+                                <!-- Matrix data injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 4: Daily Tactical Takeaway Summary -->
+                <section class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xs border border-slate-800">
+                    <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
+                        <i data-lucide="bookmark-check" class="w-4 h-4 text-indigo-400"></i> Section 4: Daily Takeaway Summary
+                    </h3>
+                    <div id="content-summary" class="mt-4 text-xs font-normal text-slate-300 leading-relaxed space-y-2">
+                        <!-- Summary items injected via JS -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Client-Side Script Engine -->
+    <script>
+        const day8Data = {
+            id: "day8",
+            displayName: "Day 8: Finance Track",
+            tag: "MODULE 2: CAPITAL & COMPLIANCE",
+            title: "Window Dressing the Q3 Earnings",
+            desc: "Moving from textbook accounting definitions to the highly diplomatic, tactical language used in boardroom standoffs and compliance audits.",
+            briefingAudio: "../audio/day8_briefing.m4a",
+            dialogueAudio: "../audio/day8_dialogue.m4a",
+            briefingTitle: "Day08_Accounting_Briefing.m4a",
+            dialogueTitle: "Day08_Boardroom_Audit_Confrontation.m4a",
+            briefingParagraphs: [
+                "In the final frantic two weeks of September, the atmosphere on the executive floor of software giant Nexus Core turned suffocatingly tense. The global macroeconomy was visibly stalling, enterprise pipeline deals were freezing up across the industry, and Wall Street analysts were already sharpening their knives for the upcoming Q3 public earnings call. The corporation's multi-billion-dollar market valuation was teetering on a dangerous knife-edge. If Nexus Core missed its highly publicized quarterly revenue growth projection by even a fraction of a percent, institutional funds would instantly trigger an automated algorithmic sell-off, erasing years of capital growth.",
+                "For the senior leadership team trapped inside the boardroom, this was not just a matter of institutional pride. The CEO, the board members, and the CFO himself possessed millions of dollars in personal stock options and performance bonuses that were legally structured to vest based on the closing metrics of this exact period. They had immense skin in the game, and experiencing a missing quarter meant facing immediate career liquidation and an furious investor rebellion. They desperately required a single, massive transaction to bridge the gaping chasm between their actual operational cash flows and the inflated numbers they had promised to the public stock markets.",
+                "Right on the deadline, their salvation appeared in the form of the Apex contract. Apex Systems had finalized a complex $5 million enterprise software licensing agreement. The operational catch was clear: while the contract was officially signed in September, the actual service deliverables, data migrations, and custom cloud integrations were legally mandated to be rolled out across a prolonged twenty-four-month schedule. Standard conservative revenue accounting guidelines dictate that this income must be recognized gradually over two years as the work is performed. However, with the clock ticking toward midnight, the CFO executed an aggressive decision: recognize all $5 million upfront to print an artificially flawless balance sheet.",
+                "This high-wire maneuver was the definitive center of the executive team's compliance strategy. They were actively engaged in systemic window dressing, pulling future enterprise revenues across the quarterly line to conceal an underlying slowdown in operational health. The executive team knew they were pushing the envelope to its legal limits, relying on ambiguous contract phrasing to transform a long-term service liability into an instant illusion of explosive quarterly success. When the independent external audit team arrived to inspect the ledgers, this specific $5 million contract immediately triggered an internal crisis, forcing the auditor to demand that the CFO walk this back or prepare for a severe regulatory investigation that would force the firm to take a massive haircut on its global market value."
+            ],
+            dialogue: [
+                { speaker: "Sarah", text: "David, I've been reviewing the Q3 enterprise software contracts, specifically the Apex account. You guys have recognized the full $5 million licensing fee upfront in September, even though the actual service deliverables are spread out over twenty-four months. Honestly? You’re pushing the envelope here." },
+                { speaker: "David", text: "Come on, Sarah. We’re well within the gray area on this one. The client signed the dotted line before the quarter closed. We're just trying to put our best foot forward for the upcoming board meeting. It's standard quarter-end optimization." },
+                { speaker: "Sarah", text: "There’s a massive line between optimization and window dressing, David. If the SEC flags this timing, they aren't going to call it optimization—they’re going to say we're cooking the books. I need you to walk this back, defer the unearned portion, and amortize it properly over the two-year period. Otherwise, I can’t sign off on the audit." },
+                { speaker: "David", text: "If we walk that revenue back now, our quarterly growth projections drop by four percent. We take a massive haircut on our valuation, and the CEO has a lot of skin in the game this quarter." }
+            ],
+            matrix: [
+                { textbook: "Superficial data adjustments", native: "Window dressing", nuance: "A severe business accusation wrapped in corporate phrasing. Means manipulating financial presentations to appear robust right before market reporting deadlines." },
+                { textbook: "Falsifying accounting data", native: "Cooking the books", nuance: "The definitive idiomatic term for deliberate corporate accounting fraud. Used intentionally to break through corporate excuses and signal high legal risk." },
+                { textbook: "Testing regulatory limits", native: "Pushing the envelope", nuance: "A tactical, diplomatic idiom used to inform a counterpart that their operational actions are hovering dangerously close to an unethical or illegal boundary." },
+                { textbook: "Accepting a capital loss", native: "Taking a haircut", nuance: "Everyday financial market phrase used to describe accepting a painful, mandatory reduction in asset pricing, projections, or structural valuations." },
+                { textbook: "Vested financial liability", native: "Skin in the game", nuance: "Popularized globally across institutional finance to identify when an internal decision-maker possesses immense personal capital tied to the corporate outcome." }
+            ],
+            summary: [
+                "<strong>Linguistic Strategy:</strong> Mastered corporate conflict vocabulary. You learned how to challenge aggressive accounting metrics using strategic vocabulary ('pushing the envelope', 'window dressing') to command absolute compliance authority without escalating to raw confrontation.",
+                "<strong>Corporate Governance:</strong> Acquired an understanding of the systemic tensions that occur between short-term executive pressures ('skin in the game') and independent external regulatory structures.",
+                "<strong>Operational Fluency:</strong> Learned to correctly utilize Wall Street transactional phrases ('taking a haircut', 'walk this back') to seamlessly navigate professional financial adjustments."
+            ]
+        };
+
+        // Engine State
+        let currentSegment = 'briefing'; 
+        const audio = document.getElementById('audio-engine');
+        const playBtn = document.getElementById('player-play-btn');
+        const timeline = document.getElementById('player-timeline');
+        const currentTimeEl = document.getElementById('time-current');
+        const durationTimeEl = document.getElementById('time-duration');
+
+        const strategicIdioms = [
+            "pushing the envelope", "window dressing", "cooking the books", 
+            "walk this back", "walk it back", "haircut", "skin in the game"
+        ];
+
+        function applyDynamicHighlights(textString) {
+            let processedText = textString;
+            strategicIdioms.forEach(idiom => {
+                const regex = new RegExp(`\\b${idiom}\\b`, 'gi');
+                processedText = processedText.replace(regex, `<span class='idiom-highlight'>$&</span>`);
+            });
+            return processedText;
+        }
+
+        function renderPageContent() {
+            // Render Briefing
+            const briefingContainer = document.getElementById('content-briefing');
+            briefingContainer.innerHTML = '';
+            day8Data.briefingParagraphs.forEach(pText => {
+                const p = document.createElement('p');
+                p.className = "text-slate-600 leading-relaxed font-normal text-sm text-justify";
+                p.innerHTML = applyDynamicHighlights(pText);
+                briefingContainer.appendChild(p);
+            });
+
+            // Render Dialogue
+            const dialogueContainer = document.getElementById('content-dialogue');
+            dialogueContainer.innerHTML = '';
+            day8Data.dialogue.forEach(line => {
+                const wrap = document.createElement('div');
+                wrap.className = "p-3.5 rounded-xl bg-slate-50 border border-slate-100";
+                const highlitDialogue = applyDynamicHighlights(line.text);
+                wrap.innerHTML = `<span class="font-bold text-slate-900 block text-xs tracking-wide uppercase text-indigo-950 mb-1">${line.speaker}:</span> <span class="text-slate-700 text-sm">${highlitDialogue}</span>`;
+                dialogueContainer.appendChild(wrap);
+            });
+
+            // Render Matrix
+            const matrixContainer = document.getElementById('content-matrix');
+            matrixContainer.innerHTML = '';
+            day8Data.matrix.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 text-slate-500 font-normal border-b border-slate-100">${item.textbook}</td>
+                    <td class="p-4 font-bold text-indigo-600 border-b border-slate-100">${item.native}</td>
+                    <td class="p-4 text-slate-600 font-normal leading-relaxed border-b border-slate-100">${item.nuance}</td>
+                `;
+                matrixContainer.appendChild(tr);
+            });
+
+            // Render Summary
+            const summaryContainer = document.getElementById('content-summary');
+            summaryContainer.innerHTML = '';
+            day8Data.summary.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "flex items-start space-x-2 border-b border-slate-800 pb-2 last:border-none";
+                div.innerHTML = `<span class="text-indigo-400 font-bold text-sm mt-0.5">•</span> <span class="text-slate-300 text-xs">${item}</span>`;
+                summaryContainer.appendChild(div);
+            });
+
+            lucide.createIcons();
+        }
+
+        // ================= DEMAND-DRIVEN AUDIO ENGINE =================
+        function playSection(segmentId) {
+            currentSegment = segmentId;
+            const targetSrc = segmentId === 'briefing' ? day8Data.briefingAudio : day8Data.dialogueAudio;
+            
+            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
+            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? day8Data.briefingTitle : day8Data.dialogueTitle;
+            
+            const currentSrcAttr = audio.getAttribute('src') || '';
+            
+            if (currentSrcAttr.endsWith(targetSrc) && !audio.paused) {
+                audio.pause();
+                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
+                return;
+            }
+            
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.pause();
+                audio.setAttribute('src', targetSrc);
+                audio.load(); 
+            }
+            
+            audio.play()
+                .then(() => {
+                    playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                    lucide.createIcons();
+                })
+                .catch(error => {
+                    console.error("Media play execution interrupted:", error);
+                });
+        }
+
+        function toggleAudio() {
+            const targetSrc = currentSegment === 'briefing' ? day8Data.briefingAudio : day8Data.dialogueAudio;
+            const currentSrcAttr = audio.getAttribute('src') || '';
+
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.setAttribute('src', targetSrc);
+                audio.load();
+            }
+
+            if (audio.paused) {
+                audio.play()
+                    .then(() => {
+                        playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                        lucide.createIcons();
+                    })
+                    .catch(error => console.warn("Engine execution waiting for user focus gesture.", error));
+            } else {
+                audio.pause();
+                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
+            }
+        }
+
+        function changeSpeed(speed) {
+            audio.playbackRate = parseFloat(speed);
+        }
+
+        function seekAudio(value) {
+            if (isNaN(audio.duration)) return;
+            audio.currentTime = audio.duration * (value / 100);
+        }
+
+        function formatTime(secs) {
+            let minutes = Math.floor(secs / 60);
+            let seconds = Math.floor(secs % 60);
+            if (seconds < 10) seconds = `0${seconds}`;
+            if (minutes < 10) minutes = `0${minutes}`;
+            return `${minutes}:${seconds}`;
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (isNaN(audio.duration)) return;
+            timeline.value = (audio.currentTime / audio.duration) * 100;
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationTimeEl.innerText = formatTime(audio.duration);
+        });
+
+        window.onload = () => {
+            renderPageContent();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

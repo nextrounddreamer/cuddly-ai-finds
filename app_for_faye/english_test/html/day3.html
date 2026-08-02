@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Bankrolling the High Renaissance — Context & Currency</title>
+    <!-- Tailwind CSS for sleek, modern UI styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons via CDN for modern player controls -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .idiom-highlight {
+            background-color: rgba(99, 102, 241, 0.12);
+            border-bottom: 2px dashed #6366f1;
+            color: #4f46e5;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen pb-16">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md group-hover:bg-indigo-700 transition-colors">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="text-base font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">Context & Currency</h1>
+                    <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase">Advanced Cultural & Corporate English</p>
+                </div>
+            </a>
+            
+            <!-- Contextual Dashboard Action -->
+            <div class="flex items-center space-x-2">
+                <a href="../../../english_test_page.html" class="px-3 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 transition-all duration-200 flex items-center gap-1.5">
+                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-6">
+        <div class="space-y-6">
+            
+            <!-- Module Banner -->
+            <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-slate-800">
+                <span class="bg-indigo-50/20 text-indigo-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-indigo-500/30">MODULE 1: ARTS & EMPIRE</span>
+                <h2 class="text-2xl font-black mt-3 tracking-tight">Bankrolling the High Renaissance</h2>
+                <p class="text-slate-400 text-xs mt-2 max-w-2xl font-normal leading-relaxed">Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.</p>
+            </div>
+
+            <!-- Master Media Player Component -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs">
+                <!-- Native Audio Engine -->
+                <audio id="audio-engine" preload="none"></audio>
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <!-- Track Status and Metadata -->
+                    <div class="flex items-center space-x-3">
+                        <button id="player-play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 active:scale-95 transition-all shadow-md cursor-pointer">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        </button>
+                        <div>
+                            <div class="text-xs font-bold text-slate-800" id="player-track-title">Day03_Renaissance_Briefing.m4a</div>
+                            <div class="text-[10px] text-slate-400 flex items-center gap-1 font-medium mt-0.5">
+                                <i data-lucide="music" class="w-3 h-3 text-indigo-500"></i> Active Stream: <span id="current-segment-lbl" class="text-indigo-600 font-semibold">Section 1: The Briefing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Scrubbing Layout -->
+                    <div class="flex-1 flex items-center space-x-3 w-full">
+                        <span id="time-current" class="text-[11px] font-mono text-slate-500 w-10 text-right">00:00</span>
+                        <input type="range" id="player-timeline" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                        <span id="time-duration" class="text-[11px] font-mono text-slate-500 w-10">00:00</span>
+                    </div>
+
+                    <!-- Playback Speed -->
+                    <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 w-full md:w-auto justify-end">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tempo:</label>
+                        <select id="player-speed" onchange="changeSpeed(this.value)" class="bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-bold text-slate-600 py-1 px-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="0.85">0.85x Study</option>
+                            <option value="1.0" selected>1.0x Native</option>
+                            <option value="1.15">1.15x Advanced</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Material Content Stack -->
+            <div class="space-y-6">
+                
+                <!-- Section 1: Contextual Briefing Essay -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 1: Contextual Briefing Case Narrative
+                        </h3>
+                        <button onclick="playSection('briefing')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Narrative Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-briefing" class="text-sm text-slate-600 space-y-4 font-normal leading-relaxed">
+                        <!-- Briefing paragraphs injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Section 2: Interactive Scenario Dialogue -->
+                <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-sm inline-block"></span> Section 2: Interactive Scenario Dialogue
+                        </h3>
+                        <button onclick="playSection('dialogue')" class="w-full sm:w-auto px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer">
+                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Play Dialogue Audio
+                        </button>
+                    </div>
+                    
+                    <div id="content-dialogue" class="space-y-3">
+                        <!-- Dialogue injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Section 3: The Textbook Gap Translation Matrix -->
+                <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
+                    <div class="p-6 pb-2">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-emerald-600 rounded-sm inline-block"></span> Section 3: Decoding the "Textbook Gap"
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1 font-medium">Contrasting mechanical academic translations with high-context execution variants.</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-y border-slate-200 text-slate-400 font-bold tracking-wider uppercase">
+                                    <th class="p-4 w-1/4">Academic / Exam Formula</th>
+                                    <th class="p-4 w-1/4 text-indigo-600">Cultural / Insider Expression</th>
+                                    <th class="p-4 w-2/4">Semantic Layer & Strategic Subtext</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-matrix" class="divide-y divide-slate-100 font-medium text-slate-700">
+                                <!-- Matrix data injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 4: Daily Tactical Takeaway Summary -->
+                <section class="bg-slate-900 text-slate-100 rounded-2xl p-6 shadow-xs border border-slate-800">
+                    <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
+                        <i data-lucide="bookmark-check" class="w-4 h-4 text-indigo-400"></i> Section 4: Daily Takeaway Summary
+                    </h3>
+                    <div id="content-summary" class="mt-4 text-xs font-normal text-slate-300 leading-relaxed space-y-2">
+                        <!-- Summary items injected via JS -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Client-Side Script Engine -->
+    <script>
+        const day3Data = {
+            id: "day3",
+            displayName: "Day 3: Arts Track",
+            tag: "MODULE 1: ARTS & EMPIRE",
+            title: "Bankrolling the High Renaissance",
+            desc: "Moving from clinical, descriptive English to expressive narrative power. Understand the real politics behind historical art patronage.",
+            briefingAudio: "../audio/day3_briefing.m4a",
+            dialogueAudio: "../audio/day3_dialogue.m4a",
+            briefingTitle: "Day03_Renaissance_Briefing.m4a",
+            dialogueTitle: "Day03_Palazzo_Vecchio_Dialogue.m4a",
+            briefingParagraphs: [
+                "The year is 1459. Inside the newly constructed, heavily fortified stone walls of the Palazzo Medici on the Via Larga, Cosimo de' Medici is pacing nervously. He is undisputedly one of the wealthiest financial titans in the Western world, controlling a sprawling multinational network of banking branches that stretch from Florence to London. Yet, he is a man deeply terrified for his eternal soul. The Roman Catholic Church has explicitly categorized the generation of wealth via banking and the compounding accumulation of interest as the mortal sin of usury—an offense punishable by absolute spiritual damnation. Cosimo does not want a theoretical theological debate; he requires an undeniable, immediate socio-political shield to protect his family's vast fortunes.",
+                "To build this shield, Cosimo summons the brilliant, radical sculptor Donatello to his private quarters. The executive commission is hyper-specific: forge an unmissable, dramatic bronze masterpiece that will stand dead center in the primary courtyard of the palace. This is not a gift for the common public squares of Florence; it is designed for a restricted, high-stakes arena where foreign ambassadors, cardinals, and rival merchant syndicates wait to secure credit lines. The Medici banking network has completely bankrolled this staggering artistic endeavor, funding the collection of precious raw materials and the ruinous expenses of experimental bronze casting to buy institutional validation and wash away the spiritual guilt of private capital accumulation.",
+                "When Donatello delivers 'Judith and Holofernes', he reveals a blood-soaked, violent scene. The biblical widow Judith stands victoriously with a raised blade, her boot pressed ruthlessly against the neck of a half-naked, intoxicated enemy general. Officially, the work is framed as a pious narrative of humility conquering corrupt pride. But the true genius lies in its placement. By positioning this monumental symbol of liberty entirely within the walls of a private corporate stronghold, the Medicis execute a massive flex of sovereign authority. When foreign dignitaries walk through the courtyard archways, they do not view a simple piece of religious devotion; they receive an aggressive psychological warning that the Medici family dictates who holds leverage and who falls beneath the blade.",
+                "Donatello understands this delicate infrastructure perfectly. He does not create his works in a vacuum; his entire operational survival relies on balancing the highly volatile political whims of mercantile autocrats. The overhead costs of running an active Renaissance arts studio are crushing, and a single failed cast could mean complete bankruptcy. To guarantee that the Medici family continues footing the bill for his grand creative visions, Donatello deliberately constructs a double-edged sword. He crafts an object that serves as an impeccable spiritual insurance policy for his master's checkbook, while simultaneously giving the corporate rulers of Florence a terrifying, permanent visual monument of absolute transactional dominance."
+            ],
+            dialogue: [
+                { speaker: "Marcus", text: "Look at where this thing is positioned now, Elena. It’s out in the open, public. But back when Cosimo de' Medici commissioned Donatello, he didn't put it in a public square for the masses to enjoy. He had it sitting right in his private courtyard. To me, that is the ultimate massive flex." },
+                { speaker: "Elena", text: "Oh, completely. It’s a textbook double-edged sword, isn’t it? On paper, the iconography is pure virtue—you’ve got Judith, the underdog, slaying the tyrant Holofernes. It screams liberty. But let’s be real for a second—the Medicis were the autocrats here. By slapping this statue inside their private palace, they were essentially telling the citizens of Florence, 'We call the shots, but don't worry, we're the ones protecting you from tyranny.'" },
+                { speaker: "Marcus", text: "Right, it's gaslighting in bronze. And Donatello wasn't creating this in a vacuum. He knew exactly who was footing the bill. If Cosimo wants to look like a hero while charging exorbitant interest rates on bank loans, Donatello is going to deliver that narrative. He had to play the political game to keep the studio funded." }
+            ],
+            matrix: [
+                { textbook: "Financially supported / Financed", native: "Bankrolled", nuance: "Denotes robust, aggressive, absolute financial backing. Typically used when an individual or corporate entity funds a massive movement to acquire total leverage." },
+                { textbook: "Demonstration of influence", native: "Massive flex", nuance: "High-context modern vernacular used across executive levels to label an ostentatious, undeniable display of wealth, power, or operational superiority." },
+                { textbook: "Paying the costs", native: "Footing the bill", nuance: "A ubiquitous idiomatic standard used when assigning financial accountability for massive, complex invoices or luxurious expenses incurred by someone else." },
+                { textbook: "Isolated from reality", native: "In a vacuum", nuance: "An essential analytical phrase. Used by native professionals to warn that a variable, product, or metric cannot be evaluated accurately without considering macro environment factors." }
+            ],
+            summary: [
+                "<strong>Linguistic Strategy:</strong> Mastered the transition from purely descriptive verbs ('supported') to highly transactional, strategic idioms ('bankrolled', 'footing the bill') that establish you as an advanced, critical commentator.",
+                "<strong>Cultural Intelligence:</strong> Learned to dissect the underlying power structures behind European art, viewing classical masterpieces not just as aesthetic objects, but as historical public-relations tools used to legitimize private wealth.",
+                "<strong>Nuance Clues:</strong> Internalized the use of 'double-edged sword' to immediately signal that you comprehend both the structural risks and institutional benefits of a complex scenario."
+            ]
+        };
+
+        // Engine State
+        let currentSegment = 'briefing'; 
+        const audio = document.getElementById('audio-engine');
+        const playBtn = document.getElementById('player-play-btn');
+        const timeline = document.getElementById('player-timeline');
+        const currentTimeEl = document.getElementById('time-current');
+        const durationTimeEl = document.getElementById('time-duration');
+
+        const strategicIdioms = [
+            "massive flex", "double-edged sword", "in a vacuum", "footing the bill", "bankrolled"
+        ];
+
+        function applyDynamicHighlights(textString) {
+            let processedText = textString;
+            strategicIdioms.forEach(idiom => {
+                const regex = new RegExp(`\\b${idiom}\\b`, 'gi');
+                processedText = processedText.replace(regex, `<span class='idiom-highlight'>$&</span>`);
+            });
+            return processedText;
+        }
+
+        function renderPageContent() {
+            // Render Briefing
+            const briefingContainer = document.getElementById('content-briefing');
+            briefingContainer.innerHTML = '';
+            day3Data.briefingParagraphs.forEach(pText => {
+                const p = document.createElement('p');
+                p.className = "text-slate-600 leading-relaxed font-normal text-sm text-justify";
+                p.innerHTML = applyDynamicHighlights(pText);
+                briefingContainer.appendChild(p);
+            });
+
+            // Render Dialogue
+            const dialogueContainer = document.getElementById('content-dialogue');
+            dialogueContainer.innerHTML = '';
+            day3Data.dialogue.forEach(line => {
+                const wrap = document.createElement('div');
+                wrap.className = "p-3.5 rounded-xl bg-slate-50 border border-slate-100";
+                const highlitDialogue = applyDynamicHighlights(line.text);
+                wrap.innerHTML = `<span class="font-bold text-slate-900 block text-xs tracking-wide uppercase text-indigo-950 mb-1">${line.speaker}:</span> <span class="text-slate-700 text-sm">${highlitDialogue}</span>`;
+                dialogueContainer.appendChild(wrap);
+            });
+
+            // Render Matrix
+            const matrixContainer = document.getElementById('content-matrix');
+            matrixContainer.innerHTML = '';
+            day3Data.matrix.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 text-slate-500 font-normal border-b border-slate-100">${item.textbook}</td>
+                    <td class="p-4 font-bold text-indigo-600 border-b border-slate-100">${item.native}</td>
+                    <td class="p-4 text-slate-600 font-normal leading-relaxed border-b border-slate-100">${item.nuance}</td>
+                `;
+                matrixContainer.appendChild(tr);
+            });
+
+            // Render Summary
+            const summaryContainer = document.getElementById('content-summary');
+            summaryContainer.innerHTML = '';
+            day3Data.summary.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "flex items-start space-x-2 border-b border-slate-800 pb-2 last:border-none";
+                div.innerHTML = `<span class="text-indigo-400 font-bold text-sm mt-0.5">•</span> <span class="text-slate-300 text-xs">${item}</span>`;
+                summaryContainer.appendChild(div);
+            });
+
+            lucide.createIcons();
+        }
+
+        // ================= DEMAND-DRIVEN AUDIO ENGINE =================
+        function playSection(segmentId) {
+            currentSegment = segmentId;
+            const targetSrc = segmentId === 'briefing' ? day3Data.briefingAudio : day3Data.dialogueAudio;
+            
+            document.getElementById('current-segment-lbl').innerText = segmentId === 'briefing' ? "Section 1: The Briefing" : "Section 2: The Dialogue";
+            document.getElementById('player-track-title').innerText = segmentId === 'briefing' ? day3Data.briefingTitle : day3Data.dialogueTitle;
+            
+            const currentSrcAttr = audio.getAttribute('src') || '';
+            
+            if (currentSrcAttr.endsWith(targetSrc) && !audio.paused) {
+                audio.pause();
+                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
+                return;
+            }
+            
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.pause();
+                audio.setAttribute('src', targetSrc);
+                audio.load(); 
+            }
+            
+            audio.play()
+                .then(() => {
+                    playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                    lucide.createIcons();
+                })
+                .catch(error => {
+                    console.error("Media play execution interrupted:", error);
+                });
+        }
+
+        function toggleAudio() {
+            const targetSrc = currentSegment === 'briefing' ? day3Data.briefingAudio : day3Data.dialogueAudio;
+            const currentSrcAttr = audio.getAttribute('src') || '';
+
+            if (!currentSrcAttr.endsWith(targetSrc)) {
+                audio.setAttribute('src', targetSrc);
+                audio.load();
+            }
+
+            if (audio.paused) {
+                audio.play()
+                    .then(() => {
+                        playBtn.innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i>`;
+                        lucide.createIcons();
+                    })
+                    .catch(error => console.warn("Engine execution waiting for user focus gesture.", error));
+            } else {
+                audio.pause();
+                playBtn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i>`;
+                lucide.createIcons();
+            }
+        }
+
+        function changeSpeed(speed) {
+            audio.playbackRate = parseFloat(speed);
+        }
+
+        function seekAudio(value) {
+            if (isNaN(audio.duration)) return;
+            audio.currentTime = audio.duration * (value / 100);
+        }
+
+        function formatTime(secs) {
+            let minutes = Math.floor(secs / 60);
+            let seconds = Math.floor(secs % 60);
+            if (seconds < 10) seconds = `0${seconds}`;
+            if (minutes < 10) minutes = `0${minutes}`;
+            return `${minutes}:${seconds}`;
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (isNaN(audio.duration)) return;
+            timeline.value = (audio.currentTime / audio.duration) * 100;
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationTimeEl.innerText = formatTime(audio.duration);
+        });
+
+        window.onload = () => {
+            renderPageContent();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

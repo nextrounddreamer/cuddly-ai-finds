@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slow Living & Mindful Living YouTube Channels</title>
+  <style>
+    :root {
+      --bg-color: #f9f8f6;
+      --card-bg: #ffffff;
+      --text-main: #2d312e;
+      --text-muted: #666e68;
+      --accent: #78866b;
+      --accent-hover: #5e6b52;
+      --tag-bg: #efece6;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .channel-card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .channel-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-link {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .image-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .image-link:hover img {
+      transform: scale(1.04);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .channel-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .creator-name {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .channel-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background-color: var(--tag-bg);
+      color: var(--text-main);
+      font-size: 0.78rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .btn-visit {
+      display: inline-block;
+      text-align: center;
+      background-color: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-visit:hover {
+      background-color: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Slow Living & Mindful YouTube Channels</h1>
+    <p>Curated channels focused on minimalism, routine design, aesthetic vlogs, and clear daily English listening.</p>
+  </header>
+
+  <main class="grid-container">
+
+    <!-- Card 1: Malama Life -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@malamalife" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Malama Life YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">Malama Life</h2>
+        <div class="creator-name">Sophie</div>
+        <p class="channel-desc">Practical minimalism, slow habits, decluttering techniques, and mindful personal finance set against a soothing Hawaiian backdrop.</p>
+        <div class="tags-container">
+          <span class="tag">Minimalism</span>
+          <span class="tag">Clear Standard Accent</span>
+          <span class="tag">Daily Vocabulary</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@malamalife" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+    <!-- Card 2: Pick Up Limes -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@pickuplimes" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Pick Up Limes YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">Pick Up Limes</h2>
+        <div class="creator-name">Sadia Badiei</div>
+        <p class="channel-desc">Nourishing plant-based meals, intentional living space design, and wellness routines presented with warm visual elegance.</p>
+        <div class="tags-container">
+          <span class="tag">Wellness & Cooking</span>
+          <span class="tag">Canadian Accent</span>
+          <span class="tag">Articulate Speech</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@pickuplimes" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+    <!-- Card 3: The Cottage Fairy -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@TheCottageFairy" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80" alt="The Cottage Fairy YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">The Cottage Fairy</h2>
+        <div class="creator-name">Paola Merrill</div>
+        <p class="channel-desc">Therapeutic slow vlogs from the Pacific Northwest focusing on cottage living, nature walks, art creation, and calming reflections.</p>
+        <div class="tags-container">
+          <span class="tag">Cottagecore</span>
+          <span class="tag">Poetic Voiceovers</span>
+          <span class="tag">Descriptive English</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@TheCottageFairy" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+    <!-- Card 4: Lavendaire -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@lavendaire" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Lavendaire YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">Lavendaire</h2>
+        <div class="creator-name">Aileen Xu</div>
+        <p class="channel-desc">Personal growth, journal prompt guides, habit tracking, and lifestyle design for building an intentional and fulfilling life.</p>
+        <div class="tags-container">
+          <span class="tag">Personal Growth</span>
+          <span class="tag">Conversational English</span>
+          <span class="tag">US West Coast</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@lavendaire" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+    <!-- Card 5: Heal Your Living -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@healyourliving" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=800&q=80" alt="Heal Your Living YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">Heal Your Living</h2>
+        <div class="creator-name">Youheum</div>
+        <p class="channel-desc">Extreme minimalism, eco-friendly living habits, quiet reflection, and holistic lifestyle decluttering with a silent-vlog feel.</p>
+        <div class="tags-container">
+          <span class="tag">Eco-Minimalism</span>
+          <span class="tag">Slow Pace</span>
+          <span class="tag">Simple Sentences</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@healyourliving" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+    <!-- Card 6: Michelle Choi -->
+    <article class="channel-card">
+      <a class="image-link" href="https://www.youtube.com/@MichelleChoi" target="_blank" rel="noopener">
+        <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80" alt="Michelle Choi YouTube Channel">
+      </a>
+      <div class="card-body">
+        <h2 class="channel-title">Michelle Choi</h2>
+        <div class="creator-name">Michelle Choi</div>
+        <p class="channel-desc">Authentic NYC daily life vlogs, homebody cooking, apartment decorating, and quiet routines focusing on self-care.</p>
+        <div class="tags-container">
+          <span class="tag">City Lifestyle</span>
+          <span class="tag">Casual Phrases</span>
+          <span class="tag">Everyday American</span>
+        </div>
+        <a class="btn-visit" href="https://www.youtube.com/@MichelleChoi" target="_blank" rel="noopener">Visit Channel</a>
+      </div>
+    </article>
+
+  </main>
+
+</body>
+</html>
