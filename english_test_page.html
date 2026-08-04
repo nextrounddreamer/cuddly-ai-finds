@@ -28,6 +28,26 @@
 
     <main class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
 
+        <!-- NEW EPISODE NOTIFICATION BANNER (Auto-detected via JavaScript) -->
+        <div id="new-episode-banner" class="hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
+            <div class="flex items-center gap-3.5">
+                <div class="bg-white/20 p-2.5 rounded-xl backdrop-blur-xs flex-shrink-0">
+                    <i data-lucide="radio shadow-xs" class="w-5 h-5 text-emerald-100"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-emerald-900/60 text-emerald-200 text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border border-emerald-500/30 inline-block">New Podcast Episode</span>
+                        <span id="banner-date-badge" class="text-[10px] text-emerald-100/80 font-medium"></span>
+                    </div>
+                    <p class="text-xs md:text-sm font-bold mt-1 text-white" id="banner-message">A new audio intelligence briefing is available!</p>
+                </div>
+            </div>
+            <a id="banner-listen-btn" href="#" class="px-4 py-2 bg-white hover:bg-emerald-50 text-emerald-800 rounded-xl text-xs font-extrabold transition-all shrink-0 flex items-center gap-1.5 shadow-sm active:scale-95 group">
+                Listen Now 
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+            </a>
+        </div>
+
         <!-- Dashboard Welcome Banner -->
         <div class="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white rounded-3xl p-8 shadow-xl border border-rose-200/40 relative overflow-hidden">
             <div class="absolute -right-6 -bottom-6 opacity-15">
@@ -137,6 +157,58 @@
 
     <script>
         lucide.createIcons();
+
+        // Script to detect the latest dated podcast episode HTML under app_for_faye/podcast/html/
+        async function checkLatestPodcastEpisode() {
+            const basePath = 'app_for_faye/podcast/html/';
+            const today = new Date();
+            const daysToScan = 14; // Scans back up to two weeks
+
+            for (let i = 0; i < daysToScan; i++) {
+                const targetDate = new Date(today);
+                targetDate.setDate(today.getDate() - i);
+
+                const year = targetDate.getFullYear();
+                const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+                const day = String(targetDate.getDate()).padStart(2, '0');
+                
+                const dateFileName = `${year}${month}${day}.html`;
+                const filePath = `${basePath}${dateFileName}`;
+
+                try {
+                    // Check if file exists
+                    const response = await fetch(filePath, { method: 'HEAD' });
+                    if (response.ok) {
+                        const formattedDate = targetDate.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                        });
+
+                        const banner = document.getElementById('new-episode-banner');
+                        const bannerMessage = document.getElementById('banner-message');
+                        const bannerDateBadge = document.getElementById('banner-date-badge');
+                        const bannerBtn = document.getElementById('banner-listen-btn');
+
+                        if (banner) {
+                            bannerMessage.textContent = `Episode for ${formattedDate} is now available!`;
+                            bannerDateBadge.textContent = formattedDate;
+                            bannerBtn.href = filePath;
+                            banner.classList.remove('hidden');
+
+                            if (window.lucide) {
+                                lucide.createIcons();
+                            }
+                        }
+                        break; // Stop scanning once the latest available episode is found
+                    }
+                } catch (e) {
+                    // Continue scanning previous days if fetch fails or 404
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkLatestPodcastEpisode);
     </script>
 </body>
 </html>
