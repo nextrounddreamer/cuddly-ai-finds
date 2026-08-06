@@ -13,6 +13,7 @@
       --accent: #78866b;
       --accent-hover: #5e6b52;
       --tag-bg: #efece6;
+      --video-bg: #f3f1ec;
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
       --radius: 16px;
     }
@@ -32,9 +33,31 @@
     }
 
     header {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-back:hover {
+      color: var(--accent-hover);
+      transform: translateX(-3px);
+    }
+
+    .header-content {
       text-align: center;
       max-width: 700px;
-      margin: 0 auto 3rem;
+      margin: 0 auto;
     }
 
     header h1 {
@@ -115,15 +138,14 @@
     .channel-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
+      margin-bottom: 1rem;
     }
 
     .tags-container {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .tag {
@@ -133,6 +155,62 @@
       padding: 0.25rem 0.65rem;
       border-radius: 20px;
       font-weight: 500;
+    }
+
+    /* Latest Video Box */
+    .latest-video-box {
+      background-color: var(--video-bg);
+      border-left: 3px solid var(--accent);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .video-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .video-summary {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-play {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 0.35rem;
+      background-color: var(--text-main);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-play:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
     }
 
     .btn-visit {
@@ -156,8 +234,13 @@
 <body>
 
   <header>
-    <h1>Slow Living & Mindful YouTube Channels</h1>
-    <p>Curated channels focused on minimalism, routine design, aesthetic vlogs, and clear daily English listening.</p>
+    <a href="../english_test_page.html" class="nav-back">
+      &larr; Back to Home
+    </a>
+    <div class="header-content">
+      <h1>Slow Living & Mindful YouTube Channels</h1>
+      <p>Curated channels focused on minimalism, routine design, aesthetic vlogs, and clear daily English listening.</p>
+    </div>
   </header>
 
   <main class="grid-container">
@@ -176,6 +259,16 @@
           <span class="tag">Clear Standard Accent</span>
           <span class="tag">Daily Vocabulary</span>
         </div>
+        
+        <div class="latest-video-box">
+          <div class="video-label">Latest Video</div>
+          <div class="video-title">I used the KonMari method to edit my life (it really works!)</div>
+          <p class="video-summary">Sophie applies Marie Kondo's decluttering principles to edit her personal living space, retaining only what sparks joy and maintaining a calm atmosphere.</p>
+          <a class="btn-play" href="https://www.youtube.com/watch?v=1EciF6Vmr14" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@malamalife" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
@@ -194,6 +287,16 @@
           <span class="tag">Canadian Accent</span>
           <span class="tag">Articulate Speech</span>
         </div>
+
+        <div class="latest-video-box">
+          <div class="video-label">Latest Video</div>
+          <div class="video-title">BUDGET MEAL PREP | 10 meals in 1 hour (+ FREE PDF!)</div>
+          <p class="video-summary">Sadia demonstrates an efficient batch-cooking guide to prepare 10 healthy, budget-friendly plant-based meals in under 60 minutes.</p>
+          <a class="btn-play" href="https://www.youtube.com/watch?v=uEqv98IOrHw" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@pickuplimes" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
@@ -212,6 +315,16 @@
           <span class="tag">Poetic Voiceovers</span>
           <span class="tag">Descriptive English</span>
         </div>
+
+        <div class="latest-video-box">
+          <div class="video-label">Latest Video</div>
+          <div class="video-title">A Peaceful Blue Cottage That Feels Like Home | Cozy Small House Design</div>
+          <p class="video-summary">Paola presents a peaceful tour exploring cozy cottage interiors, nature-focused aesthetics, and reflections on creating a tranquil sanctuary.</p>
+          <a class="btn-play" href="https://www.youtube.com/watch?v=xlMfM0Ax_Ek" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@TheCottageFairy" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
@@ -230,6 +343,16 @@
           <span class="tag">Conversational English</span>
           <span class="tag">US West Coast</span>
         </div>
+
+        <div class="latest-video-box">
+          <div class="video-label">Latest Video</div>
+          <div class="video-title">5 Minute Self Love Meditation | Heal Your Heart & Feel Worthy</div>
+          <p class="video-summary">A guided mindfulness session offering gentle prompts to open the heart space, process quiet emotions, and foster self-compassion.</p>
+          <a class="btn-play" href="https://www.youtube.com/results?search_query=Lavendaire+5+Minute+Self+Love+Meditation" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@lavendaire" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
@@ -248,6 +371,16 @@
           <span class="tag">Slow Pace</span>
           <span class="tag">Simple Sentences</span>
         </div>
+
+        <div class="latest-video-box">
+          <div class="video-label">Featured Upload</div>
+          <div class="video-title">Let's Talk About Minimalism: Furniture-Free & Floor Sleeping</div>
+          <p class="video-summary">Youheum highlights core extreme minimalism principles, discussing physical simplicity, floor sleeping, and decluttering emotional attachment.</p>
+          <a class="btn-play" href="https://www.youtube.com/results?search_query=Heal+Your+Living+Furniture-Free+%26+Floor+Sleeping" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@healyourliving" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
@@ -266,6 +399,16 @@
           <span class="tag">Casual Phrases</span>
           <span class="tag">Everyday American</span>
         </div>
+
+        <div class="latest-video-box">
+          <div class="video-label">Latest Video</div>
+          <div class="video-title">Homebody in New York | What I Eat in a Day</div>
+          <p class="video-summary">Michelle documents a quiet day at home in NYC, cooking easy healthy meals and demonstrating her low-key self-care routine.</p>
+          <a class="btn-play" href="https://www.youtube.com/results?search_query=Michelle+Choi+Homebody+in+New+York+What+I+Eat+in+a+Day" target="_blank" rel="noopener">
+            &#9654; Play Video
+          </a>
+        </div>
+
         <a class="btn-visit" href="https://www.youtube.com/@MichelleChoi" target="_blank" rel="noopener">Visit Channel</a>
       </div>
     </article>
