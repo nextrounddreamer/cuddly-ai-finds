@@ -485,12 +485,10 @@ Output this block first inside an ```html ``` code block:
 
 
 &#x20; <nav class="daily-nav" style="border-radius: 0 0 8px 8px; margin-top: 10px;">
-
-&#x20;   <a href="\[YYYYMMDD-prev].html" class="nav-btn">\&laquo; Previous Day (\[Prev Date])</a>
-
+    
 &#x20;   <span style="font-size: 0.9rem; color: #4a5568;">The Export Credit, Trade \& Green Energy Daily Brief</span>
 
-&#x20;   <a href="\[YYYYMMDD-next].html" class="nav-btn">Next Day (\[Next Date]) \&raquo;</a>
+&#x20;   <a href="../../podcast.html" class="nav-btn">&larr; Back to Dashboard</a>
 
 &#x20; </nav>
 
