@@ -127,7 +127,7 @@
 
         .date-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1.25rem;
         }
 
@@ -164,10 +164,22 @@
         .date-btn .sub-label {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
             display: flex;
             align-items: center;
             gap: 0.35rem;
+        }
+
+        .date-btn .summary-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .date-btn .arrow-icon {
@@ -223,7 +235,7 @@
                 type="text" 
                 id="searchInput" 
                 class="search-input" 
-                placeholder="Search by date (e.g. 2026-08)..."
+                placeholder="Search by date or topic..."
                 onkeyup="filterDates()"
             >
         </div>
@@ -231,7 +243,7 @@
         <div class="date-grid" id="dateGrid">
             <!-- Dynamic date buttons generated via JS -->
             <div id="noResults" class="no-results">
-                No podcast entry found matching that date.
+                No podcast entry found matching that search.
             </div>
         </div>
     </main>
@@ -241,16 +253,35 @@
     </footer>
 
     <script>
+        // Fetch summary from target page
+        async function fetchSummary(fileDate, summaryElement) {
+            try {
+                const response = await fetch(`podcast/html/${fileDate}.html`);
+                if (!response.ok) return;
+
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const metaInfo = doc.querySelector('.meta-info');
+
+                if (metaInfo && metaInfo.textContent.trim()) {
+                    summaryElement.textContent = metaInfo.textContent.trim();
+                } else {
+                    summaryElement.textContent = "No summary available.";
+                }
+            } catch (error) {
+                summaryElement.textContent = "Unable to load summary.";
+            }
+        }
+
         // Generate daily episode buttons dynamically from 2026-08-01 to today
         function renderDailyButtons() {
             const dateGrid = document.getElementById('dateGrid');
             const noResults = document.getElementById('noResults');
 
-            // Fixed start date: 2026-08-01
             const startDate = new Date(2026, 7, 1); // Month index 7 = August
             const endDate = new Date(); // Current date
 
-            // Normalize time to midnight for comparison
             startDate.setHours(0, 0, 0, 0);
             endDate.setHours(0, 0, 0, 0);
 
@@ -262,7 +293,6 @@
                 curr.setDate(curr.getDate() + 1);
             }
 
-            // Reverse array so newest date is at top
             dates.reverse();
 
             dates.forEach((date, index) => {
@@ -281,12 +311,19 @@
                 const labelText = index === 0 ? "Today's Episode" : "Daily Episode";
 
                 btn.innerHTML = `
-                    <span class="date-text">${displayDate}</span>
-                    <span class="sub-label">${labelText}</span>
+                    <div>
+                        <span class="date-text">${displayDate}</span>
+                        <span class="sub-label">${labelText}</span>
+                        <p class="summary-text">Loading summary...</p>
+                    </div>
                     <span class="arrow-icon">→</span>
                 `;
 
                 dateGrid.insertBefore(btn, noResults);
+
+                // Asynchronously fetch and render the meta-info summary
+                const summaryElement = btn.querySelector('.summary-text');
+                fetchSummary(fileDate, summaryElement);
             });
         }
 
@@ -296,8 +333,10 @@
             let visibleCount = 0;
 
             cards.forEach(card => {
-                const dateVal = card.getAttribute('data-date');
-                if (dateVal.includes(input)) {
+                const dateVal = card.getAttribute('data-date') || '';
+                const summaryVal = card.querySelector('.summary-text')?.textContent.toLowerCase() || '';
+
+                if (dateVal.includes(input) || summaryVal.includes(input)) {
                     card.style.display = "flex";
                     visibleCount++;
                 } else {
