@@ -53,14 +53,26 @@
                 <button id="music-toggle-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play or Pause background music">
                     <i id="music-toggle-icon" data-lucide="pause" class="w-4 h-4"></i>
                 </button>
-                <button id="music-next-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play next song">
+                <button id="music-next-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play next random song">
                     <i data-lucide="skip-forward" class="w-4 h-4"></i>
                 </button>
             </div>
         </div>
 
+        <!-- Dashboard Welcome Banner -->
+        <div class="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white rounded-3xl p-8 shadow-xl border border-rose-200/40 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 opacity-15">
+                <i data-lucide="sun" class="w-64 h-64 text-amber-100"></i>
+            </div>
+            <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/30 inline-block">Executive Suite</span>
+            <h2 class="text-3xl font-black mt-3 tracking-tight">Faye's space</h2>
+            <p class="text-rose-50/90 text-sm mt-2 max-w-xl font-normal leading-relaxed">
+                Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.
+            </p>
+        </div>
+
         <!-- NEW EPISODE NOTIFICATION BANNER (Auto-detected via JavaScript) -->
-        <div id="new-episode-banner" class="hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
+        <div id="new-episode-banner" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
             <div class="flex items-center gap-3.5">
                 <div class="bg-white/20 p-2.5 rounded-xl backdrop-blur-xs flex-shrink-0">
                     <i data-lucide="radio shadow-xs" class="w-5 h-5 text-emerald-100"></i>
@@ -77,18 +89,6 @@
                 Listen Now 
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
             </a>
-        </div>
-
-        <!-- Dashboard Welcome Banner -->
-        <div class="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white rounded-3xl p-8 shadow-xl border border-rose-200/40 relative overflow-hidden">
-            <div class="absolute -right-6 -bottom-6 opacity-15">
-                <i data-lucide="sun" class="w-64 h-64 text-amber-100"></i>
-            </div>
-            <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/30 inline-block">Executive Suite</span>
-            <h2 class="text-3xl font-black mt-3 tracking-tight">Faye's space</h2>
-            <p class="text-rose-50/90 text-sm mt-2 max-w-xl font-normal leading-relaxed">
-                Bridge the "Textbook Gap" by mastering high-stakes professional contexts, nuanced idiomatic frameworks, and elite narrative delivery styles.
-            </p>
         </div>
 
         <!-- ================= DAILY PODCAST SECTION ================= -->
@@ -191,10 +191,17 @@
 
         // Dynamically scans themes folder for .mp3 files and plays a random track with full audio controls
         async function playRandomBackgroundMusic() {
+            const musicBanner = document.getElementById('music-banner');
+            const musicFilename = document.getElementById('music-filename');
+            const toggleBtn = document.getElementById('music-toggle-btn');
+            const toggleIcon = document.getElementById('music-toggle-icon');
+            const nextBtn = document.getElementById('music-next-btn');
+
             let themeTracks = [];
 
             try {
-                const response = await fetch('/app_for_faye/themes/');
+                // Use relative path to match the rest of the application
+                const response = await fetch('app_for_faye/themes/');
                 if (!response.ok) {
                     throw new Error(`HTTP Error status ${response.status}: Failed to fetch themes directory.`);
                 }
@@ -210,18 +217,17 @@
                     .map(href => href.split('/').pop());
 
                 if (themeTracks.length === 0) {
-                    throw new Error('No .mp3 files found in /app_for_faye/themes/');
+                    throw new Error('No .mp3 files found in app_for_faye/themes/');
                 }
             } catch (error) {
                 console.error('Background Music Error:', error.message);
+                if (musicBanner && musicFilename) {
+                    musicFilename.textContent = `Error scanning audio directory: ${error.message}`;
+                    musicBanner.classList.remove('hidden');
+                    if (window.lucide) lucide.createIcons();
+                }
                 return;
             }
-
-            const musicBanner = document.getElementById('music-banner');
-            const musicFilename = document.getElementById('music-filename');
-            const toggleBtn = document.getElementById('music-toggle-btn');
-            const toggleIcon = document.getElementById('music-toggle-icon');
-            const nextBtn = document.getElementById('music-next-btn');
 
             let currentTrack = '';
             const audio = new Audio();
@@ -260,7 +266,7 @@
                 if (musicFilename) {
                     musicFilename.textContent = trackName;
                 }
-                audio.src = `/app_for_faye/themes/${trackName}`;
+                audio.src = `app_for_faye/themes/${trackName}`;
                 audio.loop = true;
                 return audio.play();
             };
