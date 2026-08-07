@@ -72,7 +72,7 @@
         </div>
 
         <!-- NEW EPISODE NOTIFICATION BANNER (Auto-detected via JavaScript) -->
-        <div id="new-episode-banner" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
+        <div id="new-episode-banner" class="hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
             <div class="flex items-center gap-3.5">
                 <div class="bg-white/20 p-2.5 rounded-xl backdrop-blur-xs flex-shrink-0">
                     <i data-lucide="radio shadow-xs" class="w-5 h-5 text-emerald-100"></i>
@@ -189,7 +189,7 @@
     <script>
         lucide.createIcons();
 
-        // Dynamically scans themes folder for .mp3 files and plays a random track with full audio controls
+        // Probes for sequential themeX.mp3 files using HEAD requests
         async function playRandomBackgroundMusic() {
             const musicBanner = document.getElementById('music-banner');
             const musicFilename = document.getElementById('music-filename');
@@ -197,32 +197,26 @@
             const toggleIcon = document.getElementById('music-toggle-icon');
             const nextBtn = document.getElementById('music-next-btn');
 
-            let themeTracks = [];
+            const themeTracks = [];
+            const maxScanCount = 20; // Probes theme1.mp3 through theme20.mp3
 
-            try {
-                // Use relative path to match the rest of the application
-                const response = await fetch('app_for_faye/themes/');
-                if (!response.ok) {
-                    throw new Error(`HTTP Error status ${response.status}: Failed to fetch themes directory.`);
+            for (let i = 1; i <= maxScanCount; i++) {
+                const trackName = `theme${i}.mp3`;
+                const filePath = `app_for_faye/themes/${trackName}`;
+                try {
+                    const response = await fetch(filePath, { method: 'HEAD' });
+                    if (response.ok) {
+                        themeTracks.push(trackName);
+                    }
+                } catch (e) {
+                    // Skip if file doesn't exist
                 }
+            }
 
-                const text = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const links = Array.from(doc.querySelectorAll('a'));
-
-                themeTracks = links
-                    .map(a => a.getAttribute('href'))
-                    .filter(href => href && href.toLowerCase().endsWith('.mp3'))
-                    .map(href => href.split('/').pop());
-
-                if (themeTracks.length === 0) {
-                    throw new Error('No .mp3 files found in app_for_faye/themes/');
-                }
-            } catch (error) {
-                console.error('Background Music Error:', error.message);
+            if (themeTracks.length === 0) {
+                console.error('Background Music Error: No valid themeX.mp3 files found in app_for_faye/themes/');
                 if (musicBanner && musicFilename) {
-                    musicFilename.textContent = `Error scanning audio directory: ${error.message}`;
+                    musicFilename.textContent = 'Audio Error: No themeX.mp3 files found on server.';
                     musicBanner.classList.remove('hidden');
                     if (window.lucide) lucide.createIcons();
                 }
@@ -235,11 +229,7 @@
 
             const updateToggleIcon = () => {
                 if (!toggleIcon) return;
-                if (audio.paused) {
-                    toggleIcon.setAttribute('data-lucide', 'play');
-                } else {
-                    toggleIcon.setAttribute('data-lucide', 'pause');
-                }
+                toggleIcon.setAttribute('data-lucide', audio.paused ? 'play' : 'pause');
                 if (window.lucide) {
                     lucide.createIcons();
                 }
@@ -266,7 +256,7 @@
                 if (musicFilename) {
                     musicFilename.textContent = trackName;
                 }
-                audio.src = `app_for_faye/themes/${trackName}`;
+                audio.src = `app_for_faye/themes/${encodeURIComponent(trackName)}`;
                 audio.loop = true;
                 return audio.play();
             };
@@ -297,9 +287,7 @@
             }).catch(() => {
                 updateToggleIcon();
                 const playOnInteraction = () => {
-                    audio.play().then(() => {
-                        updateToggleIcon();
-                    });
+                    audio.play().then(() => updateToggleIcon());
                     document.removeEventListener('click', playOnInteraction);
                     document.removeEventListener('keydown', playOnInteraction);
                 };
