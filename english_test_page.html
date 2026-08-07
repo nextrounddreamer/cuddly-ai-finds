@@ -8,6 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 12s linear infinite;
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-b from-amber-50/50 via-rose-50/30 to-slate-50 text-slate-800 font-sans antialiased min-h-screen pb-16">
 
@@ -27,6 +38,26 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
+
+        <!-- BACKGROUND MUSIC NOW PLAYING BANNER WITH ROLLING MARQUEE & PLAY/PAUSE/NEXT CONTROLS -->
+        <div id="music-banner" class="hidden bg-slate-900/90 backdrop-blur-md text-slate-200 rounded-2xl p-3.5 px-5 shadow-sm border border-slate-700/50 flex items-center justify-between overflow-hidden text-xs">
+            <div class="flex items-center bg-slate-900 pr-3 z-10 shrink-0">
+                <i data-lucide="music" class="w-4 h-4 text-rose-400 animate-pulse mr-2"></i>
+            </div>
+            <div class="overflow-hidden w-full whitespace-nowrap relative flex items-center">
+                <div class="animate-marquee font-bold text-white tracking-wide">
+                    Now playing <span id="music-filename"></span>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 ml-3 shrink-0 z-10">
+                <button id="music-toggle-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play or Pause background music">
+                    <i id="music-toggle-icon" data-lucide="pause" class="w-4 h-4"></i>
+                </button>
+                <button id="music-next-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play next song">
+                    <i data-lucide="skip-forward" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
 
         <!-- NEW EPISODE NOTIFICATION BANNER (Auto-detected via JavaScript) -->
         <div id="new-episode-banner" class="hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-2xl p-4 shadow-lg border border-emerald-400/30 flex items-center justify-between gap-4 transition-all">
@@ -158,6 +189,119 @@
     <script>
         lucide.createIcons();
 
+        // Dynamically scans themes folder for .mp3 files and plays a random track with full audio controls
+        async function playRandomBackgroundMusic() {
+            let themeTracks = [];
+
+            try {
+                const response = await fetch('/app_for_faye/themes/');
+                if (!response.ok) {
+                    throw new Error(`HTTP Error status ${response.status}: Failed to fetch themes directory.`);
+                }
+
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'));
+
+                themeTracks = links
+                    .map(a => a.getAttribute('href'))
+                    .filter(href => href && href.toLowerCase().endsWith('.mp3'))
+                    .map(href => href.split('/').pop());
+
+                if (themeTracks.length === 0) {
+                    throw new Error('No .mp3 files found in /app_for_faye/themes/');
+                }
+            } catch (error) {
+                console.error('Background Music Error:', error.message);
+                return;
+            }
+
+            const musicBanner = document.getElementById('music-banner');
+            const musicFilename = document.getElementById('music-filename');
+            const toggleBtn = document.getElementById('music-toggle-btn');
+            const toggleIcon = document.getElementById('music-toggle-icon');
+            const nextBtn = document.getElementById('music-next-btn');
+
+            let currentTrack = '';
+            const audio = new Audio();
+            audio.loop = true;
+
+            const updateToggleIcon = () => {
+                if (!toggleIcon) return;
+                if (audio.paused) {
+                    toggleIcon.setAttribute('data-lucide', 'play');
+                } else {
+                    toggleIcon.setAttribute('data-lucide', 'pause');
+                }
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            };
+
+            const showBanner = () => {
+                if (musicBanner) {
+                    musicBanner.classList.remove('hidden');
+                    updateToggleIcon();
+                }
+            };
+
+            const getRandomTrack = () => {
+                if (themeTracks.length === 1) return themeTracks[0];
+                let nextTrack = currentTrack;
+                while (nextTrack === currentTrack) {
+                    nextTrack = themeTracks[Math.floor(Math.random() * themeTracks.length)];
+                }
+                return nextTrack;
+            };
+
+            const playTrack = (trackName) => {
+                currentTrack = trackName;
+                if (musicFilename) {
+                    musicFilename.textContent = trackName;
+                }
+                audio.src = `/app_for_faye/themes/${trackName}`;
+                audio.loop = true;
+                return audio.play();
+            };
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play().then(() => updateToggleIcon());
+                    } else {
+                        audio.pause();
+                        updateToggleIcon();
+                    }
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const nextTrack = getRandomTrack();
+                    playTrack(nextTrack).then(() => updateToggleIcon()).catch(() => updateToggleIcon());
+                });
+            }
+
+            showBanner();
+
+            const initialTrack = getRandomTrack();
+            playTrack(initialTrack).then(() => {
+                updateToggleIcon();
+            }).catch(() => {
+                updateToggleIcon();
+                const playOnInteraction = () => {
+                    audio.play().then(() => {
+                        updateToggleIcon();
+                    });
+                    document.removeEventListener('click', playOnInteraction);
+                    document.removeEventListener('keydown', playOnInteraction);
+                };
+                document.addEventListener('click', playOnInteraction);
+                document.addEventListener('keydown', playOnInteraction);
+            });
+        }
+
         // Script to detect the latest dated podcast episode HTML under app_for_faye/podcast/html/
         async function checkLatestPodcastEpisode() {
             const basePath = 'app_for_faye/podcast/html/';
@@ -208,7 +352,10 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', checkLatestPodcastEpisode);
+        document.addEventListener('DOMContentLoaded', () => {
+            playRandomBackgroundMusic();
+            checkLatestPodcastEpisode();
+        });
     </script>
 </body>
 </html>
