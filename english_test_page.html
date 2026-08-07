@@ -51,7 +51,7 @@
             </div>
             <div class="flex items-center gap-1 ml-3 shrink-0 z-10">
                 <button id="music-toggle-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play or Pause background music">
-                    <i id="music-toggle-icon" data-lucide="pause" class="w-4 h-4"></i>
+                    <i data-lucide="pause" class="w-4 h-4"></i>
                 </button>
                 <button id="music-next-btn" class="p-1.5 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg transition-colors cursor-pointer flex items-center justify-center" aria-label="Play next random song">
                     <i data-lucide="skip-forward" class="w-4 h-4"></i>
@@ -189,12 +189,11 @@
     <script>
         lucide.createIcons();
 
-        // Probes for sequential themeX.mp3 files using HEAD requests
+        // Probes for sequential themeX.mp3 files using HEAD requests (matching the podcast episode detection pattern)
         async function playRandomBackgroundMusic() {
             const musicBanner = document.getElementById('music-banner');
             const musicFilename = document.getElementById('music-filename');
             const toggleBtn = document.getElementById('music-toggle-btn');
-            const toggleIcon = document.getElementById('music-toggle-icon');
             const nextBtn = document.getElementById('music-next-btn');
 
             const themeTracks = [];
@@ -227,13 +226,19 @@
             const audio = new Audio();
             audio.loop = true;
 
+            // Dynamically updates button inner HTML to trigger Lucide icon re-render on toggle
             const updateToggleIcon = () => {
-                if (!toggleIcon) return;
-                toggleIcon.setAttribute('data-lucide', audio.paused ? 'play' : 'pause');
+                if (!toggleBtn) return;
+                const iconName = audio.paused ? 'play' : 'pause';
+                toggleBtn.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
                 if (window.lucide) {
                     lucide.createIcons();
                 }
             };
+
+            // Bind native audio state listeners so the button icon updates automatically
+            audio.addEventListener('play', updateToggleIcon);
+            audio.addEventListener('pause', updateToggleIcon);
 
             const showBanner = () => {
                 if (musicBanner) {
@@ -264,10 +269,9 @@
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', () => {
                     if (audio.paused) {
-                        audio.play().then(() => updateToggleIcon());
+                        audio.play();
                     } else {
                         audio.pause();
-                        updateToggleIcon();
                     }
                 });
             }
@@ -275,19 +279,17 @@
             if (nextBtn) {
                 nextBtn.addEventListener('click', () => {
                     const nextTrack = getRandomTrack();
-                    playTrack(nextTrack).then(() => updateToggleIcon()).catch(() => updateToggleIcon());
+                    playTrack(nextTrack);
                 });
             }
 
             showBanner();
 
             const initialTrack = getRandomTrack();
-            playTrack(initialTrack).then(() => {
-                updateToggleIcon();
-            }).catch(() => {
+            playTrack(initialTrack).catch(() => {
                 updateToggleIcon();
                 const playOnInteraction = () => {
-                    audio.play().then(() => updateToggleIcon());
+                    audio.play();
                     document.removeEventListener('click', playOnInteraction);
                     document.removeEventListener('keydown', playOnInteraction);
                 };
