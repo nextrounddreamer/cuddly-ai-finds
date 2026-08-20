@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Export Credit, Trade & Green Energy Daily Brief - August 19, 2026</title>
+  <style>
+    :root {
+      --primary-color: #1a365d;
+      --secondary-color: #2b6cb0;
+      --accent-color: #2f855a;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #2d3748;
+      --text-muted: #718096;
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #ffffff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card-bg);
+      padding: 15px 25px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-bar a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-bar a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    .nav-bar .current-date {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .player-card {
+      background-color: var(--card-bg);
+      border-left: 6px solid var(--accent-color);
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .player-card h2 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-player {
+      width: 100%;
+      margin-top: 15px;
+      outline: none;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin: 35px 0 20px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .tag-green { background-color: #e6fffa; color: #234e52; }
+    .tag-eca { background-color: #ebf8ff; color: #2c5282; }
+    .tag-txf { background-color: #f0fff4; color: #22543d; }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-meta a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: #edf2f7;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    .concept-en {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .concept-zh {
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>The Export Credit, Trade & Green Energy Daily Brief</h1>
+      <p>Global Intelligence on ECAs, Commercial Trade Finance & Clean Tech Transition</p>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="#">&laquo; August 18, 2026</a>
+      <span class="current-date">August 19, 2026</span>
+      <a href="#">August 20, 2026 &raquo;</a>
+    </nav>
+
+    <section class="player-card">
+      <h2>🎙️ Daily Intelligence Audio Briefing</h2>
+      <p>Listen to today's 10-minute briefing covering blended green transition facilities, Berne Union MLT insurance performance data, and standardized SBLC documentation under Basel guidelines.</p>
+      <audio class="audio-player" controls src="podcast_audio_20260819.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <h2 class="section-title">Primary Citation & Research Cards</h2>
+    <div class="grid-cards">
+      
+      <div class="card">
+        <div>
+          <span class="card-tag tag-green">Green Energy & Transition</span>
+          <h3>EIB & European ECAs Launch $2.4B Blended Green Hydrogen Facility</h3>
+          <p>The European Investment Bank in coordination with major European Export Credit Agencies announced a unified risk-sharing framework de-risking commercial loans for cross-border green hydrogen infrastructure and power grid integration.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: EIB / ECA Newsroom</span>
+          <a href="https://www.eib.org" target="_blank" rel="noopener">Read Report &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-green">Clean Tech Exports</span>
+          <h3>SINOSURE Expands Credit Cover for Chinese Battery Supply Chain Exports</h3>
+          <p>China Export & Credit Insurance Corporation (SINOSURE) unveiled expanded MLT insurance capacity targeting overseas energy storage systems and critical mineral processing exports across emerging economies.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: SINOSURE Official</span>
+          <a href="http://www.sinosure.com.cn" target="_blank" rel="noopener">Read Release &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-eca">ECA & Berne Union</span>
+          <h3>Berne Union Reports Record MLT Insurance Volume for Clean Energy</h3>
+          <p>The Berne Union released market performance data highlighting a 14% year-over-year surge in medium- and long-term (MLT) export credit insurance cover specifically backing clean tech and grid upgrades.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: Berne Union Secretariat</span>
+          <a href="https://www.berneunion.org" target="_blank" rel="noopener">View Data &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-txf">TXF & Commercial Finance</span>
+          <h3>Citi & Deutsche Bank Release Advisory on SBLC Standardization & Basel RWA</h3>
+          <p>Institutional analysis published by Citi Research and Deutsche Bank Trade Desk highlights standardizing Standby Letter of Credit (SBLC) documentation to optimize Risk-Weighted Assets (RWA) under Basel rules.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: Citi / DB Research</span>
+          <a href="https://www.citigroup.com" target="_blank" rel="noopener">Access Analysis &raquo;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">Bilingual Concept Guide / 双语核心概念指南</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>English Concept</th>
+            <th>Chinese Concept (中文)</th>
+            <th>English Explanation</th>
+            <th>Chinese Explanation (中文解释)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="concept-en">Untied Loan Guarantee (ULG)</td>
+            <td class="concept-zh">无绑定贷款担保</td>
+            <td>A financial guarantee provided by an ECA to lenders that does not mandate direct procurement from the ECA's home country, often targeting strategic supply chain security or clean energy imports.</td>
+            <td>由出口信用机构向贷款人提供的金融担保，不强制要求从担保机构母国直接采购，通常用于保障战略供应链安全或清洁能源进口。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Standby Letter of Credit (SBLC)</td>
+            <td class="concept-zh">备用信用证</td>
+            <td>A legal commitment issued by a bank guaranteeing payment to a beneficiary if the applicant defaults, widely used in trade finance and project performance guarantees.</td>
+            <td>银行出具的法定承诺，保证在申请人违约时向受益人履行付款责任，广泛应用于贸易融资及项目履约担保。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Blended Transition Finance</td>
+            <td class="concept-zh">混合转型融资</td>
+            <td>The strategic use of concessional capital from development institutions alongside ECA guarantees to crowd in commercial bank syndicate liquidity for green projects.</td>
+            <td>战略性地结合来自发展机构的优惠资金与出口信用机构担保，旨在吸引商业银行银团资金进入绿色转型项目。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Risk-Weighted Assets (RWA)</td>
+            <td class="concept-zh">风险加权资产</td>
+            <td>A regulatory measure of bank assets calculated according to their exposure risk, dictating capital adequacy requirements under Basel guidelines.</td>
+            <td>根据敞口风险计算的银行资产监管指标，直接决定巴塞尔协议框架下银行的资本充足率要求。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Chinese "New Three" Green Exports</td>
+            <td class="concept-zh">中国“新三样”绿色出口</td>
+            <td>Refers to China's core high-tech green export drivers: Electric Vehicles (EVs), Lithium Batteries, and Photovoltaic (PV) solar products.</td>
+            <td>指中国核心的高新技术绿色出口“新三样”引擎：电动汽车、锂电池和光伏产品。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 The Export Credit, Trade & Green Energy Daily Brief. All rights reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
