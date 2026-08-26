@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Export Credit, Trade & Green Energy Daily Brief - August 22, 2026</title>
+  <style>
+    :root {
+      --primary-color: #1a365d;
+      --secondary-color: #2b6cb0;
+      --accent-color: #2f855a;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --text-color: #2d3748;
+      --text-muted: #718096;
+      --border-color: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #ffffff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card-bg);
+      padding: 15px 25px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-bar a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-bar a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    .nav-bar .current-date {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .player-card {
+      background-color: var(--card-bg);
+      border-left: 6px solid var(--accent-color);
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .player-card h2 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-player {
+      width: 100%;
+      margin-top: 15px;
+      outline: none;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin: 35px 0 20px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .tag-green { background-color: #e6fffa; color: #234e52; }
+    .tag-eca { background-color: #ebf8ff; color: #2c5282; }
+    .tag-txf { background-color: #f0fff4; color: #22543d; }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-meta a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: #edf2f7;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    .concept-en {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .concept-zh {
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>The Export Credit, Trade & Green Energy Daily Brief</h1>
+      <p>Global Intelligence on ECAs, Commercial Trade Finance & Clean Tech Transition</p>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="20260821.html">&laquo; August 21, 2026</a>
+      <span class="current-date">August 22, 2026</span>
+      <a href="#">August 23, 2026 &raquo;</a>
+    </nav>
+
+    <section class="player-card">
+      <h2>🎙️ Daily Intelligence Audio Briefing</h2>
+      <p>Listen to today's weekend briefing covering Finnvera and US EXIM's $1.5B co-financing for Nordic battery storage, Berne Union public-private co-insurance expansion, and MLETR legal adoption optimizing commercial bank RWA metrics under Basel III.</p>
+      <audio class="audio-player" controls src="podcast_audio_20260822.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <h2 class="section-title">Primary Citation & Research Cards</h2>
+    <div class="grid-cards">
+      
+      <div class="card">
+        <div>
+          <span class="card-tag tag-green">Green Energy & Transition</span>
+          <h3>Finnvera & US EXIM Sign $1.5B Co-Financing Agreement for BESS & Grid Tech</h3>
+          <p>Finland's Finnvera and US EXIM established a reciprocal co-financing framework to back long-duration battery energy storage systems (BESS) and smart grid exports across North American and European corridors.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: Finnvera / US EXIM Press Office</span>
+          <a href="https://www.finnvera.fi" target="_blank" rel="noopener">Read Report &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-eca">ECA & Berne Union</span>
+          <h3>Berne Union Highlights 20% Surge in Public-Private Co-Insurance Partnerships</h3>
+          <p>Specialized market analysis released by the Berne Union reveals increased collaboration between official ECAs and private credit insurers to manage sovereign debt restructuring exposures in emerging markets.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: Berne Union Secretariat</span>
+          <a href="https://www.berneunion.org" target="_blank" rel="noopener">View Data &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-eca">Export Credit Development</span>
+          <h3>JBIC & OECD Working Group Align on Untied Critical Mineral Credit Standards</h3>
+          <p>Japan Bank for International Cooperation and OECD export credit delegates published joint technical guidance harmonizing untied sovereign guarantee terms for rare earth processing investments.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: JBIC / OECD Trade Directorate</span>
+          <a href="https://www.jbic.go.jp" target="_blank" rel="noopener">Read Release &raquo;</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-txf">TXF & Legal Standards</span>
+          <h3>Credendo & Atradius Advisory: MLETR-Compliant eBLs Deliver RWA Relief</h3>
+          <p>Joint advisory from Credendo and Atradius details how adopting UNCITRAL MLETR-compliant electronic Bills of Lading improves legal enforceability and lowers Basel III capital holding charges for trade syndicates.</p>
+        </div>
+        <div class="card-meta">
+          <span>Source: Credendo / Atradius Legal Brief</span>
+          <a href="https://www.credendo.com" target="_blank" rel="noopener">Access Analysis &raquo;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">Bilingual Concept Guide / 双语核心概念指南</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>English Concept</th>
+            <th>Chinese Concept (中文)</th>
+            <th>English Explanation</th>
+            <th>Chinese Explanation (中文解释)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="concept-en">Model Law on Electronic Transferable Records (MLETR)</td>
+            <td class="concept-zh">电子可转让记录示范法 (MLETR)</td>
+            <td>A UNCITRAL legal framework enabling the legal recognition of electronic transferable records, such as electronic Bills of Lading, giving them functional equivalence to paper documents.</td>
+            <td>由联合国国际贸易法委员会制定的法律框架，赋予电子提单等电子可转让记录与纸质单据同等的法律效力。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Public-Private Co-Insurance Partnership</td>
+            <td class="concept-zh">公私合营联保合作</td>
+            <td>Risk-sharing agreements between state-backed export credit agencies and private credit insurers to syndicate exposure on large-scale infrastructure or sovereign debt facilities.</td>
+            <td>国家支持的出口信用机构与商业私营信用保险公司之间的风险分担机制，旨在联合承保大型基础设施或主权债务敞口。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Battery Energy Storage System (BESS)</td>
+            <td class="concept-zh">电池储能系统 (BESS)</td>
+            <td>Utility-scale battery technology deployed to capture renewable power, smooth grid fluctuations, and provide peak-shaving capacity for regional energy networks.</td>
+            <td>公用事业级电池技术，用于储存可再生能源、平抑电网波动并为区域电网提供削峰填谷能力。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Sovereign Debt Restructuring Risk</td>
+            <td class="concept-zh">主权债务重组风险</td>
+            <td>The credit exposure faced by export credit lenders when a borrowing sovereign nation seeks to modify interest rates, tenors, or principal values under Paris Club or multilateral terms.</td>
+            <td>当借款主权国家在巴黎俱乐部或多边框架下寻求调整利率、期限或本金时，出口信贷出资方所面临的信用风险。</td>
+          </tr>
+          <tr>
+            <td class="concept-en">Electronic Bill of Lading (eBL)</td>
+            <td class="concept-zh">电子提单 (eBL)</td>
+            <td>A legally binding, digital version of a traditional bill of lading that facilitates rapid ownership transfer, automated verification, and reduced physical document fraud in cross-border trade.</td>
+            <td>传统提单的法定数字版本，可实现跨境贸易中的快速物权转移、自动化核验及降低物理单据欺诈风险。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 The Export Credit, Trade & Green Energy Daily Brief. All rights reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
